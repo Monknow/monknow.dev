@@ -1,11 +1,12 @@
 import * as React from "react";
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import styled, { createGlobalStyle } from 'styled-components';
-import Boton from "../components/Boton";
+import { Helmet } from "react-helmet";
 import NavBar from "../components/NavBar";
 import GaleriaBlog from "../components/GaleriaBlog";
 import Contactame from "../components/Contactame";
 import FooterPagina from "../components/FooterPagina";
+import iconoFavicon from "../images/favicon.ico";
 import "../fonts/fonts.css";
 
 const EstilosGlobal = createGlobalStyle`
@@ -30,6 +31,11 @@ const BlogPostsPage = (props) => {
 
   return (
     <div>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <link rel="icon" href={iconoFavicon} />
+            <title>Blog</title>
+        </Helmet>
         <EstilosGlobal></EstilosGlobal>
         <NavBar></NavBar>
         <ContenedorGaleriaBlogEstilizado>

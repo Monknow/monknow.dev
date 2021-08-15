@@ -1,9 +1,11 @@
 import * as React from "react";
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import { Helmet } from "react-helmet";
 import NavBar from "../components/NavBar";
 import GranMensaje from "../components/GranMensaje";
 import FooterPagina from "../components/FooterPagina"
 import "../fonts/fonts.css";
+import iconoFavicon from "../images/favicon.ico";
 import ilustracionGracias from "../svg/thank-you-rafiki.svg"
 
 const EstilosGlobal = createGlobalStyle`
@@ -22,6 +24,11 @@ const EstilosGlobal = createGlobalStyle`
 const GraciasPage = () => {
   return (
     <main>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <link rel="icon" href={iconoFavicon} />
+          <title>¡Gracias!</title>
+        </Helmet>
       <EstilosGlobal></EstilosGlobal>
       <NavBar></NavBar>
       <GranMensaje titulo="¡Gracias!" subtitulo="Leeré tu mensaje pronto" imagen={ilustracionGracias} aspectRatio={1/1}></GranMensaje>

@@ -1,10 +1,12 @@
 import * as React from "react";
 import { graphql } from "gatsby"
 import styled, { createGlobalStyle } from 'styled-components';
+import { Helmet } from "react-helmet";
 import NavBar from "../components/NavBar";
 import GaleriaPortafolio from "../components/GaleriaPortafolio";
 import Contactame from "../components/Contactame";
 import FooterPagina from "../components/FooterPagina";
+import iconoFavicon from "../images/favicon.ico";
 import "../fonts/fonts.css";
 
 const EstilosGlobal = createGlobalStyle`
@@ -29,6 +31,11 @@ const PortafolioPage = (props) => {
 
   return (
     <div>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <link rel="icon" href={iconoFavicon} />
+            <title>Portafolio</title>
+        </Helmet>
         <EstilosGlobal></EstilosGlobal>
         <NavBar></NavBar>
         <ContenedorGaleriaPortafolioEstilizado>

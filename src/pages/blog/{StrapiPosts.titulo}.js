@@ -2,6 +2,7 @@ import * as React from "react";
 import ReactMarkdown from "react-markdown";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import Titulo from "../../components/Titulo";
 import Subtitulo from "../../components/Subtitulo";
@@ -116,6 +117,9 @@ const imagenPrincipal = getImage(post.imagenPrincipal.localFile);
 
 return (
     <div>
+        <Helmet>
+            <title>{post.titulo}</title>
+        </Helmet>
     <EstilosGlobal></EstilosGlobal>
     <NavBar></NavBar>
     <Compartir location={props.location}></Compartir>

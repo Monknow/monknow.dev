@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Helmet } from "react-helmet";
 import NavBar from "../components/NavBar";
 import Inicio from "../components/Inicio";
 import SobreMi from "../components/SobreMi";
@@ -8,6 +9,7 @@ import Contactame from "../components/Contactame";
 import FooterPagina from "../components/FooterPagina";
 import "../fonts/fonts.css";
 import { createGlobalStyle } from 'styled-components'
+import iconoFavicon from "../images/favicon.ico";
 
 const EstilosGlobal = createGlobalStyle`
     * {
@@ -26,6 +28,11 @@ const EstilosGlobal = createGlobalStyle`
 const IndexPage = () => {
   return (
     <div>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Monknow.dev</title>
+          <link rel="icon" href={iconoFavicon} />
+      </Helmet>
       <EstilosGlobal></EstilosGlobal>
       <NavBar></NavBar>
       <Inicio></Inicio>
