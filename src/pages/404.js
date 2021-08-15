@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import GranMensaje from "../components/GranMensaje";
 import FooterPagina from "../components/FooterPagina"
 import "../fonts/fonts.css";
-import ilustracionError404 from "../svg/404-error-rafiki.svg";
+import ilustracionError404 from "../svg/404-Error-rafiki.svg";
 
 const EstilosGlobal = createGlobalStyle`
     * {
