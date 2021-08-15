@@ -129,7 +129,7 @@ const Contactame = () =>{
         <ContactameEstilizado id="contactame">
             <Titulo claro contenido="¿Cómo puedo ayudarte?"></Titulo>
             <ContactameFormulario action="https://formsubmit.io/send/8b76bd5b-4abf-4a18-b52c-df8caeda0157" method="POST">
-            <input name="_redirect" type="hidden" id="name" value="http://localhost:8000/gracias"/>
+            <input name="_redirect" type="hidden" id="name" value="https://www.monknow.dev/gracias"/>
             <CamposCortos>
                 <p>
                 <label htmlFor="campos-cortos__nombre--label">Nombre</label>
