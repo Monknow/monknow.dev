@@ -4,8 +4,8 @@ import styled from "styled-components"
 const BotonEstilizado = styled.button`
     width: clamp(100px, 15vw, 150px);
 
-    margin-top: 10px;
-    border: 2px solid #fca311;
+    margin: 10px 0px;
+    border: 2px solid #fca311 ;
     border-radius: 20px;
     padding: 6px 0px;
 

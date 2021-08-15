@@ -1,83 +1,93 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import styled from "styled-components"
+import styled from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
 
-import navBarLogo from "../images/android-chrome-512x512.png";
-import iconoMenu from "../svg/iconmonstr-menu-1.svg";
-
-const NavBarEstilizado = styled.nav`    
+const NavBarEstilizado = styled.nav`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 
-    min-height: 6vh;
+    height: 6vh;
 
+    margin-bottom: 4vh;
     padding: 20px;
 
     font-family: "Open Sans Regular";
     font-size: clamp(12px, 5vw, 20px);
+`;
+
+const NavbarSecciones = styled.details`
+    font-size: 1em;
+`;
+
+const NavbarIconoMenu = styled.summary`
+    height: 24px;
+
+    list-style: none;
+    text-align: right;
+
+    cursor: pointer;
+
+    &::marker {
+        display: none;
+    }
+`;
+
+const NavBarSeccionesLinks = styled.div`
+    position: absolute;
+    right: 20px;
+    z-index: 100;
+
+    display: flex;
+    flex-flow: column wrap;
+
+    background-color: #fff;
+`;
+
+const LinkEstilizado = styled(Link)`
+    margin: 5px 0px;
+
+    text-align: right;
+    text-decoration: none;
+
+    color: #141c3a;
 `
 
-    const NavBarLogoEstilizado = styled.img`
-        width: 40px;
-    `
-
-    const NavbarSecciones = styled.details`
-        font-size: 1em;
-
-    `
-
-        const NavbarIconoMenu = styled.summary`
-            list-style: none;
-            text-align: right;
-
-            cursor: pointer;
-
-            &::marker{
-                display: none;
-
-            }
-        `
-
-        const NavBarSeccionesLinks = styled.div`
-            position: absolute;
-            right: 20px;
-
-            display: flex;
-            flex-flow: column wrap;
-
-            & a{
-                text-align: right;
-                text-decoration: none;
-
-                color: #141c3a;
-            }
-        `
-
-const NavBar = () =>{
-    return(
-        <NavBarEstilizado>
-        <Link to="/">
-            <NavBarLogoEstilizado
-            src={navBarLogo}
-            alt="logo de monknow"
-            />
-        </Link>
-        <NavbarSecciones>
-            <NavbarIconoMenu>
-        <img src={iconoMenu} alt="icono menu"></img>
+const NavBar = () => {
+return (
+    <NavBarEstilizado>
+    <Link to="/">
+        <StaticImage
+        src="../images/android-chrome-512x512.png"
+        alt="logo de monknow"
+        placeholder="blurred"
+        layout="fixed"
+        width={40}
+        height={40}
+        />
+    </Link>
+    <NavbarSecciones>
+        <NavbarIconoMenu>
+        <StaticImage
+            src="../svg/iconmonstr-menu-1.svg"
+            alt="icono menu"
+            placeholder="blurred"
+            layout="fixed"
+            width={24}
+            height={24}
+        ></StaticImage>
         </NavbarIconoMenu>
         <NavBarSeccionesLinks>
-            <Link to="/#sobre-mi">Sobre mí</Link>
-            <Link to="/#conocimientos">Conocimientos</Link>
-            <Link to="/#portafolio">Portafolio</Link>
-            <Link to="blog-post">Blog</Link>
-            <Link to="/#contactame">Contactame</Link>
+        <LinkEstilizado to="/#sobre-mi">Sobre mí</LinkEstilizado>
+        <LinkEstilizado to="/#conocimientos">Conocimientos</LinkEstilizado>
+        <LinkEstilizado to="/#portafolio">Portafolio</LinkEstilizado>
+        <LinkEstilizado to="/#blog">Blog</LinkEstilizado>
+        <LinkEstilizado to="/#contactame">Contactame</LinkEstilizado>
         </NavBarSeccionesLinks>
-        </NavbarSecciones>
+    </NavbarSecciones>
     </NavBarEstilizado>
-    )
-
-}
+);
+};
 
 export default NavBar;

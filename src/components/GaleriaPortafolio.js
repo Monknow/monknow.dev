@@ -1,38 +1,38 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Galeria from "./Galeria";
+import ContenedorGaleria from "./ContenedorGaleria";
 
 function GaleriaPortafolio(props) {
+
   const data = useStaticQuery(graphql`
   query ProyectosQuery {
-    allStrapiCuadro(filter: {proyecto: {eq: true}}) {
+    allStrapiProyectos(limit: 6) {
       nodes {
-        descripcion
         id
-        proyecto
-        subtitulo
         titulo
-        url
+        stack
         portada {
           url
         }
+        url
       }
     }
   }
+  
   `);
 
-  const cuadros = data.allStrapiCuadro.nodes;
+  const proyectos = data.allStrapiProyectos.nodes;
 
   return (
-    <div>
-      <Galeria 
-      id="portafolio"
-      titulo="Portafolio"
-      subtitulo="Donde la magia ocurre"
-      cuadros={cuadros}
-      >
-      </Galeria>
+    <div id="portafolio">
+        <ContenedorGaleria
+          titulo={props.titulo}
+          subtitulo={props.subtitulo}
+          cuadros={proyectos}
+          esBlogPost={false}>
+        </ContenedorGaleria>
     </div>
+
   );
 }
 

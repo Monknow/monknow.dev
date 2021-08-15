@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
+import { Link } from "gatsby";
 import Boton from "./Boton";
 
 const crecerImagen = keyframes`
@@ -54,6 +55,7 @@ const Detalles = styled.div`
     padding: 20px;
 
     font-family: "Open Sans Regular";
+    font-size: clamp(14px, 5vw, 20px);
 
     color: #fff;
     background: #141c3a;
@@ -67,22 +69,17 @@ const TituloCuadro = styled.h1`
     margin: clamp(0px, 0.5vw, 10px) 0px;
 
     font-size: 1em;
-    
+    text-align: center;
 `;
 
-const Subtitulo = styled.h2`
+const SubtituloCuadro = styled.h2`
     margin: clamp(0px, 0.5vw, 10px) 0px;
 
-    font-size: 0.9em;
+    font-family: "Open Sans Light";
+    font-size: 0.7em;
+    text-align: center;
 `;
-
-const Descripcion = styled.p`
-    margin: clamp(0px, 0.5vw, 10px) 0px;
-
-    font-size: 0.8em;
-`;
-
-
+ 
 function Cuadro(props){
 
 
@@ -90,11 +87,12 @@ function Cuadro(props){
         <CuadroEstilizado imagenURL={props.imagenURL}>
             <Detalles className="detalles">
                         <TituloCuadro>{props.titulo}</TituloCuadro>
-                        <Subtitulo>{props.subtitulo}</Subtitulo>
-                        <Descripcion>
-                            {props.descripcion}
-                        </Descripcion>
-                        <a href={props.URL} target="_blank" rel="noreferrer"><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></a>
+                        <SubtituloCuadro>{props.subtitulo}</SubtituloCuadro>
+                        {props.linkInterno?(
+                            <Link to={props.URL} target="_blank" rel="noreferrer"><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></Link>
+                        ):(
+                            <a href={props.URL} target="_blank" rel="noreferrer"><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></a>
+                        )}
             </Detalles>
         </CuadroEstilizado>
     )

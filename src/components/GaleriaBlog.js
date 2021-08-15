@@ -1,19 +1,16 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Galeria from "./Galeria";
+import ContenedorGaleria from "./ContenedorGaleria";
 
-function GaleriaBlog({titulo, subtitulo}) {
+function GaleriaBlog(props) {
   const data = useStaticQuery(graphql`
-  query PostsQuery {
-    allStrapiCuadro(filter: {proyecto: {eq: false}}) {
+  query MyQuery {
+    allStrapiPosts(limit: 4) {
       nodes {
-        descripcion
         id
-        proyecto
-        subtitulo
         titulo
-        url
-        portada {
+        subtitulo
+        imagenPrincipal {
           url
         }
       }
@@ -21,17 +18,21 @@ function GaleriaBlog({titulo, subtitulo}) {
   }
   `);
 
-  const cuadros = data.allStrapiCuadro.nodes;
+  const posts = data.allStrapiPosts.nodes;
 
   return (
-    <Galeria 
-    id="blog"
-    titulo={titulo}
-    subtitulo={subtitulo}
-    cuadros={cuadros}
-    >
-    </Galeria>
+    <div id="blog">
+      <ContenedorGaleria 
+          titulo={props.titulo}
+          subtitulo={props.subtitulo}
+          cuadros={props.cuadros? props.cuadros : posts}
+          esBlogPost={true}>
+        </ContenedorGaleria>
+    </div>
+
   );
 }
 
 export default GaleriaBlog;
+
+

@@ -4,6 +4,7 @@ import styled from "styled-components"
 
     const TituloEstilizado = styled.h1`
         margin: 10px 0px;
+        padding: 0px 30px;
 
         font-size: 1.6em;
         font-family: "Open Sans Bold";

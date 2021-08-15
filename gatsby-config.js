@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "Prueba",
+    siteUrl: "http://localhost:8000",
+    title: "Monknow",
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -9,12 +9,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     "gatsby-plugin-styled-components",
     "gatsby-plugin-gatsby-cloud",
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: `https://monknow-cms.herokuapp.com`,
         queryLimit: 1000, // Defaults to 100
-        collectionTypes: [`cuadro`],
+        collectionTypes: [`posts`, `proyectos`],
       },
     },
   ],

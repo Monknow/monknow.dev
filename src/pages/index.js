@@ -3,8 +3,7 @@ import NavBar from "../components/NavBar";
 import Inicio from "../components/Inicio";
 import SobreMi from "../components/SobreMi";
 import Conocimientos from "../components/Conocimientos";
-import GaleriaPortafolio from "../components/GaleriaPortafolio";
-import GaleriaBlog from "../components/GaleriaBlog";
+import GaleriasInicio from "../components/GaleriasInicio";
 import Contactame from "../components/Contactame";
 import FooterPagina from "../components/FooterPagina";
 import "../fonts/fonts.css";
@@ -32,8 +31,7 @@ const IndexPage = () => {
       <Inicio></Inicio>
       <SobreMi></SobreMi>
       <Conocimientos></Conocimientos>
-      <GaleriaPortafolio></GaleriaPortafolio>
-      <GaleriaBlog titulo="Blog" subtitulo="Mis últimas públicaciones"></GaleriaBlog>
+      <GaleriasInicio></GaleriasInicio>
       <Contactame></Contactame>
       <FooterPagina atribucion="Ilustracion por Storyset" atribucionURL="https://storyset.com/web"></FooterPagina>
     </div>
