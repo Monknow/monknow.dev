@@ -26,7 +26,6 @@ const SeleccionarLenguaje = () =>{
 
     const regexUbicacionLenguajes = /\/e(s|n)(\/|)/;
     const ubicacionPaginaSinLenguaje = ubicacionPagina.pathname? ubicacionPagina.pathname.replace(regexUbicacionLenguajes, "") : pathNamePaginaDefault.replace(regexUbicacionLenguajes, "");
-    console.log(prueba.replace(regexUbicacionLenguajes, ""));
 
     return(
         <SeleccionarLenguajeEstilizado>
