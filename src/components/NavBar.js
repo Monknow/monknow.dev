@@ -1,9 +1,6 @@
 import * as React from "react";
-import { LocalizedLink } from "gatsby-theme-i18n"; 
+import { LocalizedLink, useLocalization } from "gatsby-theme-i18n"; 
 import styled from "styled-components";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
 import { StaticImage } from "gatsby-plugin-image";
 import SeleccionarLenguaje from "./SeleccionarLenguaje";
 
@@ -63,8 +60,7 @@ const NavBarSeccionesLinks = styled.div`
 
 
 const NavBar = (props) => {
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
 
     const contenido = [
     ["es", { sobreMi: "Sobre mí", habilidades: "Habilidades", portafolio: "Portafolio", blog: "Blog", contactame: "Contactame" }],
@@ -72,7 +68,7 @@ const NavBar = (props) => {
     ];
     const mapaContenido = new Map(contenido);
 
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return (
         <NavBarEstilizado>

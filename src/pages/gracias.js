@@ -1,12 +1,13 @@
 import * as React from "react";
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
+import { useLocalization } from "gatsby-theme-i18n";
 import NavBar from "../components/NavBar";
 import GranMensaje from "../components/GranMensaje";
-import FooterPagina from "../components/FooterPagina"
+import FooterPagina from "../components/FooterPagina";
 import "../fonts/fonts.css";
 import iconoFavicon from "../images/favicon.ico";
-import ilustracionGracias from "../svg/thank-you-rafiki.svg"
+import ilustracionGracias from "../svg/thank-you-rafiki.svg";
 
 const EstilosGlobal = createGlobalStyle`
     * {
@@ -17,24 +18,40 @@ const EstilosGlobal = createGlobalStyle`
     html{
       scroll-behavior: smooth;
     }
-`
-
+`;
 
 // markup
 const GraciasPage = (props) => {
+  const {locale} = useLocalization();
+
+  const contenido = [
+    ["es", { titulo: "Thank you!", subtitulo: "Pronto leeré el mensaje",  contenidoBoton: "Volver"}],
+    ["en", { titulo: "Thank you!", subtitulo: "I will read your message soon",  contenidoBoton: "Go back"}],
+    ];
+    const mapaContenido = new Map(contenido);
+
+    const contenidoPorLenguaje = mapaContenido.get(locale);
+
+
   return (
     <main>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <link rel="icon" href={iconoFavicon} />
-          <title>Thank you!</title>
-        </Helmet>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <link rel="icon" href={iconoFavicon} />
+        <title>{contenidoPorLenguaje.titulo}</title>
+      </Helmet>
       <EstilosGlobal></EstilosGlobal>
       <NavBar location={props.location}></NavBar>
-      <GranMensaje titulo="Thank you!" subtitulo="I will read your message soon" imagen={ilustracionGracias} contenidoBoton="Go back" aspectRatio={1/1}></GranMensaje>
+      <GranMensaje
+        titulo={contenidoPorLenguaje.titulo}
+        subtitulo={contenidoPorLenguaje.subtitulo}
+        imagen={ilustracionGracias}
+        contenidoBoton={contenidoPorLenguaje.contenidoBoton}
+        aspectRatio={1 / 1}
+      ></GranMensaje>
       <FooterPagina></FooterPagina>
     </main>
-  )
-}
+  );
+};
 
 export default GraciasPage;

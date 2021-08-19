@@ -1,13 +1,10 @@
 import * as React from "react";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
 import Boton from "./Boton";
-import { LocalizedLink } from "gatsby-theme-i18n"; 
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { LocalizedLink, useLocalization } from "gatsby-theme-i18n"; 
 
 const BotonVerMas = (props) => {
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
+
 
     const contenido = [
     [
@@ -25,7 +22,7 @@ const BotonVerMas = (props) => {
     ];
     const mapaContenido = new Map(contenido);
 
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
 
     return (

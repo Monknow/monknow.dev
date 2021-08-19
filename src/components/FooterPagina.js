@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import logoPositivo from "../images/logo-2.png";
 import styled from "styled-components";
 
@@ -93,8 +91,7 @@ const FooterEstilizado = styled.footer`
 
 
 const FooterPagina = () => {
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
 
     const contenido = [
         [
@@ -116,7 +113,7 @@ const FooterPagina = () => {
     ];
     const mapaContenido = new Map(contenido);
     
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return (
     <FooterEstilizado>

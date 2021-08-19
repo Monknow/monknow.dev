@@ -1,8 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import Titulo from "./Titulo";
 import Boton from "./Boton";
 
@@ -127,8 +125,8 @@ const ContactameEstilizado = styled.section`
 
 
 const Contactame = () =>{
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
+
     const contenido = [
         [
         "es",
@@ -155,7 +153,7 @@ const Contactame = () =>{
     ];
     const mapaContenido = new Map(contenido);
     
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return(
         <ContactameEstilizado id="contactame">

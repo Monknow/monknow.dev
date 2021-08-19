@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import styled from "styled-components";
 import Titulo from "./Titulo";
 import codigoSVG from "../svg/iconmonstr-code-7.svg";
@@ -86,8 +84,7 @@ return (
 };
 
 const Habilidades = () => {
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
 
     const contenido = [
         [
@@ -123,7 +120,7 @@ const Habilidades = () => {
     ];
     const mapaContenido = new Map(contenido);
 
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return (
         <ConocimientosEstilizados id="habilidades">

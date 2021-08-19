@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import styled from "styled-components";
 import InicioAnimacionSVG from "../svg/home-animation.svg";
 
@@ -55,8 +53,7 @@ const InicioAnimacion = styled.div`
 `;
 
 const Inicio = () => {
-  const urlContexto = useContext(ContextoURL); 
-  const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+  const {locale} = useLocalization();
 
   const contenido = [
     ["es", { subtitulo: "Mejorando cada día", botonContenido: "Contactame" }],
@@ -64,7 +61,7 @@ const Inicio = () => {
   ];
   const mapaContenido = new Map(contenido);
 
-  const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+  const contenidoPorLenguaje = mapaContenido.get(locale);
 
   return (
       <InicioEstilizado id="inicio">

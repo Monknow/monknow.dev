@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
-import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import styled from "styled-components"
 import Titulo from "./Titulo";
 
@@ -33,8 +31,7 @@ const SobreMiEstilizado = styled.section`
     `
 
 const SobreMi = () =>{
-    const urlContexto = useContext(ContextoURL); 
-    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const {locale} = useLocalization();
 
     const contenido = [
     ["es", { titulo: "Me llamo Juan Diego Rodriguez, mucho gusto", sobreMi: "Soy un desarrollador web especializado en el frontend. Uso principalmente React, pero me adapto bien y conozco las tecnologías usadas en el desarrollo web moderno. Me desempeño en trabajos remotos."}],
@@ -42,7 +39,7 @@ const SobreMi = () =>{
     ];
     const mapaContenido = new Map(contenido);
 
-    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+    const contenidoPorLenguaje = mapaContenido.get(locale);
 
 
     return(

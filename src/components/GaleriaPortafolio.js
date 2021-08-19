@@ -2,13 +2,13 @@ import * as React from "react";
 import { useContext } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import ContextoURL from "../context/ContextoURL";
-import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import { useLocalization } from "gatsby-theme-i18n";
 import ContenedorGaleria from "./ContenedorGaleria";
 import BotonVerMas from "./BotonVerMas";
 
 function GaleriaPortafolio(props) {
   const urlContexto = useContext(ContextoURL);
-  const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+  const {locale} = useLocalization();
 
   const esVerMasNecesario = (url) => {
     const urlConPortafolio = url.match(/\/e(s|n)\/portafolio/);
@@ -26,7 +26,7 @@ function GaleriaPortafolio(props) {
   ];
   const mapaContenido = new Map(contenido);
 
-  const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+  const contenidoPorLenguaje = mapaContenido.get(locale);
 
   const data = useStaticQuery(graphql`
     query ProyectosQuery {
@@ -54,7 +54,7 @@ function GaleriaPortafolio(props) {
         cuadros={props.cuadros ? props.cuadros : proyectos}
         esBlogPost={false}
       >
-        {esVerMasNecesario(urlContexto) ? (
+        {esVerMasNecesario(urlContexto.pathname) ? (
           <BotonVerMas localizedLinkTo="/portafolio"></BotonVerMas>
         ) : (
           <div></div>
