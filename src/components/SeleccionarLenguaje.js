@@ -22,6 +22,7 @@ const Lenguajes = styled.div`
 
 const SeleccionarLenguaje = () =>{
     const ubicacionPagina = useContext(ContextoURL);
+    console.log(ubicacionPagina);
 
     const regexUbicacionLenguajes = /\/e(s|n)(\/|)/;
     const ubicacionPaginaSinLenguaje = ubicacionPagina.pathname.replace(regexUbicacionLenguajes, "");

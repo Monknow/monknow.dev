@@ -6,6 +6,7 @@ exports.createPages = ({ actions }) => {
     { inicio: `/blog`, destino: `/en/blog` },
     { inicio: `/gracias`, destino: `/en/gracias` },
     { inicio: `/portafolio`, destino: `/en/portafolio` },
+    { inicio: `/404`, destino: `/en/404` },
   ];
 
   fuentesRedirects.forEach(({ inicio, destino }) => {
