@@ -4,8 +4,8 @@ exports.createPages = ({ actions }) => {
   let fuentesRedirects = [
     { inicio: `/`, destino: `/en` },
     { inicio: `/blog`, destino: `/en/blog` },
-    { inicio: `/gracias`, destino: `/en/gracias` },
-    { inicio: `/portafolio`, destino: `/en/portafolio` },
+    { inicio: `/gracias`, destino: `/en/thanks` },
+    { inicio: `/portafolio`, destino: `/en/portfolio` },
     { inicio: `/404`, destino: `/en/404` },
   ];
 
