@@ -22,10 +22,11 @@ const Lenguajes = styled.div`
 
 const SeleccionarLenguaje = () =>{
     const ubicacionPagina = useContext(ContextoURL);
-    console.log(ubicacionPagina);
+    const pathNamePaginaDefault = "/en";
 
     const regexUbicacionLenguajes = /\/e(s|n)(\/|)/;
-    const ubicacionPaginaSinLenguaje = ubicacionPagina.pathname.replace(regexUbicacionLenguajes, "");
+    const ubicacionPaginaSinLenguaje = ubicacionPagina.pathname? ubicacionPagina.pathname.replace(regexUbicacionLenguajes, "") : pathNamePaginaDefault.replace(regexUbicacionLenguajes, "");
+    console.log(prueba.replace(regexUbicacionLenguajes, ""));
 
     return(
         <SeleccionarLenguajeEstilizado>
