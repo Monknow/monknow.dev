@@ -3845,6 +3845,12 @@ var plugins = [{
     "prefixDefault": true,
     "configPath": "C:\\Users\\PERLA\\Desktop\\programacion\\monknow\\i18n\\config.json"
   }
+}, {
+  name: 'default-site-plugin',
+  plugin: __webpack_require__(/*! ./gatsby-ssr */ "./gatsby-ssr.js"),
+  options: {
+    "plugins": []
+  }
 }];
 /* global plugins */
 // During bootstrap, we write requires at top of this file which looks like:
@@ -5285,6 +5291,31 @@ function stripPrefix(str, prefix = ``) {
 
 /***/ }),
 
+/***/ "./gatsby-ssr.js":
+/*!***********************!*\
+  !*** ./gatsby-ssr.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "wrapPageElement": () => (/* binding */ wrapPageElement)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _src_context_ContextoURL__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/context/ContextoURL */ "./src/context/ContextoURL.js");
+
+
+const wrapPageElement = ({
+  element,
+  props
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_src_context_ContextoURL__WEBPACK_IMPORTED_MODULE_1__.URlProvider, props, element);
+};
+
+/***/ }),
+
 /***/ "./node_modules/gatsby-plugin-image/gatsby-ssr.js":
 /*!********************************************************!*\
   !*** ./node_modules/gatsby-plugin-image/gatsby-ssr.js ***!
@@ -5721,6 +5752,38 @@ module.exports = {
   defaultLang,
   withDefaults
 };
+
+/***/ }),
+
+/***/ "./src/context/ContextoURL.js":
+/*!************************************!*\
+  !*** ./src/context/ContextoURL.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "URlProvider": () => (/* binding */ URlProvider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const ContextoURL = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  href: "http://monknow.dev/en",
+  pathname: "en"
+});
+
+const URlProvider = props => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ContextoURL.Provider, {
+    value: props.location
+  }, props.children);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContextoURL);
+
 
 /***/ }),
 
