@@ -1,18 +1,11 @@
 import * as React from "react";
-import { useState, useEffect, createContext } from "react";
+import { createContext } from "react";
 
-const ContextoURL = createContext("http://monknow.dev/en");
+const ContextoURL = createContext({href: "http://monknow.dev/en", pathname: "en"});
 
 const URlProvider = (props) =>{
-    const [URL, setURL] = useState("http://monknow.dev/en");
-
-    useEffect(()=>{
-
-        setURL(props.location);
-    }, [props.location]);
-
     return(
-        <ContextoURL.Provider value={URL}>
+        <ContextoURL.Provider value={props.location}>
             {props.children}
         </ContextoURL.Provider>
     )
