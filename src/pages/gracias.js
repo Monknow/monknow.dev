@@ -21,18 +21,18 @@ const EstilosGlobal = createGlobalStyle`
 
 
 // markup
-const GraciasPage = () => {
+const GraciasPage = (props) => {
   return (
     <main>
         <Helmet>
           <meta charSet="utf-8" />
           <link rel="icon" href={iconoFavicon} />
-          <title>¡Gracias!</title>
+          <title>Thank you!</title>
         </Helmet>
       <EstilosGlobal></EstilosGlobal>
-      <NavBar></NavBar>
-      <GranMensaje titulo="¡Gracias!" subtitulo="Leeré tu mensaje pronto" imagen={ilustracionGracias} aspectRatio={1/1}></GranMensaje>
-      <FooterPagina atribucion="Ilustracion por Storyset" atribucionURL="https://storyset.com/web"></FooterPagina>
+      <NavBar location={props.location}></NavBar>
+      <GranMensaje titulo="Thank you!" subtitulo="I will read your message soon" imagen={ilustracionGracias} contenidoBoton="Go back" aspectRatio={1/1}></GranMensaje>
+      <FooterPagina></FooterPagina>
     </main>
   )
 }

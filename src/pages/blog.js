@@ -28,7 +28,6 @@ const BlogPostsPage = (props) => {
 
     const posts = props.data.allStrapiPosts.nodes;
 
-
   return (
     <div>
         <Helmet>
@@ -39,29 +38,31 @@ const BlogPostsPage = (props) => {
         <EstilosGlobal></EstilosGlobal>
         <NavBar></NavBar>
         <ContenedorGaleriaBlogEstilizado>
-            <GaleriaBlog titulo="Blog" subtitulo="Mis últimas públicaciones" cuadros={posts}></GaleriaBlog>
+            <GaleriaBlog cuadros={posts}></GaleriaBlog>
         </ContenedorGaleriaBlogEstilizado>
         <Contactame></Contactame>
-        <FooterPagina atribucion="" atribucionURL=""></FooterPagina>
+        <FooterPagina></FooterPagina>
         </div>
-  )
+  ) 
 }
 
 export default BlogPostsPage;
 
 export const query = graphql`
-    query AllPostQuery  {
-        allStrapiPosts(limit: 30) {
-                nodes {
-                id
-                titulo
-                subtitulo
-                imagenPrincipal {
-                url
-                }
-            }
-        }
+query AllPostEnQueryBlogPage($locale : String!) {
+  allStrapiPosts(limit: 30, filter: {locale: {eq: $locale }}) {
+    nodes {
+      id
+      titulo
+      subtitulo
+      slug
+      imagenPrincipal {
+        url
+      }
+      locale
     }
-    
+  }
+}
+
 `
 

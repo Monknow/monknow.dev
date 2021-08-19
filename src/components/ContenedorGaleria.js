@@ -7,7 +7,6 @@ import slugify from '@sindresorhus/slugify';
 
 
 const GaleriaEstilizada = styled.section`
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -39,7 +38,7 @@ function ContenedorGaleria(props) {
                             <Cuadro
                             titulo={cuadro.titulo}
                             subtitulo={cuadro.subtitulo}
-                            URL={`/blog/${slugify(cuadro.titulo)}/`}
+                            URL={`/blog/${slugify(cuadro.slug)}/`}
                             imagenURL={cuadro.imagenPrincipal.url}
                             linkInterno={props.esBlogPost}
                             ></Cuadro>
@@ -55,7 +54,8 @@ function ContenedorGaleria(props) {
                     </div>
                 );
                 })}
-            </Cuadros> 
+            </Cuadros>
+            {props.children} 
         </GaleriaEstilizada>
 );
 }

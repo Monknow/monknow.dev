@@ -34,24 +34,24 @@ const PortafolioPage = (props) => {
         <Helmet>
             <meta charSet="utf-8" />
             <link rel="icon" href={iconoFavicon} />
-            <title>Portafolio</title>
+            <title>Portfolio</title>
         </Helmet>
         <EstilosGlobal></EstilosGlobal>
-        <NavBar></NavBar>
+        <NavBar location={props.location}></NavBar>
         <ContenedorGaleriaPortafolioEstilizado>
-            <GaleriaPortafolio titulo="Portafolio" subtitulo="Mis últimos proyectos" cuadros={proyectos}></GaleriaPortafolio>
+            <GaleriaPortafolio cuadros={proyectos}></GaleriaPortafolio>
         </ContenedorGaleriaPortafolioEstilizado>
         <Contactame></Contactame>
-        <FooterPagina atribucion="" atribucionURL=""></FooterPagina>
+        <FooterPagina></FooterPagina>
         </div>
-  )
+    )
 }
 
 export default PortafolioPage;
 
 export const query = graphql`
-    query AllProyectosQuery {
-        allStrapiProyectos(limit: 30) {
+    query AllProyectosEnQueryPortafolioPage($locale : String!) {
+    allStrapiProyectos(limit: 30, filter: {locale: {eq: $locale}}) {
         nodes {
             id
             titulo
@@ -60,9 +60,10 @@ export const query = graphql`
             url
             }
             url
+            locale
         }
         }
     }
-    
+
 `
 

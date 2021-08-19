@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { LocalizedLink } from "gatsby-theme-i18n"; 
 import styled from "styled-components";
 import Titulo from "./Titulo";
 import Subtitulo from "./Subtitulo";
@@ -32,12 +32,12 @@ const IlustracionMensaje = styled.img`
 
 
 
-const GranMensaje = ({titulo, subtitulo, imagen, alternativa}) =>{
+const GranMensaje = ({titulo, subtitulo, imagen, alternativa, contenidoBoton}) =>{
     return(
         <GranMensajeEstilizado>
             <Titulo contenido={titulo}></Titulo>
             <Subtitulo contenido={subtitulo}></Subtitulo>
-            <Link to="/"><Boton contenido="Regresar" aria-label="Regresar"></Boton></Link>
+            <LocalizedLink to="/"><Boton contenido={contenidoBoton} aria-label={contenidoBoton}></Boton></LocalizedLink>
             <IlustracionMensaje src={imagen} alt={alternativa}></IlustracionMensaje>
         </GranMensajeEstilizado>
     )

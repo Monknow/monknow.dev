@@ -1,6 +1,9 @@
 import * as React from "react";
 import { createGlobalStyle } from 'styled-components';
 import { Helmet } from "react-helmet";
+import { useContext } from "react";
+import ContextoURL from "../context/ContextoURL";
+import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
 import NavBar from "../components/NavBar";
 import GranMensaje from "../components/GranMensaje";
 import FooterPagina from "../components/FooterPagina"
@@ -19,7 +22,19 @@ const EstilosGlobal = createGlobalStyle`
     }
 `
 // markup
-const NotFoundPage = () => {
+const NotFoundPage = (props) => {
+  const urlContexto = useContext(ContextoURL); 
+  const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+
+  const contenido = [
+    ["es", { titulo: "Página no encontrada 😬", subtitulo: "Bueno, esto es incomodo" }],
+    ["en", { titulo: "Page not found 😬", subtitulo: "Well, this is akward" }],
+    ];
+    const mapaContenido = new Map(contenido);
+
+    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+
+
   return (
     <main>
       <Helmet>
@@ -28,9 +43,9 @@ const NotFoundPage = () => {
         <title>Página no encontrada</title>
       </Helmet>
       <EstilosGlobal></EstilosGlobal>
-      <NavBar></NavBar>
-      <GranMensaje titulo="Página no encontrada 😬" subtitulo="Bueno, esto es incomodo" imagen={ilustracionError404} aspectRatio={1/1}></GranMensaje>
-      <FooterPagina atribucion="Ilustracion por Storyset" atribucionURL="https://storyset.com/web"></FooterPagina>
+      <NavBar location={props.location}></NavBar>
+      <GranMensaje titulo={contenidoPorLenguaje.titulo} subtitulo={contenidoPorLenguaje.subtitulo} imagen={ilustracionError404} aspectRatio={1/1} contenidoBoton="Volver"></GranMensaje>
+      <FooterPagina></FooterPagina>
     </main>
   )
 }

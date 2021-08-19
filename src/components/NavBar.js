@@ -1,7 +1,12 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { LocalizedLink } from "gatsby-theme-i18n"; 
 import styled from "styled-components";
+import { useContext } from "react";
+import ContextoURL from "../context/ContextoURL";
+import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
 import { StaticImage } from "gatsby-plugin-image";
+import SeleccionarLenguaje from "./SeleccionarLenguaje";
+
 
 const NavBarEstilizado = styled.nav`
     display: flex;
@@ -15,6 +20,15 @@ const NavBarEstilizado = styled.nav`
 
     font-family: "Open Sans Regular";
     font-size: clamp(12px, 5vw, 20px);
+
+    & a{
+        margin: 3px 5px;
+
+        text-align: right;
+        text-decoration: none;
+
+        color: #141c3a;
+    }
 `;
 
 const NavbarSecciones = styled.details`
@@ -43,51 +57,65 @@ const NavBarSeccionesLinks = styled.div`
     flex-flow: column wrap;
 
     background-color: #fff;
+
+
 `;
 
-const LinkEstilizado = styled(Link)`
-    margin: 5px 0px;
 
-    text-align: right;
-    text-decoration: none;
+const NavBar = (props) => {
+    const urlContexto = useContext(ContextoURL); 
+    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
 
-    color: #141c3a;
-`
+    const contenido = [
+    ["es", { sobreMi: "Sobre mí", habilidades: "Habilidades", portafolio: "Portafolio", blog: "Blog", contactame: "Contactame" }],
+    ["en", { sobreMi: "About me", habilidades: "Skills", portafolio: "Portfolio", blog: "Blog", contactame: "Contact me" }],
+    ];
+    const mapaContenido = new Map(contenido);
 
-const NavBar = () => {
-return (
-    <NavBarEstilizado>
-    <Link to="/">
-        <StaticImage
-        src="../images/android-chrome-512x512.png"
-        alt="logo de monknow"
-        placeholder="blurred"
-        layout="fixed"
-        width={40}
-        height={40}
-        />
-    </Link>
-    <NavbarSecciones>
-        <NavbarIconoMenu>
-        <StaticImage
-            src="../svg/iconmonstr-menu-1.svg"
-            alt="icono menu"
+    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+
+    return (
+        <NavBarEstilizado>
+        <LocalizedLink to="/">
+            <StaticImage
+            src="../images/android-chrome-512x512.png"
+            alt="logo de monknow"
             placeholder="blurred"
             layout="fixed"
-            width={24}
-            height={24}
-        ></StaticImage>
-        </NavbarIconoMenu>
-        <NavBarSeccionesLinks>
-        <LinkEstilizado to="/#sobre-mi">Sobre mí</LinkEstilizado>
-        <LinkEstilizado to="/#conocimientos">Conocimientos</LinkEstilizado>
-        <LinkEstilizado to="/#portafolio">Portafolio</LinkEstilizado>
-        <LinkEstilizado to="/#blog">Blog</LinkEstilizado>
-        <LinkEstilizado to="/#contactame">Contactame</LinkEstilizado>
-        </NavBarSeccionesLinks>
-    </NavbarSecciones>
-    </NavBarEstilizado>
-);
+            width={40}
+            height={40}
+            />
+        </LocalizedLink>
+        {props.quitarSeleccionarLenguajes?(
+            <div>
+                {props.children}
+            </div>
+        ):(
+            <SeleccionarLenguaje></SeleccionarLenguaje>
+        )            
+        }
+        <NavbarSecciones>
+            <NavbarIconoMenu>
+            <StaticImage
+                src="../svg/iconmonstr-menu-1.svg"
+                alt="icono menu"
+                placeholder="blurred"
+                layout="fixed"
+                width={24}
+                height={24}
+            ></StaticImage>
+            </NavbarIconoMenu>
+            
+            <NavBarSeccionesLinks>
+                <LocalizedLink to="/#sobre-mi">{contenidoPorLenguaje.sobreMi}</LocalizedLink>
+                <LocalizedLink to="/#habilidades">{contenidoPorLenguaje.habilidades}</LocalizedLink>
+                <LocalizedLink to="/#portafolio">{contenidoPorLenguaje.portafolio}</LocalizedLink>
+                <LocalizedLink to="/#blog">{contenidoPorLenguaje.blog}</LocalizedLink>
+                <LocalizedLink to="/#contactame">{contenidoPorLenguaje.contactame}</LocalizedLink>
+            </NavBarSeccionesLinks>
+        </NavbarSecciones>
+        </NavBarEstilizado>
+    );
 };
 
 export default NavBar;

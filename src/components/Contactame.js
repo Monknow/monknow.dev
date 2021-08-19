@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-
+import { useContext } from "react";
+import ContextoURL from "../context/ContextoURL";
+import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
 import Titulo from "./Titulo";
 import Boton from "./Boton";
 
@@ -15,7 +17,7 @@ const ContactameEstilizado = styled.section`
 
     width: calc(95vw - 80px);
 
-    margin: -150px auto 0px auto; /* Margén negativo para eliminar el espacio en blanco creado por el posicionamiento relativo*/
+    margin: -50px auto 0px auto; /* Margén negativo para eliminar el espacio en blanco creado por el posicionamiento relativo*/
     border-radius: 12px;
     padding: 40px 20px 20px 20px;
 
@@ -125,23 +127,53 @@ const ContactameEstilizado = styled.section`
 
 
 const Contactame = () =>{
+    const urlContexto = useContext(ContextoURL); 
+    const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+    const contenido = [
+        [
+        "es",
+        {
+            titulo: "¿Cómo puedo ayudarte?",
+            labelNombre: "Nombre",
+            labelCorreo: "Correo",
+            labelMensaje: "Mensaje",
+            botonContenido: "Enviar",
+            redirect: "https://www.monknow.dev/es/gracias",
+        },
+        ],
+        [
+        "en",
+        {
+            titulo: "How can I help you?",
+            labelNombre: "Name",
+            labelCorreo: "Email",
+            labelMensaje: "Message",
+            botonContenido: "Send",
+            redirect: "https://www.monknow.dev/en/gracias",
+        },
+        ],
+    ];
+    const mapaContenido = new Map(contenido);
+    
+    const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+
     return(
         <ContactameEstilizado id="contactame">
-            <Titulo claro contenido="¿Cómo puedo ayudarte?"></Titulo>
+            <Titulo claro contenido={contenidoPorLenguaje.titulo}></Titulo>
             <ContactameFormulario action="https://formsubmit.io/send/8b76bd5b-4abf-4a18-b52c-df8caeda0157" method="POST">
-            <input name="_redirect" type="hidden" id="name" value="https://www.monknow.dev/gracias"/>
+            <input name="_redirect" type="hidden" id="name" value={contenidoPorLenguaje.redirect}/>
             <CamposCortos>
                 <p>
-                <label htmlFor="campos-cortos__nombre--label">Nombre</label>
+                <label htmlFor="campos-cortos__nombre--label">{contenidoPorLenguaje.labelNombre}</label>
                 <input type="text" name="name" id="campos-cortos__nombre--input" />
                 </p>
                 <p>
-                <label htmlFor="campos-cortos__correo--label">Correo</label>
+                <label htmlFor="campos-cortos__correo--label">{contenidoPorLenguaje.labelCorreo}</label>
                 <input type="email" name="email" id="campos-cortos__correo--input" />
                 </p>
             </CamposCortos>
             <ContactameMensaje>
-                <label htmlFor="formulario__mensaje--label">Mensaje</label>
+                <label htmlFor="formulario__mensaje--label">{contenidoPorLenguaje.labelMensaje}</label>
                 <textarea
                     name="mensaje"
                     id="formulario__mensaje--textarea"
@@ -150,7 +182,7 @@ const Contactame = () =>{
                 ></textarea>
             </ContactameMensaje>
             <BotHoneyPot type="text" name="_honey"/> {/* Bot Honey Pot */}
-            <Boton type="submit" aria-label="Enviar mensaje" contenido="Enviar"></Boton>
+            <Boton type="submit" aria-label="Enviar mensaje" contenido={contenidoPorLenguaje.botonContenido}></Boton>
             </ContactameFormulario>
         </ContactameEstilizado>
     )

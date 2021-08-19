@@ -28,9 +28,10 @@ const BotonEstilizado = styled.button`
     }
 `
 
-const Boton = ({contenido}) =>{
+const Boton = (props) =>{
+
     return(
-        <BotonEstilizado>{contenido}</BotonEstilizado>
+        <BotonEstilizado>{props.contenido}</BotonEstilizado>
     )
 }
 

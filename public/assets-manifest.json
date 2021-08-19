@@ -1,7 +1,0 @@
-{
-  "main.js": "render-page.js",
-  "render-page.js.map": "render-page.js.map",
-  "static/404-error-rafiki.svg": "static/404-error-rafiki-1f1319a1f67d563b72c8193e58f0ae5d.svg",
-  "static/home-animation.svg": "static/home-animation-9c516ee5b65021fdf10ea9682ee47678.svg",
-  "static/thank-you-rafiki.svg": "static/thank-you-rafiki-0e48c203abe1d2ca4eceeefb5054330f.svg"
-}

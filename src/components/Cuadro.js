@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
-import { Link } from "gatsby";
+import { LocalizedLink } from "gatsby-theme-i18n"; 
 import Boton from "./Boton";
 
 const crecerImagen = keyframes`
@@ -89,7 +89,7 @@ function Cuadro(props){
                         <TituloCuadro>{props.titulo}</TituloCuadro>
                         <SubtituloCuadro>{props.subtitulo}</SubtituloCuadro>
                         {props.linkInterno?(
-                            <Link to={props.URL} target="_blank" rel="noreferrer"><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></Link>
+                            <LocalizedLink to={props.URL}><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></LocalizedLink>
                         ):(
                             <a href={props.URL} target="_blank" rel="noreferrer"><Boton aria-label="Visitar Pagina" contenido="Visitar"></Boton></a>
                         )}

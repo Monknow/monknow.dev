@@ -1,5 +1,8 @@
 import * as React from "react";
-import styled from "styled-components"
+import { useContext } from "react";
+import ContextoURL from "../context/ContextoURL";
+import useExtraerIdiomaDeURL from "../hooks/useExtraerIdiomaDeURL";
+import styled from "styled-components";
 import InicioAnimacionSVG from "../svg/home-animation.svg";
 
 import Titulo from "./Titulo";
@@ -19,50 +22,68 @@ const InicioEstilizado = styled.section`
   font-size: clamp(12px, 3vw, 20px);
 `;
 
-  const InicioHeader = styled.header`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-flow: column;
+const InicioHeader = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
 
+  text-align: center;
+`;
 
-      text-align: center;
-  `
+const InicioHeaderSubtitulo = styled.h2`
+  margin: 10px 0px 15px 0px;
 
-      const InicioHeaderSubtitulo = styled.h2`
-          margin: 10px 0px 15px 0px;
+  font-size: 0.8em;
+  font-family: "Open Sans Light";
 
-          font-size: 0.8em;
-          font-family: "Open Sans Light";
+  color: #141c3a;
+`;
 
-          color: #141c3a;
-      `
+const InicioAnimacion = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  const InicioAnimacion = styled.div`
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  aspect-ratio: 5 / 3;
+  width: clamp(200px, 80vw, 600px);
 
-      aspect-ratio: 5 / 3;
-      width: clamp(200px, 80vw, 600px);
-      
-      background-image: url(${InicioAnimacionSVG});
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: bottom;
-  `
+  background-image: url(${InicioAnimacionSVG});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+`;
 
-const Inicio = () =>{
-    return(
-        <InicioEstilizado id="inicio">
+const Inicio = () => {
+  const urlContexto = useContext(ContextoURL); 
+  const lenguaje = useExtraerIdiomaDeURL(urlContexto);
+
+  const contenido = [
+    ["es", { subtitulo: "Mejorando cada día", botonContenido: "Contactame" }],
+    ["en", { subtitulo: "Improving every day", botonContenido: "Contact me" }],
+  ];
+  const mapaContenido = new Map(contenido);
+
+  const contenidoPorLenguaje = mapaContenido.get(lenguaje);
+
+  return (
+      <InicioEstilizado id="inicio">
         <InicioHeader>
           <Titulo contenido="Monknow. Frontend Developer"></Titulo>
-          <InicioHeaderSubtitulo>Mejorando cada día</InicioHeaderSubtitulo>
+          <InicioHeaderSubtitulo>
+            {contenidoPorLenguaje.subtitulo}
+          </InicioHeaderSubtitulo>
         </InicioHeader>
-        <a href="#contactame"><Boton  aria-label="Contactarme" contenido="Contactame"></Boton></a>
+        <a href="#contactame">
+          <Boton
+            aria-label={contenidoPorLenguaje.botonContenido}
+            contenido={contenidoPorLenguaje.botonContenido}
+          ></Boton>
+        </a>
         <InicioAnimacion></InicioAnimacion>
       </InicioEstilizado>
-    ) 
-}
+
+  );
+};
 
 export default Inicio;
