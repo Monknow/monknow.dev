@@ -123,7 +123,7 @@ const Habilidades = () => {
     const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return (
-        <ConocimientosEstilizados id="habilidades">
+        <ConocimientosEstilizados id="skills">
         <CartaConocimientos
             imagen={codigoSVG}
             alternativaImagen={contenidoPorLenguaje.lenguajes.alternativaImagen}

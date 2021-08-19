@@ -38,8 +38,8 @@ return (
     <Inicio></Inicio>
     <SobreMi></SobreMi>
     <Habilidades></Habilidades>
-    <GaleriaBlog cuadros={data.allStrapiPosts.nodes}></GaleriaBlog>
     <GaleriaPortafolio cuadros={data.allStrapiProyectos.nodes}></GaleriaPortafolio>
+    <GaleriaBlog cuadros={data.allStrapiPosts.nodes}></GaleriaBlog>
     <Contactame></Contactame>
     <FooterPagina></FooterPagina>
     </div>

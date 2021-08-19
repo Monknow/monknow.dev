@@ -71,7 +71,7 @@ const Inicio = () => {
             {contenidoPorLenguaje.subtitulo}
           </InicioHeaderSubtitulo>
         </InicioHeader>
-        <a href="#contactame">
+        <a href="#contact-me">
           <Boton
             aria-label={contenidoPorLenguaje.botonContenido}
             contenido={contenidoPorLenguaje.botonContenido}

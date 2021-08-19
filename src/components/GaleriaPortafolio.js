@@ -47,7 +47,7 @@ function GaleriaPortafolio(props) {
   const proyectos = data.allStrapiProyectos.nodes;
 
   return (
-    <div id="portafolio">
+    <div id="portfolio">
       <ContenedorGaleria
         titulo={contenidoPorLenguaje.titulo}
         subtitulo={contenidoPorLenguaje.subtitulo}
@@ -55,7 +55,7 @@ function GaleriaPortafolio(props) {
         esBlogPost={false}
       >
         {esVerMasNecesario(urlContexto.pathname) ? (
-          <BotonVerMas localizedLinkTo="/portafolio"></BotonVerMas>
+          <BotonVerMas localizedLinkTo="/portfolio"></BotonVerMas>
         ) : (
           <div></div>
         )}

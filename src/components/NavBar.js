@@ -103,11 +103,11 @@ const NavBar = (props) => {
             </NavbarIconoMenu>
             
             <NavBarSeccionesLinks>
-                <LocalizedLink to="/#sobre-mi">{contenidoPorLenguaje.sobreMi}</LocalizedLink>
-                <LocalizedLink to="/#habilidades">{contenidoPorLenguaje.habilidades}</LocalizedLink>
-                <LocalizedLink to="/#portafolio">{contenidoPorLenguaje.portafolio}</LocalizedLink>
+                <LocalizedLink to="/#about-me">{contenidoPorLenguaje.sobreMi}</LocalizedLink>
+                <LocalizedLink to="/#skills">{contenidoPorLenguaje.habilidades}</LocalizedLink>
+                <LocalizedLink to="/#portfolio">{contenidoPorLenguaje.portafolio}</LocalizedLink>
                 <LocalizedLink to="/#blog">{contenidoPorLenguaje.blog}</LocalizedLink>
-                <LocalizedLink to="/#contactame">{contenidoPorLenguaje.contactame}</LocalizedLink>
+                <LocalizedLink to="/#contact-me">{contenidoPorLenguaje.contactame}</LocalizedLink>
             </NavBarSeccionesLinks>
         </NavbarSecciones>
         </NavBarEstilizado>

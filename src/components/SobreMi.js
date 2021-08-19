@@ -43,7 +43,7 @@ const SobreMi = () =>{
 
 
     return(
-        <SobreMiEstilizado id="sobre-mi">
+        <SobreMiEstilizado id="about-me">
             <Titulo claro contenido={contenidoPorLenguaje.titulo}></Titulo>
             <SobreMiTexto>{contenidoPorLenguaje.sobreMi}</SobreMiTexto>
         </SobreMiEstilizado>

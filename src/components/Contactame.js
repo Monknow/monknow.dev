@@ -136,7 +136,7 @@ const Contactame = () =>{
             labelCorreo: "Correo",
             labelMensaje: "Mensaje",
             botonContenido: "Enviar",
-            redirect: "https://www.monknow.dev/es/gracias",
+            redirect: "https://www.monknow.dev/es/thanks",
         },
         ],
         [
@@ -147,7 +147,7 @@ const Contactame = () =>{
             labelCorreo: "Email",
             labelMensaje: "Message",
             botonContenido: "Send",
-            redirect: "https://www.monknow.dev/en/gracias",
+            redirect: "https://www.monknow.dev/en/thanks",
         },
         ],
     ];
@@ -156,7 +156,7 @@ const Contactame = () =>{
     const contenidoPorLenguaje = mapaContenido.get(locale);
 
     return(
-        <ContactameEstilizado id="contactame">
+        <ContactameEstilizado id="contact-me">
             <Titulo claro contenido={contenidoPorLenguaje.titulo}></Titulo>
             <ContactameFormulario action="https://formsubmit.io/send/8b76bd5b-4abf-4a18-b52c-df8caeda0157" method="POST">
             <input name="_redirect" type="hidden" id="name" value={contenidoPorLenguaje.redirect}/>
