@@ -12611,7 +12611,7 @@ module.exports = require("stream");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('[{"fromPath":"/","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en"},{"fromPath":"/blog","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/blog"},{"fromPath":"/gracias","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/gracias"},{"fromPath":"/portafolio","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/portafolio"},{"fromPath":"/404","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/404"}]');
+module.exports = JSON.parse('[{"fromPath":"/","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en"},{"fromPath":"/blog","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/blog"},{"fromPath":"/thanks","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/thanks"},{"fromPath":"/portafolio","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/portfolio"},{"fromPath":"/404","isPermanent":true,"ignoreCase":true,"redirectInBrowser":true,"toPath":"/en/404"}]');
 
 /***/ }),
 

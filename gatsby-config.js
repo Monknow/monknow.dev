@@ -9,6 +9,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     "gatsby-plugin-styled-components",
     "gatsby-plugin-gatsby-cloud",
+    `gatsby-plugin-netlify`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     {
