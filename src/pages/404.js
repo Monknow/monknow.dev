@@ -51,6 +51,7 @@ const NotFoundPage = (props) => {
         <meta charSet="utf-8" />
         <link rel="icon" href={iconoFavicon} />
         <title>{contenidoPorLenguaje.titulo}</title>
+        <meta name="referrer" content="origin"/>
       </Helmet>
       <EstilosGlobal></EstilosGlobal>
       <NavBar location={props.location}></NavBar>

@@ -30,6 +30,7 @@ return (
     <div>
     <Helmet>
         <meta charSet="utf-8" />
+        <meta name="referrer" content="origin"/>
         <title>Monknow.dev</title>
         <link rel="icon" href={iconoFavicon} />
     </Helmet>

@@ -25,7 +25,7 @@ const GraciasPage = (props) => {
   const {locale} = useLocalization();
 
   const contenido = [
-    ["es", { titulo: "Thank you!", subtitulo: "Pronto leeré el mensaje",  contenidoBoton: "Volver"}],
+    ["es", { titulo: "¡Gracias!", subtitulo: "Pronto leeré el mensaje",  contenidoBoton: "Volver"}],
     ["en", { titulo: "Thank you!", subtitulo: "I will read your message soon",  contenidoBoton: "Go back"}],
     ];
     const mapaContenido = new Map(contenido);
@@ -39,6 +39,7 @@ const GraciasPage = (props) => {
         <meta charSet="utf-8" />
         <link rel="icon" href={iconoFavicon} />
         <title>{contenidoPorLenguaje.titulo}</title>
+        <meta name="referrer" content="origin"/>
       </Helmet>
       <EstilosGlobal></EstilosGlobal>
       <NavBar location={props.location}></NavBar>

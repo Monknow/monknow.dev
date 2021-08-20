@@ -14,6 +14,7 @@ import Compartir from "../../components/Compartir";
 import GaleriaBlog from "../../components/GaleriaBlog";
 import FooterPagina from "../../components/FooterPagina";
 
+import iconoFavicon from "../../images/favicon.ico";
 import "../../fonts/fonts.css";
 
 const EstilosGlobal = createGlobalStyle`
@@ -127,7 +128,10 @@ const PostPage = (props) => {
     return (
         <div>
             <Helmet>
+                <meta charSet="utf-8" />
+                <meta name="referrer" content="origin"/>
                 <title>{post.titulo}</title>
+                <link rel="icon" href={iconoFavicon} />
             </Helmet>
         <EstilosGlobal></EstilosGlobal>
         <NavBar quitarSeleccionarLenguajes={true}>
