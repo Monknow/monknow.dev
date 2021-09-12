@@ -13,7 +13,6 @@ const BotonCompartirEstilizado = styled.a`
 `;
 
 const BotonCompartir = ({icono, iconoAlternativa, url, backgroundColor}) => {
-	console.log(url);
 	return (
 		<BotonCompartirEstilizado href={url} target="_blank" rel="noreferrer" backgroundColor={backgroundColor}>
 			<img src={icono} alt={iconoAlternativa} />

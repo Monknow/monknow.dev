@@ -209,7 +209,7 @@ const PostPage = ({data}) => {
 			<NavBar quitarSeleccionarLenguajes>
 				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
 			</NavBar>
-			<Compartir></Compartir>
+			<Compartir href={href}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
 					<Titulo contenido={post.titulo}></Titulo>
