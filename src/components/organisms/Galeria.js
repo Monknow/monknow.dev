@@ -23,7 +23,7 @@ const Cuadros = styled.div`
 	flex-flow: row wrap;
 `;
 
-function Galeria({esBlog, titulo, subtitulo, cuadros}) {
+function Galeria({esBlog, titulo, subtitulo, cuadros, ...props}) {
 	const {locale} = useLocalization();
 
 	const contenido = [
@@ -48,7 +48,7 @@ function Galeria({esBlog, titulo, subtitulo, cuadros}) {
 
 	const {verMas, blog, portafolio} = mapaContenido.get(locale);
 	return (
-		<GaleriaEstilizada>
+		<GaleriaEstilizada {...props}>
 			<Titulo>{titulo ? titulo : esBlog ? blog.titulo : portafolio.titulo}</Titulo>
 			<Subtitulo>{subtitulo ? subtitulo : esBlog ? blog.subtitulo : portafolio.subtitulo}</Subtitulo>
 			<Cuadros>

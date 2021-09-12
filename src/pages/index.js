@@ -46,8 +46,8 @@ const IndexPage = ({data}) => {
 			<Inicio></Inicio>
 			<SobreMi></SobreMi>
 			<Habilidades></Habilidades>
-			<Galeria cuadros={data.allStrapiProyectos.nodes}></Galeria>
-			<Galeria esBlog cuadros={data.allStrapiPosts.nodes}></Galeria>
+			<Galeria id="portfolio" cuadros={data.allStrapiProyectos.nodes}></Galeria>
+			<Galeria id="blog" esBlog cuadros={data.allStrapiPosts.nodes}></Galeria>
 			<Contactame></Contactame>
 			<FooterPagina atribucion={atribucion} atribucionURL="https://storyset.com/"></FooterPagina>
 		</div>

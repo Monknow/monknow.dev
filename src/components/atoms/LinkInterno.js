@@ -5,14 +5,14 @@ import {Link} from "gatsby";
 
 const LinkInternoEstilizado = styled.div`
 	& a {
-		margin: 3px 5px;
+		margin: 5px;
 
 		text-align: right;
 		text-decoration: none;
 
 		color: #141c3a;
 
-		font-size: 1.2rem;
+		font-size: 1.3rem;
 	}
 `;
 

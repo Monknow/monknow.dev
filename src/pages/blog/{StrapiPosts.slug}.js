@@ -109,8 +109,6 @@ const PostPage = ({data}) => {
 		setTiempoDeLectura(calcularTiempoDeLectura(numeroDePalabras));
 	}, [numeroDePalabras]);
 
-	console.log(post.imagenPrincipal.url);
-
 	return (
 		<div>
 			<Helmet>
