@@ -201,7 +201,6 @@ export const query = graphql`
 			titulo
 			subtitulo
 			published_at(formatString: "DD MMM, YYYY")
-			lectura
 			texto
 			slug
 			imagenPrincipal {
