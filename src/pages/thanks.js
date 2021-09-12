@@ -1,7 +1,7 @@
 import * as React from "react";
-import { createGlobalStyle } from "styled-components";
-import { Helmet } from "react-helmet";
-import { useLocalization } from "gatsby-theme-i18n";
+import {createGlobalStyle} from "styled-components";
+import {Helmet} from "react-helmet";
+import {useLocalization} from "gatsby-theme-i18n";
 import NavBar from "../components/NavBar";
 import GranMensaje from "../components/GranMensaje";
 import FooterPagina from "../components/FooterPagina";
@@ -22,37 +22,37 @@ const EstilosGlobal = createGlobalStyle`
 
 // markup
 const GraciasPage = (props) => {
-  const {locale} = useLocalization();
+	const {locale} = useLocalization();
 
-  const contenido = [
-    ["es", { titulo: "¡Gracias!", subtitulo: "Pronto leeré el mensaje",  contenidoBoton: "Volver"}],
-    ["en", { titulo: "Thank you!", subtitulo: "I will read your message soon",  contenidoBoton: "Go back"}],
-    ];
-    const mapaContenido = new Map(contenido);
+	const contenido = [
+		["es", {atribucion: "Ilustración por StorySet"}],
+		["en", {atribucion: "Illustration by StorySet"}],
+	];
+	const mapaContenido = new Map(contenido);
 
-    const contenidoPorLenguaje = mapaContenido.get(locale);
+	const contenidoPorLenguaje = mapaContenido.get(locale);
 
-
-  return (
-    <main>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <link rel="icon" href={iconoFavicon} />
-        <title>{contenidoPorLenguaje.titulo}</title>
-        <meta name="referrer" content="origin"/>
-      </Helmet>
-      <EstilosGlobal></EstilosGlobal>
-      <NavBar location={props.location}></NavBar>
-      <GranMensaje
-        titulo={contenidoPorLenguaje.titulo}
-        subtitulo={contenidoPorLenguaje.subtitulo}
-        imagen={ilustracionGracias}
-        contenidoBoton={contenidoPorLenguaje.contenidoBoton}
-        aspectRatio={1 / 1}
-      ></GranMensaje>
-      <FooterPagina></FooterPagina>
-    </main>
-  );
+	return (
+		<main>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<link rel="icon" href={iconoFavicon} />
+				<title>{contenidoPorLenguaje.titulo}</title>
+				<meta name="referrer" content="origin" />
+			</Helmet>
+			<EstilosGlobal></EstilosGlobal>
+			<NavBar location={props.location}></NavBar>
+			<GranMensaje
+				titulo={contenidoPorLenguaje.titulo}
+				subtitulo={contenidoPorLenguaje.subtitulo}
+				imagen={ilustracionGracias}
+				contenidoBoton={contenidoPorLenguaje.contenidoBoton}
+				aspectRatio={1 / 1}></GranMensaje>
+			<FooterPagina
+				atribucion={contenidoPorLenguaje.atribucion}
+				atribucionURL="https://storyset.com/"></FooterPagina>
+		</main>
+	);
 };
 
 export default GraciasPage;

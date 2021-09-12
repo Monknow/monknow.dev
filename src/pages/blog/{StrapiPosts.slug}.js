@@ -7,6 +7,8 @@ import {Helmet} from "react-helmet";
 import styled, {createGlobalStyle} from "styled-components";
 import {useLocalization} from "gatsby-theme-i18n";
 import slugify from "@sindresorhus/slugify";
+import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
+import {dark} from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import Titulo from "../../components/Titulo";
 import Subtitulo from "../../components/Subtitulo";
@@ -87,38 +89,55 @@ const TextoPost = styled.div`
 `;
 
 const Markdown = styled(ReactMarkdown)`
-	& img {
-		width: 100%;
-	}
+	& {
+		p {
+			margin: clamp(12px, 3vw, 20px) 0px;
+		}
 
-	& p {
-		margin: clamp(12px, 3vw, 20px) 0px;
-	}
+		h1 {
+			font-size: 2rem;
+		}
 
-	& h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		margin: clamp(24px, 3vw, 40px) 0px;
+		h2 {
+			font-size: 1.5rem;
+		}
 
-		font-family: "Open Sans Semibold";
-	}
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: clamp(24px, 3vw, 40px) 0px;
 
-	& code {
-		display: block;
-		padding: 5px;
-		border-radius: 4px;
+			font-family: "Open Sans Semibold";
+		}
 
-		width: 100%;
-
-		font-weight: 500;
-
-		background-color: #201c29;
-		color: #f5d67b;
+		img {
+			width: 100%;
+			margin: 40px 0px;
+			box-shadow: 0px 9px 14px -5px rgba(0, 0, 0, 0.75);
+		}
 	}
 `;
+
+const codeStyles = {
+	display: "block",
+
+	margin: "30px 0px",
+	padding: "8px",
+	border: "none",
+	borderRadius: "4px",
+
+	width: "100%",
+
+	fontWeight: "500",
+	fontSize: "clamp(12px, 3vw, 15px)",
+
+	backgroundColor: "#201c29",
+	color: "#ddd",
+	textShadow: "#fff0",
+};
 
 const PostPage = ({data}) => {
 	const {locale} = useLocalization();
@@ -134,13 +153,27 @@ const PostPage = ({data}) => {
 	const imagenPrincipal = getImage(post.imagenPrincipal.localFile);
 
 	const contenido = [
-		["es", {textoDeLeerEnOtroIdioma: "Leer en Inglés", textoDetiempoDeLectura: "min de lectura"}],
-		["en", {textoDeLeerEnOtroIdioma: "Read in Spanish", textoDetiempoDeLectura: "min read"}],
+		[
+			"es",
+			{
+				textoDeLeerEnOtroIdioma: "Leer en Inglés",
+				textoDetiempoDeLectura: "min de lectura",
+				atribucionPrefijo: "Imagen por",
+			},
+		],
+		[
+			"en",
+			{
+				textoDeLeerEnOtroIdioma: "Read in Spanish",
+				textoDetiempoDeLectura: "min read",
+				atribucionPrefijo: "Image by",
+			},
+		],
 	];
 
 	const mapaContenido = new Map(contenido);
 
-	const {textoDeLeerEnOtroIdioma, textoDetiempoDeLectura} = mapaContenido.get(locale);
+	const {textoDeLeerEnOtroIdioma, textoDetiempoDeLectura, atribucionPrefijo} = mapaContenido.get(locale);
 
 	useEffect(() => {
 		const calcularTiempoDeLectura = (numPalabras) => {
@@ -172,7 +205,9 @@ const PostPage = ({data}) => {
 
 				<ContenedorImagenPrincipal>
 					<MetaDatosBlogPost>
-						<span>{post.published_at}</span>
+						<span>
+							{post.published_at} ({post.updated_at})
+						</span>
 						<span>
 							{tiempoDeLectura} {textoDetiempoDeLectura}
 						</span>
@@ -183,11 +218,33 @@ const PostPage = ({data}) => {
 			</InicioBlogPostEstilizado>
 			<ContenidoBlogPostEstilizado>
 				<TextoPost>
-					<Markdown>{post.texto}</Markdown>
+					<Markdown
+						children={post.texto}
+						components={{
+							code({node, inline, className, children, ...props}) {
+								const match = /language-(\w+)/.exec(className || "");
+								return !inline && match ? (
+									<SyntaxHighlighter
+										children={String(children).replace(/\n$/, "")}
+										language={match[1]}
+										style={dark}
+										showLineNumbers
+										customStyle={codeStyles}
+										PreTag="div"
+										{...props}
+									/>
+								) : (
+									<code {...props}>{children}</code>
+								);
+							},
+						}}
+					/>
 				</TextoPost>
 			</ContenidoBlogPostEstilizado>
 			<GaleriaBlog cuadros={posts}></GaleriaBlog>
-			<FooterPagina atribucion="Imagen por Pexel" atribucionURL="https://pexels.com"></FooterPagina>
+			<FooterPagina
+				atribucion={post?.atribucionImagen ? `${atribucionPrefijo} ${post.atribucionImagen}` : null}
+				atribucionURL={post?.urlAtribucionImagen}></FooterPagina>
 		</div>
 	);
 };
@@ -201,6 +258,7 @@ export const query = graphql`
 			titulo
 			subtitulo
 			published_at(formatString: "DD MMM, YYYY")
+			updated_at(formatString: "DD MMM, YYYY")
 			texto
 			slug
 			imagenPrincipal {
@@ -211,6 +269,8 @@ export const query = graphql`
 				}
 			}
 			descripcionImagen
+			urlAtribucionImagen
+			atribucionImagen
 		}
 		allStrapiPosts(limit: 4, filter: {slug: {ne: $slug}, locale: {eq: $locale}}) {
 			nodes {
