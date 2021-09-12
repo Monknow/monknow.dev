@@ -32,7 +32,6 @@ const CompartirEstilizado = styled.aside`
 
 const Compartir = () => {
 	const {href} = useContext(ContextoURL);
-	console.log(`https://twitter.com/intent/tweet?url=${href}&text=Chequen%20este%20articulo%20de%20Juan%20Rodriguez`);
 	const {locale} = useLocalization();
 
 	const contenido = [
@@ -70,27 +69,27 @@ const Compartir = () => {
 			<BotonCompartir
 				icono={iconoFacebook}
 				iconoAlternativa="icono para compartir por Facebook"
-				URL={contenidoPorLenguaje.url.facebook}
+				url={contenidoPorLenguaje.url.facebook}
 				backgroundColor="#3b5998"></BotonCompartir>
 			<BotonCompartir
 				icono={iconoLinkeIn}
 				iconoAlternativa="icono para compartir por LinkedIn"
-				URL={contenidoPorLenguaje.url.linkeIn}
+				url={contenidoPorLenguaje.url.linkedIn}
 				backgroundColor="#2867b2"></BotonCompartir>
 			<BotonCompartir
 				icono={iconoTwitter}
 				iconoAlternativa="icono para compartir por Twitter"
-				URL={contenidoPorLenguaje.url.twitter}
+				url={contenidoPorLenguaje.url.twitter}
 				backgroundColor="#1DA1F2"></BotonCompartir>
 			<BotonCompartir
 				icono={iconoWhatsApp}
 				iconoAlternativa="icono para compartir por WhatsApp"
-				URL={contenidoPorLenguaje.url.whatsApp}
+				url={contenidoPorLenguaje.url.whatsApp}
 				backgroundColor="#4ac959"></BotonCompartir>
 			<BotonCompartir
 				icono={iconoEmail}
 				iconoAlternativa="icono para compartir por Email"
-				URL={contenidoPorLenguaje.url.email}
+				url={contenidoPorLenguaje.url.email}
 				backgroundColor="#455a64"></BotonCompartir>
 		</CompartirEstilizado>
 	);
