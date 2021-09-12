@@ -37,60 +37,92 @@ const Compartir = () => {
 	const contenido = [
 		[
 			"es",
-			{
-				url: {
-					facebook: `https://www.facebook.com/sharer/sharer.php?u=${href}`,
-					linkedIn: `https://www.linkedin.com/shareArticle?mini=true&url=${href}`,
-					twitter: `https://twitter.com/intent/tweet?url=${href}&text=Chequen%20este%20articulo%20de%20Juan%20Rodriguez`,
-					whatsApp: `https://api.whatsapp.com/send?text=${href}%20Chequen%20este%20articulo%20de%20Juan%20Rodriguez`,
-					email: `mailto:info@example.com?&subject=&cc=&bcc=&body=${href}%0A%C2%Chequen%20este%20articulo%20de%20Juan%20Rodriguez`,
+
+			[
+				{
+					url: `https://www.facebook.com/sharer/sharer.php?u=${href}`,
+					backgroundColor: "#3b5998",
+					icono: iconoFacebook,
+					iconoAlternativa: "icono para compartir por Facebook",
 				},
-			},
+				{
+					url: `https://www.linkedin.com/shareArticle?mini=true&url=${href}`,
+					backgroundColor: "#2867b2",
+					icono: iconoLinkeIn,
+					iconoAlternativa: "icono para compartir por LinkedIn",
+				},
+				{
+					url: `https://twitter.com/intent/tweet?url=${href}&text=Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
+					backgroundColor: "#1DA1F2",
+					icono: iconoTwitter,
+					iconoAlternativa: "icono para compartir por Twitter",
+				},
+				{
+					url: `https://api.whatsapp.com/send?text=${href}%20Chequen%20este%20articulo%20de%20Juan%20Rodriguez`,
+					backgroundColor: "#4ac959",
+					icono: iconoWhatsApp,
+					iconoAlternativa: "icono para compartir por WhatsApp",
+				},
+				{
+					url: `mailto:info@example.com?&subject=&cc=&bcc=&body=${href}%0A%C2%Chequen%20este%20articulo%20de%20Juan%20Rodriguez`,
+					backgroundColor: "#455a64",
+					icono: iconoEmail,
+					iconoAlternativa: "icono para compartir por Email",
+				},
+			],
 		],
 		[
 			"en",
-			{
-				url: {
-					facebook: `https://www.facebook.com/sharer/sharer.php?u=${href}`,
-					linkedIn: `https://www.linkedin.com/shareArticle?mini=true&url=${href}`,
-					twitter: `https://twitter.com/intent/tweet?url=${href}&text=Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
-					whatsApp: `https://api.whatsapp.com/send?text=${href}%20Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
-					email: `mailto:info@example.com?&subject=&cc=&bcc=&body=${href}%0A%C2%Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
+			[
+				{
+					url: `https://www.facebook.com/sharer/sharer.php?u=${href}`,
+					backgroundColor: "#3b5998",
+					icono: iconoFacebook,
+					iconoAlternativa: "share through Facebook",
 				},
-			},
+				{
+					url: `https://www.linkedin.com/shareArticle?mini=true&url=${href}`,
+					backgroundColor: "#2867b2",
+					icono: iconoLinkeIn,
+					iconoAlternativa: "share through LinkedIn",
+				},
+				{
+					url: `https://twitter.com/intent/tweet?url=${href}&text=Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
+					backgroundColor: "#1DA1F2",
+					icono: iconoTwitter,
+					iconoAlternativa: "share through Twitter",
+				},
+				{
+					url: `https://api.whatsapp.com/send?text=${href}%20Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
+					backgroundColor: "#4ac959",
+					icono: iconoWhatsApp,
+					iconoAlternativa: "share through WhatsApp",
+				},
+				{
+					url: `mailto:info@example.com?&subject=&cc=&bcc=&body=${href}%0A%C2%Check%20this%20article%20by%20Juan%20Rodr%C3%ADguez!`,
+					backgroundColor: "#455a64",
+					icono: iconoEmail,
+					iconoAlternativa: "share through Email",
+				},
+			],
 		],
 	];
+
 	const mapaContenido = new Map(contenido);
 
-	const contenidoPorLenguaje = mapaContenido.get(locale);
+	const {contenidoPorLenguaje} = mapaContenido.get(locale);
 
 	return (
 		<CompartirEstilizado>
-			<BotonCompartir
-				icono={iconoFacebook}
-				iconoAlternativa="icono para compartir por Facebook"
-				url={contenidoPorLenguaje.url.facebook}
-				backgroundColor="#3b5998"></BotonCompartir>
-			<BotonCompartir
-				icono={iconoLinkeIn}
-				iconoAlternativa="icono para compartir por LinkedIn"
-				url={contenidoPorLenguaje.url.linkedIn}
-				backgroundColor="#2867b2"></BotonCompartir>
-			<BotonCompartir
-				icono={iconoTwitter}
-				iconoAlternativa="icono para compartir por Twitter"
-				url={contenidoPorLenguaje.url.twitter}
-				backgroundColor="#1DA1F2"></BotonCompartir>
-			<BotonCompartir
-				icono={iconoWhatsApp}
-				iconoAlternativa="icono para compartir por WhatsApp"
-				url={contenidoPorLenguaje.url.whatsApp}
-				backgroundColor="#4ac959"></BotonCompartir>
-			<BotonCompartir
-				icono={iconoEmail}
-				iconoAlternativa="icono para compartir por Email"
-				url={contenidoPorLenguaje.url.email}
-				backgroundColor="#455a64"></BotonCompartir>
+			{contenidoPorLenguaje.map((elementoCompartir) => {
+				return (
+					<BotonCompartir
+						icono={elementoCompartir.icono}
+						iconoAlternativa={elementoCompartir.iconoAlternativa}
+						url={elementoCompartir.url}
+						backgroundColor={elementoCompartir.backgroundColor}></BotonCompartir>
+				);
+			})}
 		</CompartirEstilizado>
 	);
 };
