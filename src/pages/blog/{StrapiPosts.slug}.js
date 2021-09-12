@@ -1,5 +1,6 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
+import ContextoURL from "../../context/ContextoURL";
 import ReactMarkdown from "react-markdown";
 import {graphql, Link} from "gatsby";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
@@ -141,6 +142,7 @@ const codeStyles = {
 
 const PostPage = ({data}) => {
 	const {locale} = useLocalization();
+	const href = useContext(ContextoURL);
 
 	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
 
@@ -191,9 +193,20 @@ const PostPage = ({data}) => {
 				<meta name="referrer" content="origin" />
 				<title>{post.titulo}</title>
 				<link rel="icon" href={iconoFavicon} />
+
+				{/* share meta tags */}
+				<meta property="og:title" content={post.titulo} />
+				<meta property="og:description" content={post.subtitulo} />
+				<meta property="og:image" content={post.imagenPrincipal.url} />
+				<meta property="og:url" content={href} />
+
+				<meta property="twiter:title" content={post.titulo} />
+				<meta property="twiter:description" content={post.subtitulo} />
+				<meta property="twiter:image" content={post.imagenPrincipal.url} />
+				<meta property="twiter:url" content={href} />
 			</Helmet>
 			<EstilosGlobal></EstilosGlobal>
-			<NavBar quitarSeleccionarLenguajes={true}>
+			<NavBar quitarSeleccionarLenguajes>
 				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
 			</NavBar>
 			<Compartir></Compartir>
@@ -262,6 +275,7 @@ export const query = graphql`
 			texto
 			slug
 			imagenPrincipal {
+				url
 				localFile {
 					childImageSharp {
 						gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
