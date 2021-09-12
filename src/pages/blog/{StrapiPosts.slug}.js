@@ -142,7 +142,7 @@ const codeStyles = {
 
 const PostPage = ({data}) => {
 	const {locale} = useLocalization();
-	const href = useContext(ContextoURL);
+	const {href} = useContext(ContextoURL);
 
 	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
 
@@ -200,10 +200,10 @@ const PostPage = ({data}) => {
 				<meta property="og:image" content={post.imagenPrincipal.url} />
 				<meta property="og:url" content={href} />
 
-				<meta property="twiter:title" content={post.titulo} />
-				<meta property="twiter:description" content={post.subtitulo} />
-				<meta property="twiter:image" content={post.imagenPrincipal.url} />
-				<meta property="twiter:url" content={href} />
+				<meta property="twitter:title" content={post.titulo} />
+				<meta property="twitter:description" content={post.subtitulo} />
+				<meta property="twitter:image" content={post.imagenPrincipal.url} />
+				<meta property="twitter:url" content={href} />
 			</Helmet>
 			<EstilosGlobal></EstilosGlobal>
 			<NavBar quitarSeleccionarLenguajes>
