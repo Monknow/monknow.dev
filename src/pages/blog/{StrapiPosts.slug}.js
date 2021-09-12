@@ -2,7 +2,7 @@ import * as React from "react";
 import {useEffect, useState, useContext} from "react";
 import ContextoURL from "../../context/ContextoURL";
 import Markdown from "../../components/atoms/Markdown";
-import {graphql, Link} from "gatsby";
+import {graphql} from "gatsby";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import {Helmet} from "react-helmet";
 import styled from "styled-components";
@@ -18,6 +18,7 @@ import FooterPagina from "../../components/organisms/FooterPagina";
 import CompartirMetaTags from "../../components/atoms/CompartirMetaTags";
 
 import iconoFavicon from "../../assets/images/favicon.ico";
+import LinkInterno from "../../components/atoms/LinkInterno";
 
 const InicioBlogPostEstilizado = styled.section`
 	display: flex;
@@ -126,7 +127,9 @@ const PostPage = ({data}) => {
 			/>
 
 			<NavBar quitarSeleccionarLenguajes>
-				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
+				<LinkInterno to={`/${idiomaOpuesto}/blog/${slugTransformado}`} noLocalizado>
+					{textoDeLeerEnOtroIdioma}
+				</LinkInterno>
 			</NavBar>
 			<Compartir siteURL={siteURL}></Compartir>
 			<InicioBlogPostEstilizado>

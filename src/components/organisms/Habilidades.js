@@ -1,9 +1,10 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
-import Titulo from "../atoms/Titulo";
+import CartaConocimientos from "../molecules/CartaConocimientos";
 import codigoSVG from "../../assets/svg/iconmonstr-code-7.svg";
 import herramientasSVG from "../../assets/svg/iconmonstr-tools-2.svg";
+import conocimientos from "../../data/conocimientos";
 
 const ConocimientosEstilizados = styled.section`
 	display: flex;
@@ -24,58 +25,6 @@ const ConocimientosEstilizados = styled.section`
 	color: #141c3a;
 	box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 `;
-
-const CartaConocimientosEstilizada = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	flex-flow: column;
-
-	margin: 20px 20px 0px 20px;
-
-	& ul {
-		list-style: none;
-
-		text-align: center;
-	}
-
-	& li {
-		margin-bottom: 7px;
-
-		font-size: 0.8em;
-		font-family: "Open Sans Light";
-
-		text-align: center;
-	}
-`;
-
-const DescripcionCarta = styled.p`
-	display: block;
-
-	margin: 10px 0px;
-
-	font-size: 0.9em;
-	font-family: "Open Sans Semibold";
-
-	text-align: center;
-
-	color: #fca311;
-`;
-
-const CartaConocimientos = ({imagen, alternativaImagen, titulo, descripcion, lista}) => {
-	return (
-		<CartaConocimientosEstilizada>
-			<img src={imagen} alt={alternativaImagen} />
-			<Titulo>{titulo}</Titulo>
-			<DescripcionCarta>{descripcion}</DescripcionCarta>
-			<ul>
-				{lista.map((elemento) => {
-					return <li key={elemento}>{elemento}</li>;
-				})}
-			</ul>
-		</CartaConocimientosEstilizada>
-	);
-};
 
 const Habilidades = () => {
 	const {locale} = useLocalization();
@@ -123,21 +72,13 @@ const Habilidades = () => {
 				alternativaImagen={contenidoPorLenguaje.lenguajes.alternativaImagen}
 				titulo={contenidoPorLenguaje.lenguajes.titulo}
 				descripcion={contenidoPorLenguaje.lenguajes.descripcion}
-				lista={[
-					"HTML",
-					"CSS",
-					"Sass",
-					"Styled Components",
-					"Gatsby",
-					"JavaScript",
-					"React",
-				]}></CartaConocimientos>
+				lista={conocimientos.lenguajes}></CartaConocimientos>
 			<CartaConocimientos
 				imagen={herramientasSVG}
 				alternativaImagen={contenidoPorLenguaje.devTools.alternativaImagen}
 				titulo={contenidoPorLenguaje.devTools.titulo}
 				descripcion={contenidoPorLenguaje.devTools.descripcion}
-				lista={["Webpack", "NPM", "Git", "Github", "Codepen"]}></CartaConocimientos>
+				lista={conocimientos.devTools}></CartaConocimientos>
 		</ConocimientosEstilizados>
 	);
 };
