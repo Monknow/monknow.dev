@@ -142,11 +142,12 @@ const codeStyles = {
 
 const PostPage = ({data}) => {
 	const {locale} = useLocalization();
-	const {href} = useContext(ContextoURL);
+	const {pathname} = useContext(ContextoURL);
 
 	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
 
 	const post = data.infoPosts;
+	const siteURL = data.site.siteMetadata.siteUrl;
 	const numeroDePalabras = post.texto.split(" ").length;
 	const slugTransformado = slugify(post.slug);
 	const idiomaOpuesto = locale === "en" ? "es" : "en";
@@ -186,6 +187,8 @@ const PostPage = ({data}) => {
 		setTiempoDeLectura(calcularTiempoDeLectura(numeroDePalabras));
 	}, [numeroDePalabras]);
 
+	console.log(post.imagenPrincipal.url);
+
 	return (
 		<div>
 			<Helmet>
@@ -198,18 +201,18 @@ const PostPage = ({data}) => {
 				<meta property="og:title" content={post.titulo} />
 				<meta property="og:description" content={post.subtitulo} />
 				<meta property="og:image" content={post.imagenPrincipal.url} />
-				<meta property="og:url" content={href} />
+				<meta property="og:url" content={`${siteURL}${pathname}`} />
 
 				<meta property="twitter:title" content={post.titulo} />
 				<meta property="twitter:description" content={post.subtitulo} />
 				<meta property="twitter:image" content={post.imagenPrincipal.url} />
-				<meta property="twitter:url" content={href} />
+				<meta property="twitter:url" content={`${siteURL}${pathname}`} />
 			</Helmet>
 			<EstilosGlobal></EstilosGlobal>
 			<NavBar quitarSeleccionarLenguajes>
 				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
 			</NavBar>
-			<Compartir siteURL={data.site.siteMetadata.siteUrl}></Compartir>
+			<Compartir siteURL={siteURL}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
 					<Titulo contenido={post.titulo}></Titulo>
