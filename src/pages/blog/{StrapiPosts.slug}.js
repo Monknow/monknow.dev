@@ -203,6 +203,8 @@ const PostPage = ({data}) => {
 				<meta property="og:image" content={post.imagenPrincipal.url} />
 				<meta property="og:url" content={`${siteURL}${pathname}`} />
 
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:creator" content="@CodeMonknow" />
 				<meta property="twitter:title" content={post.titulo} />
 				<meta property="twitter:description" content={post.subtitulo} />
 				<meta property="twitter:image" content={post.imagenPrincipal.url} />
