@@ -110,13 +110,14 @@ const Compartir = () => {
 
 	const mapaContenido = new Map(contenido);
 
-	const {contenidoPorLenguaje} = mapaContenido.get(locale);
+	const contenidoPorLenguaje = mapaContenido.get(locale);
 
 	return (
 		<CompartirEstilizado>
 			{contenidoPorLenguaje.map((elementoCompartir) => {
 				return (
 					<BotonCompartir
+						key={elementoCompartir.url}
 						icono={elementoCompartir.icono}
 						iconoAlternativa={elementoCompartir.iconoAlternativa}
 						url={elementoCompartir.url}
