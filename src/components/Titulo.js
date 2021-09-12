@@ -14,12 +14,12 @@ import styled from "styled-components"
         color: ${props => props.claro? "#fff" : "#141c3a"};
     `
 
-const Titulo = ({contenido, claro}) =>{
+const Titulo = (props) =>{
 
 
 
     return(
-        <TituloEstilizado claro={claro}>{contenido}</TituloEstilizado>
+        <TituloEstilizado {...props}></TituloEstilizado>
     )
 
 }

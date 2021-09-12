@@ -25,8 +25,24 @@ const GraciasPage = (props) => {
 	const {locale} = useLocalization();
 
 	const contenido = [
-		["es", {atribucion: "Ilustración por StorySet"}],
-		["en", {atribucion: "Illustration by StorySet"}],
+		[
+			"es",
+			{
+				titulo: "¡Gracias!",
+				subtitulo: "Pronto leeré el mensaje",
+				contenidoBoton: "Volver",
+				atribucion: "Ilustración por StorySet",
+			},
+		],
+		[
+			"en",
+			{
+				titulo: "Thank you!",
+				subtitulo: "I will read your message soon",
+				contenidoBoton: "Go back",
+				atribucion: "Illustration by StorySet",
+			},
+		],
 	];
 	const mapaContenido = new Map(contenido);
 

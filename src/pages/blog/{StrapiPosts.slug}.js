@@ -217,8 +217,8 @@ const PostPage = ({data}) => {
 			<Compartir siteURL={siteURL}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
-					<Titulo contenido={post.titulo}></Titulo>
-					<Subtitulo contenido={post.subtitulo}></Subtitulo>
+					<Titulo> {post.titulo}</Titulo>
+					<Subtitulo>{post.subtitulo}</Subtitulo>
 				</HeaderEstilizado>
 
 				<ContenedorImagenPrincipal>
