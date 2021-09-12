@@ -1,10 +1,10 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
-import InicioAnimacionSVG from "../svg/home-animation.svg";
+import InicioAnimacionSVG from "../../assets/svg/home-animation.svg";
 
-import Titulo from "./Titulo";
-import Boton from "./Boton";
+import Titulo from "../atoms/Titulo";
+import Boton from "../atoms/Boton";
 
 const InicioEstilizado = styled.section`
 	display: flex;

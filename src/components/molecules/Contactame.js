@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import {useLocalization} from "gatsby-theme-i18n";
-import Titulo from "./Titulo";
-import Boton from "./Boton";
+import Titulo from "../atoms/Titulo";
+import Boton from "../atoms/Boton";
 
 const ContactameEstilizado = styled.section`
 	position: relative;

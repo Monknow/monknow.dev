@@ -1,37 +1,23 @@
 import * as React from "react";
 import {useEffect, useState, useContext} from "react";
 import ContextoURL from "../../context/ContextoURL";
-import ReactMarkdown from "react-markdown";
+import Markdown from "../../components/atoms/Markdown";
 import {graphql, Link} from "gatsby";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import {Helmet} from "react-helmet";
-import styled, {createGlobalStyle} from "styled-components";
+import styled from "styled-components";
 import {useLocalization} from "gatsby-theme-i18n";
 import slugify from "@sindresorhus/slugify";
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {dark} from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import Titulo from "../../components/Titulo";
-import Subtitulo from "../../components/Subtitulo";
-import NavBar from "../../components/NavBar";
-import Compartir from "../../components/Compartir";
-import GaleriaBlog from "../../components/GaleriaBlog";
-import FooterPagina from "../../components/FooterPagina";
+import Titulo from "../../components/atoms/Titulo";
+import Subtitulo from "../../components/atoms/Subtitulo";
+import NavBar from "../../components/organisms/NavBar";
+import Compartir from "../../components/molecules/Compartir";
+import Galeria from "../../components/organisms/Galeria";
+import FooterPagina from "../../components/organisms/FooterPagina";
+import CompartirMetaTags from "../../components/atoms/CompartirMetaTags";
 
-import iconoFavicon from "../../images/favicon.ico";
-import "../../fonts/fonts.css";
-
-const EstilosGlobal = createGlobalStyle`
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    html{
-        scroll-behavior: smooth;
-        font-family: "Open Sans Regular";
-    }
-`;
+import iconoFavicon from "../../assets/images/favicon.ico";
 
 const InicioBlogPostEstilizado = styled.section`
 	display: flex;
@@ -74,71 +60,6 @@ const DescripcionImagenPrincipal = styled.p`
 
 	color: #333;
 `;
-
-const ContenidoBlogPostEstilizado = styled.section`
-	font-size: clamp(12px, 3vw, 20px);
-`;
-
-const TextoPost = styled.div`
-	width: clamp(100px, 80vw, 700px);
-	margin: 0px auto;
-
-	font-family: "Open Sans Light";
-
-	line-height: clamp(25px, 5vw, 35px);
-	text-align: justify;
-`;
-
-const Markdown = styled(ReactMarkdown)`
-	& {
-		p {
-			margin: clamp(12px, 3vw, 20px) 0px;
-		}
-
-		h1 {
-			font-size: 2rem;
-		}
-
-		h2 {
-			font-size: 1.5rem;
-		}
-
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin: clamp(24px, 3vw, 40px) 0px;
-
-			font-family: "Open Sans Semibold";
-		}
-
-		img {
-			width: 100%;
-			margin: 40px 0px;
-			box-shadow: 0px 9px 14px -5px rgba(0, 0, 0, 0.75);
-		}
-	}
-`;
-
-const codeStyles = {
-	display: "block",
-
-	margin: "30px 0px",
-	padding: "8px",
-	border: "none",
-	borderRadius: "4px",
-
-	width: "100%",
-
-	fontWeight: "500",
-	fontSize: "clamp(12px, 3vw, 15px)",
-
-	backgroundColor: "#201c29",
-	color: "#ddd",
-	textShadow: "#fff0",
-};
 
 const PostPage = ({data}) => {
 	const {locale} = useLocalization();
@@ -196,21 +117,14 @@ const PostPage = ({data}) => {
 				<meta name="referrer" content="origin" />
 				<title>{post.titulo}</title>
 				<link rel="icon" href={iconoFavicon} />
-
-				{/* share meta tags */}
-				<meta property="og:title" content={post.titulo} />
-				<meta property="og:description" content={post.subtitulo} />
-				<meta property="og:image" content={post.imagenPrincipal.url} />
-				<meta property="og:url" content={`${siteURL}${pathname}`} />
-
-				<meta name="twitter:card" content="summary" />
-				<meta name="twitter:creator" content="@CodeMonknow" />
-				<meta property="twitter:title" content={post.titulo} />
-				<meta property="twitter:description" content={post.subtitulo} />
-				<meta property="twitter:image" content={post.imagenPrincipal.url} />
-				<meta property="twitter:url" content={`${siteURL}${pathname}`} />
 			</Helmet>
-			<EstilosGlobal></EstilosGlobal>
+			<CompartirMetaTags
+				titulo={post.titulo}
+				subtitulo={post.subtitulo}
+				urlImagen={post.imagenPrincipal.url}
+				url={`${siteURL}${pathname}`}
+			/>
+
 			<NavBar quitarSeleccionarLenguajes>
 				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
 			</NavBar>
@@ -234,32 +148,10 @@ const PostPage = ({data}) => {
 				</ContenedorImagenPrincipal>
 				<DescripcionImagenPrincipal>{post.descripcionImagen}</DescripcionImagenPrincipal>
 			</InicioBlogPostEstilizado>
-			<ContenidoBlogPostEstilizado>
-				<TextoPost>
-					<Markdown
-						children={post.texto}
-						components={{
-							code({node, inline, className, children, ...props}) {
-								const match = /language-(\w+)/.exec(className || "");
-								return !inline && match ? (
-									<SyntaxHighlighter
-										children={String(children).replace(/\n$/, "")}
-										language={match[1]}
-										style={dark}
-										showLineNumbers
-										customStyle={codeStyles}
-										PreTag="div"
-										{...props}
-									/>
-								) : (
-									<code {...props}>{children}</code>
-								);
-							},
-						}}
-					/>
-				</TextoPost>
-			</ContenidoBlogPostEstilizado>
-			<GaleriaBlog cuadros={posts}></GaleriaBlog>
+
+			<Markdown markdown={post.texto}></Markdown>
+
+			<Galeria esBlog cuadros={posts}></Galeria>
 			<FooterPagina
 				atribucion={post?.atribucionImagen ? `${atribucionPrefijo} ${post.atribucionImagen}` : null}
 				atribucionURL={post?.urlAtribucionImagen}></FooterPagina>

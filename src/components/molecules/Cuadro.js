@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled, {keyframes} from "styled-components";
 import {LocalizedLink, useLocalization} from "gatsby-theme-i18n";
-import Boton from "./Boton";
-import Titulo from "./Titulo";
-import Subtitulo from "./Subtitulo";
+import Boton from "../atoms/Boton";
+import Titulo from "../atoms/Titulo";
+import Subtitulo from "../atoms/Subtitulo";
 
 const crecerImagen = keyframes`
 from {

@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
-import Titulo from "./Titulo";
-import codigoSVG from "../svg/iconmonstr-code-7.svg";
-import herramientasSVG from "../svg/iconmonstr-tools-2.svg";
+import Titulo from "../atoms/Titulo";
+import codigoSVG from "../../assets/svg/iconmonstr-code-7.svg";
+import herramientasSVG from "../../assets/svg/iconmonstr-tools-2.svg";
 
 const ConocimientosEstilizados = styled.section`
 	display: flex;

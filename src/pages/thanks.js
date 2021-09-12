@@ -1,24 +1,11 @@
 import * as React from "react";
-import {createGlobalStyle} from "styled-components";
 import {Helmet} from "react-helmet";
 import {useLocalization} from "gatsby-theme-i18n";
-import NavBar from "../components/NavBar";
-import GranMensaje from "../components/GranMensaje";
-import FooterPagina from "../components/FooterPagina";
-import "../fonts/fonts.css";
-import iconoFavicon from "../images/favicon.ico";
-import ilustracionGracias from "../svg/thank-you-rafiki.svg";
-
-const EstilosGlobal = createGlobalStyle`
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    html{
-      scroll-behavior: smooth;
-    }
-`;
+import NavBar from "../components/organisms/NavBar";
+import GranMensaje from "../components/molecules/GranMensaje";
+import FooterPagina from "../components/organisms/FooterPagina";
+import iconoFavicon from "../assets/images/favicon.ico";
+import ilustracionGracias from "../assets/svg/thank-you-rafiki.svg";
 
 // markup
 const GraciasPage = (props) => {
@@ -56,7 +43,6 @@ const GraciasPage = (props) => {
 				<title>{contenidoPorLenguaje.titulo}</title>
 				<meta name="referrer" content="origin" />
 			</Helmet>
-			<EstilosGlobal></EstilosGlobal>
 			<NavBar location={props.location}></NavBar>
 			<GranMensaje
 				titulo={contenidoPorLenguaje.titulo}

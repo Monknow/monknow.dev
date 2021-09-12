@@ -1,68 +1,52 @@
 import * as React from "react";
-import { graphql } from "gatsby"
-import styled, { createGlobalStyle } from 'styled-components';
-import { Helmet } from "react-helmet";
-import NavBar from "../components/NavBar";
-import GaleriaBlog from "../components/GaleriaBlog";
-import Contactame from "../components/Contactame";
-import FooterPagina from "../components/FooterPagina";
-import iconoFavicon from "../images/favicon.ico";
-import "../fonts/fonts.css";
-
-const EstilosGlobal = createGlobalStyle`
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    html{
-      scroll-behavior: smooth;
-    }
-`
+import {graphql} from "gatsby";
+import styled from "styled-components";
+import {Helmet} from "react-helmet";
+import NavBar from "../components/organisms/NavBar";
+import Contactame from "../components/molecules/Contactame";
+import FooterPagina from "../components/organisms/FooterPagina";
+import iconoFavicon from "../assets/images/favicon.ico";
+import Galeria from "../components/organisms/Galeria";
 
 const ContenedorGaleriaBlogEstilizado = styled.div`
-    min-height: 100vh;
+	min-height: 100vh;
 `;
 
 const BlogPostsPage = (props) => {
+	const posts = props.data.allStrapiPosts.nodes;
 
-    const posts = props.data.allStrapiPosts.nodes;
-
-  return (
-    <div>
-        <Helmet>
-            <meta charSet="utf-8" />
-            <link rel="icon" href={iconoFavicon} />
-            <title>Blog</title>
-        </Helmet>
-        <EstilosGlobal></EstilosGlobal>
-        <NavBar></NavBar>
-        <ContenedorGaleriaBlogEstilizado>
-            <GaleriaBlog cuadros={posts}></GaleriaBlog>
-        </ContenedorGaleriaBlogEstilizado>
-        <Contactame></Contactame>
-        <FooterPagina></FooterPagina>
-        </div>
-  ) 
-}
+	return (
+		<div>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<link rel="icon" href={iconoFavicon} />
+				<title>Blog</title>
+			</Helmet>
+			<NavBar></NavBar>
+			<ContenedorGaleriaBlogEstilizado>
+				<Galeria esBlog cuadros={posts}></Galeria>
+			</ContenedorGaleriaBlogEstilizado>
+			<Contactame></Contactame>
+			<FooterPagina></FooterPagina>
+		</div>
+	);
+};
 
 export default BlogPostsPage;
 
 export const query = graphql`
-query AllPostEnQueryBlogPage($locale : String!) {
-  allStrapiPosts(limit: 30, filter: {locale: {eq: $locale }}) {
-    nodes {
-      id
-      titulo
-      subtitulo
-      slug
-      imagenPrincipal {
-        url
-      }
-      locale
-    }
-  }
-}
-
-`
-
+	query AllPostEnQueryBlogPage($locale: String!) {
+		allStrapiPosts(limit: 30, filter: {locale: {eq: $locale}}) {
+			nodes {
+				id
+				titulo
+				subtitulo
+				slug
+				imagenPrincipal {
+					url
+				}
+				locale
+			}
+		}
+	}
+`;

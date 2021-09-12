@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
-import ContextoURL from "../context/ContextoURL";
+import ContextoURL from "../../context/ContextoURL";
 import {useContext} from "react";
 import {useLocalization} from "gatsby-theme-i18n";
-import BotonCompartir from "./BotonCompartir";
-import iconoFacebook from "../svg/iconmonstr-facebook-1.svg";
-import iconoLinkeIn from "../svg/iconmonstr-linkedin-1.svg";
-import iconoTwitter from "../svg/iconmonstr-twitter-1.svg";
-import iconoWhatsApp from "../svg/iconmonstr-whatsapp-1.svg";
-import iconoEmail from "../svg/iconmonstr-email-2.svg";
+import BotonCompartir from "../atoms/BotonCompartir";
+import iconoFacebook from "../../assets/svg/iconmonstr-facebook-1.svg";
+import iconoLinkeIn from "../../assets/svg/iconmonstr-linkedin-1.svg";
+import iconoTwitter from "../../assets/svg/iconmonstr-twitter-1.svg";
+import iconoWhatsApp from "../../assets/svg/iconmonstr-whatsapp-1.svg";
+import iconoEmail from "../../assets/svg/iconmonstr-email-2.svg";
 
 const CompartirEstilizado = styled.aside`
 	position: fixed;

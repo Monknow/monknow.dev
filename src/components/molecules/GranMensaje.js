@@ -1,9 +1,9 @@
 import * as React from "react";
-import {LocalizedLink} from "gatsby-theme-i18n";
+import {navigate} from "gatsby-link";
 import styled from "styled-components";
-import Titulo from "./Titulo";
-import Subtitulo from "./Subtitulo";
-import Boton from "./Boton";
+import Titulo from "../atoms/Titulo";
+import Subtitulo from "../atoms/Subtitulo";
+import Boton from "../atoms/Boton";
 
 const GranMensajeEstilizado = styled.section`
 	display: flex;
@@ -35,9 +35,10 @@ const GranMensaje = ({titulo, subtitulo, imagen, alternativa, contenidoBoton}) =
 		<GranMensajeEstilizado>
 			<Titulo> {titulo}</Titulo>
 			<Subtitulo> {subtitulo}</Subtitulo>
-			<LocalizedLink to="/">
-				<Boton aria-label={contenidoBoton}>{contenidoBoton}</Boton>
-			</LocalizedLink>
+			<Boton aria-label={contenidoBoton} onClick={() => navigate(-1)}>
+				{contenidoBoton}
+			</Boton>
+
 			<IlustracionMensaje src={imagen} alt={alternativa}></IlustracionMensaje>
 		</GranMensajeEstilizado>
 	);

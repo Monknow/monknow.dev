@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
-import Titulo from "./Titulo";
+import Titulo from "../atoms/Titulo";
 
 const SobreMiEstilizado = styled.section`
 	display: flex;

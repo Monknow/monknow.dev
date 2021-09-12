@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
-import logoPositivo from "../images/logo-2.png";
+import logoPositivo from "../../assets/images/logo-2.png";
 import styled from "styled-components";
 
 const FooterEstilizado = styled.footer`

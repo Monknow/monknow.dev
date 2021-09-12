@@ -2,40 +2,37 @@ import * as React from "react";
 import {Helmet} from "react-helmet";
 import {graphql} from "gatsby";
 import {useLocalization} from "gatsby-theme-i18n";
-import NavBar from "../components/NavBar";
-import Inicio from "../components/Inicio";
-import SobreMi from "../components/SobreMi";
-import Habilidades from "../components/Habilidades";
-import GaleriaBlog from "../components/GaleriaBlog";
-import GaleriaPortafolio from "../components/GaleriaPortafolio";
-import Contactame from "../components/Contactame";
-import FooterPagina from "../components/FooterPagina";
-import "../fonts/fonts.css";
-import {createGlobalStyle} from "styled-components";
-import iconoFavicon from "../images/favicon.ico";
+import NavBar from "../components/organisms/NavBar";
+import Inicio from "../components/organisms/Inicio";
+import SobreMi from "../components/molecules/SobreMi";
+import Habilidades from "../components/organisms/Habilidades";
 
-const EstilosGlobal = createGlobalStyle`
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    html{
-    scroll-behavior: smooth;
-    }
-`;
+import Galeria from "../components/organisms/Galeria";
+import Contactame from "../components/molecules/Contactame";
+import FooterPagina from "../components/organisms/FooterPagina";
+import iconoFavicon from "../assets/images/favicon.ico";
 
 // markup
 const IndexPage = ({data}) => {
 	const {locale} = useLocalization();
 
 	const contenido = [
-		["es", {atribucion: "Ilustración por StorySet"}],
-		["en", {atribucion: "Illustration by StorySet"}],
+		[
+			"es",
+			{
+				atribucion: "Ilustración por StorySet",
+			},
+		],
+		[
+			"en",
+			{
+				atribucion: "Illustration by StorySet",
+			},
+		],
 	];
 	const mapaContenido = new Map(contenido);
 
-	const contenidoPorLenguaje = mapaContenido.get(locale);
+	const {atribucion} = mapaContenido.get(locale);
 
 	return (
 		<div>
@@ -45,17 +42,14 @@ const IndexPage = ({data}) => {
 				<title>Monknow.dev</title>
 				<link rel="icon" href={iconoFavicon} />
 			</Helmet>
-			<EstilosGlobal></EstilosGlobal>
 			<NavBar></NavBar>
 			<Inicio></Inicio>
 			<SobreMi></SobreMi>
 			<Habilidades></Habilidades>
-			<GaleriaPortafolio cuadros={data.allStrapiProyectos.nodes}></GaleriaPortafolio>
-			<GaleriaBlog cuadros={data.allStrapiPosts.nodes}></GaleriaBlog>
+			<Galeria cuadros={data.allStrapiProyectos.nodes}></Galeria>
+			<Galeria esBlog cuadros={data.allStrapiPosts.nodes}></Galeria>
 			<Contactame></Contactame>
-			<FooterPagina
-				atribucion={contenidoPorLenguaje.atribucion}
-				atribucionURL="https://storyset.com/"></FooterPagina>
+			<FooterPagina atribucion={atribucion} atribucionURL="https://storyset.com/"></FooterPagina>
 		</div>
 	);
 };
