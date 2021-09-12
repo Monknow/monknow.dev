@@ -30,8 +30,11 @@ const CompartirEstilizado = styled.aside`
 	}
 `;
 
-const Compartir = ({href}) => {
+const Compartir = ({siteURL}) => {
+	const {pathname} = useContext(ContextoURL);
 	const {locale} = useLocalization();
+
+	const href = `${siteURL}${pathname}`;
 
 	const contenido = [
 		[

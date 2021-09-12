@@ -209,7 +209,7 @@ const PostPage = ({data}) => {
 			<NavBar quitarSeleccionarLenguajes>
 				<Link to={`/${idiomaOpuesto}/blog/${slugTransformado}`}>{textoDeLeerEnOtroIdioma}</Link>
 			</NavBar>
-			<Compartir href={href}></Compartir>
+			<Compartir siteURL={data.site.siteMetadata.siteUrl}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
 					<Titulo contenido={post.titulo}></Titulo>
@@ -266,6 +266,11 @@ export default PostPage;
 
 export const query = graphql`
 	query PostEnQueryPostPage($slug: String!, $locale: String!) {
+		site {
+			siteMetadata {
+				siteUrl
+			}
+		}
 		infoPosts: strapiPosts(slug: {eq: $slug}, locale: {eq: $locale}) {
 			id
 			titulo
