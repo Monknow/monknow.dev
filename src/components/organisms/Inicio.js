@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
-import InicioAnimacionSVG from "../../assets/svg/home-animation.svg";
+import InicioAnimacionSVG from "../../assets/svg/home-animation.inline.svg";
 
 import Titulo from "../atoms/Titulo";
 import Boton from "../atoms/Boton";
@@ -38,18 +38,8 @@ const InicioHeaderSubtitulo = styled.h2`
 	color: #141c3a;
 `;
 
-const InicioAnimacion = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	aspect-ratio: 5 / 3;
-	width: clamp(200px, 80vw, 600px);
-
-	background-image: url(${InicioAnimacionSVG});
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: bottom;
+const SVGEnvoltorio = styled.div`
+	width: clamp(100px, 90%, 700px);
 `;
 
 const Inicio = () => {
@@ -72,7 +62,9 @@ const Inicio = () => {
 			<a href="#contact-me">
 				<Boton aria-label={contenidoPorLenguaje.botonContenido}>{contenidoPorLenguaje.botonContenido}</Boton>
 			</a>
-			<InicioAnimacion></InicioAnimacion>
+			<SVGEnvoltorio>
+				<InicioAnimacionSVG />
+			</SVGEnvoltorio>
 		</InicioEstilizado>
 	);
 };

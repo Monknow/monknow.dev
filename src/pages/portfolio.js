@@ -65,6 +65,11 @@ export const query = graphql`
 				stack
 				portada {
 					url
+					localFile {
+						childImageSharp {
+							gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+						}
+					}
 				}
 				url
 				locale

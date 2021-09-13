@@ -2,8 +2,8 @@ import * as React from "react";
 import {useLocalization} from "gatsby-theme-i18n";
 import styled from "styled-components";
 import CartaConocimientos from "../molecules/CartaConocimientos";
-import codigoSVG from "../../assets/svg/iconmonstr-code-7.svg";
-import herramientasSVG from "../../assets/svg/iconmonstr-tools-2.svg";
+import CodigoSVG from "../../assets/svg/iconmonstr-code-7.inline.svg";
+import HerramientasSVG from "../../assets/svg/iconmonstr-tools-2.inline.svg";
 import conocimientos from "../../data/conocimientos";
 
 const ConocimientosEstilizados = styled.section`
@@ -68,13 +68,13 @@ const Habilidades = () => {
 	return (
 		<ConocimientosEstilizados id="skills">
 			<CartaConocimientos
-				imagen={codigoSVG}
+				Svg={CodigoSVG}
 				alternativaImagen={contenidoPorLenguaje.lenguajes.alternativaImagen}
 				titulo={contenidoPorLenguaje.lenguajes.titulo}
 				descripcion={contenidoPorLenguaje.lenguajes.descripcion}
 				lista={conocimientos.lenguajes}></CartaConocimientos>
 			<CartaConocimientos
-				imagen={herramientasSVG}
+				Svg={HerramientasSVG}
 				alternativaImagen={contenidoPorLenguaje.devTools.alternativaImagen}
 				titulo={contenidoPorLenguaje.devTools.titulo}
 				descripcion={contenidoPorLenguaje.devTools.descripcion}

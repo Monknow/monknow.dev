@@ -16,7 +16,6 @@ const NavBarEstilizado = styled.nav`
 	margin-bottom: 4vh;
 	padding: 20px;
 
-	font-family: "Open Sans Regular";
 	font-size: clamp(12px, 5vw, 20px);
 `;
 

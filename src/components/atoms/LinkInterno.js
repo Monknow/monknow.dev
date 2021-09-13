@@ -12,14 +12,15 @@ const LinkInternoEstilizado = styled.div`
 
 		color: #141c3a;
 
+		font-family: "Open Sans Regular";
 		font-size: 1.3rem;
 	}
 `;
 
-const LinkInterno = (props) => {
+const LinkInterno = ({noLocalizado, ...props}) => {
 	return (
 		<LinkInternoEstilizado>
-			{props?.noLocalizado ? <Link {...props}></Link> : <LocalizedLink {...props}></LocalizedLink>}
+			{noLocalizado ? <Link {...props}></Link> : <LocalizedLink {...props}></LocalizedLink>}
 		</LinkInternoEstilizado>
 	);
 };

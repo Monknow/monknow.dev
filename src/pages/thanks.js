@@ -5,7 +5,7 @@ import NavBar from "../components/organisms/NavBar";
 import GranMensaje from "../components/molecules/GranMensaje";
 import FooterPagina from "../components/organisms/FooterPagina";
 import iconoFavicon from "../assets/images/favicon.ico";
-import ilustracionGracias from "../assets/svg/thank-you-rafiki.svg";
+import IlustracionGracias from "../assets/svg/thank-you-rafiki.inline.svg";
 
 // markup
 const GraciasPage = (props) => {
@@ -47,7 +47,7 @@ const GraciasPage = (props) => {
 			<GranMensaje
 				titulo={contenidoPorLenguaje.titulo}
 				subtitulo={contenidoPorLenguaje.subtitulo}
-				imagen={ilustracionGracias}
+				Svg={IlustracionGracias}
 				contenidoBoton={contenidoPorLenguaje.contenidoBoton}
 				aspectRatio={1 / 1}></GranMensaje>
 			<FooterPagina

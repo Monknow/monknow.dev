@@ -1,5 +1,6 @@
 import * as React from "react";
 import {navigate} from "gatsby-link";
+import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import styled from "styled-components";
 import Titulo from "../atoms/Titulo";
 import Subtitulo from "../atoms/Subtitulo";
@@ -16,21 +17,7 @@ const GranMensajeEstilizado = styled.section`
 	font-size: clamp(16px, 4vw, 30px);
 `;
 
-const IlustracionMensaje = styled.img`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	margin-top: 20px;
-
-	width: clamp(100px, 70vw, 300px);
-
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: bottom;
-`;
-
-const GranMensaje = ({titulo, subtitulo, imagen, alternativa, contenidoBoton}) => {
+const GranMensaje = ({titulo, subtitulo, Svg, contenidoBoton}) => {
 	return (
 		<GranMensajeEstilizado>
 			<Titulo> {titulo}</Titulo>
@@ -39,7 +26,7 @@ const GranMensaje = ({titulo, subtitulo, imagen, alternativa, contenidoBoton}) =
 				{contenidoBoton}
 			</Boton>
 
-			<IlustracionMensaje src={imagen} alt={alternativa}></IlustracionMensaje>
+			<Svg />
 		</GranMensajeEstilizado>
 	);
 };

@@ -12,10 +12,10 @@ const BotonCompartirEstilizado = styled.a`
 	background-color: ${({backgroundColor}) => backgroundColor || "#000"};
 `;
 
-const BotonCompartir = ({icono, iconoAlternativa, url, backgroundColor}) => {
+const BotonCompartir = ({Icono, iconoAlternativa, url, backgroundColor}) => {
 	return (
 		<BotonCompartirEstilizado href={url} target="_blank" rel="noreferrer" backgroundColor={backgroundColor}>
-			<img src={icono} alt={iconoAlternativa} />
+			<Icono />
 		</BotonCompartirEstilizado>
 	);
 };

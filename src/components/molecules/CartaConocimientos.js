@@ -39,10 +39,10 @@ const DescripcionCarta = styled.p`
 	color: #fca311;
 `;
 
-const CartaConocimientos = ({imagen, alternativaImagen, titulo, descripcion, lista}) => {
+const CartaConocimientos = ({Svg, titulo, descripcion, lista}) => {
 	return (
 		<CartaConocimientosEstilizada>
-			<img src={imagen} alt={alternativaImagen} />
+			<Svg />
 			<Titulo>{titulo}</Titulo>
 			<DescripcionCarta>{descripcion}</DescripcionCarta>
 			<ul>

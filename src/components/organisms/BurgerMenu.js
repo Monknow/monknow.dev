@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import {StaticImage} from "gatsby-plugin-image";
+import BurgerSVG from "../../assets/svg/iconmonstr-menu-1.inline.svg";
 
 const BurgerMenuEstilizado = styled.details``;
 
@@ -33,13 +33,7 @@ const BurgerMenu = ({children}) => {
 	return (
 		<BurgerMenuEstilizado>
 			<IconoBurger>
-				<StaticImage
-					src="../../assets/svg/iconmonstr-menu-1.svg"
-					alt="icono menu"
-					placeholder="blurred"
-					layout="fixed"
-					width={24}
-					height={24}></StaticImage>
+				<BurgerSVG />
 			</IconoBurger>
 			<ContenidoBurger>{children}</ContenidoBurger>
 		</BurgerMenuEstilizado>

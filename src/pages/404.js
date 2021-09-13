@@ -4,7 +4,7 @@ import {useLocalization} from "gatsby-theme-i18n";
 import NavBar from "../components/organisms/NavBar";
 import GranMensaje from "../components/molecules/GranMensaje";
 import FooterPagina from "../components/organisms/FooterPagina";
-import ilustracionError404 from "../assets/svg/404-Error-rafiki.svg";
+import IlustracionError404 from "../assets/svg/error-rafiki.inline.svg";
 import iconoFavicon from "../assets/images/favicon.ico";
 
 const NotFoundPage = (props) => {
@@ -46,7 +46,7 @@ const NotFoundPage = (props) => {
 			<GranMensaje
 				titulo={contenidoPorLenguaje.titulo}
 				subtitulo={contenidoPorLenguaje.subtitulo}
-				imagen={ilustracionError404}
+				Svg={IlustracionError404}
 				aspectRatio={1 / 1}
 				contenidoBoton={contenidoPorLenguaje.contenidoBoton}></GranMensaje>
 			<FooterPagina

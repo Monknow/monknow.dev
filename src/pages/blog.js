@@ -44,6 +44,11 @@ export const query = graphql`
 				slug
 				imagenPrincipal {
 					url
+					localFile {
+						childImageSharp {
+							gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+						}
+					}
 				}
 				locale
 			}
