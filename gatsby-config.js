@@ -21,6 +21,14 @@ module.exports = {
 				name: "uploads",
 			},
 		},
+		{
+			// keep as first gatsby-source-filesystem plugin for gatsby image support
+			resolve: "gatsby-source-filesystem",
+			options: {
+				path: `${__dirname}/src/pages`,
+				name: "pages",
+			},
+		},
 		`gatsby-transformer-sharp`,
 		"gatsby-plugin-styled-components",
 		"gatsby-plugin-gatsby-cloud",

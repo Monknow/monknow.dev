@@ -39,3 +39,4 @@ collections:
           - {name: subtitulo, label: Subtitulo, i18n: true}
           - {name: portada, label: Portada, widget: image, i18n: true}
           - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
+          - {name: url, label: URL, i18n: true}
