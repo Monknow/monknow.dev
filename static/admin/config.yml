@@ -8,6 +8,10 @@ backend:
     branch: master
 media_folder: static/assets
 public_folder: /assets
+publish_mode: editorial_workflow
+site_url: https://www.monknow.dev
+display_url: https://www.monknow.dev
+logo_url: https://www.monknow.dev/static/237fb7a3582df41fbbe11d2032729a66/fa07f/android-chrome-512x512.png
 collections:
     - name: blog
       identifier_field: slug
