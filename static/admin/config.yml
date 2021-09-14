@@ -10,10 +10,12 @@ media_folder: static/assets
 public_folder: /assets
 collections:
     - name: blog
+      identifier_field: slug
+      folder: "src/pages/blog"
       label: Blog
-      folder: blog
       i18n: true
       create: true
+      slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
       fields:
           - {name: slug, label: Slug, i18n: duplicate}
           - {name: fecha, label: Fecha, widget: datetime, i18n: duplicate}
@@ -24,3 +26,16 @@ collections:
           - {name: atribucionImagen, label: Atribución de Imagen, i18n: true, required: false}
           - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, i18n: true, required: false}
           - {name: cuerpo, label: Cuerpo, widget: markdown, i18n: true}
+    - name: portafolio
+      identifier_field: slug
+      folder: "src/pages/portfolio"
+      label: Portafolio
+      i18n: true
+      create: true
+      slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+      fields:
+          - {name: slug, label: Slug, i18n: duplicate}
+          - {name: titulo, label: Titulo, i18n: true}
+          - {name: subtitulo, label: Subtitulo, i18n: true}
+          - {name: portada, label: Portada, widget: image, i18n: true}
+          - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
