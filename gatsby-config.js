@@ -17,7 +17,7 @@ module.exports = {
 			// keep as first gatsby-source-filesystem plugin for gatsby image support
 			resolve: "gatsby-source-filesystem",
 			options: {
-				path: `${__dirname}/static/img`,
+				path: `${__dirname}/static/assets`,
 				name: "uploads",
 			},
 		},
@@ -38,13 +38,6 @@ module.exports = {
 		`gatsby-plugin-netlify-cms`,
 		`gatsby-plugin-react-helmet`,
 		{
-			resolve: `gatsby-source-filesystem`,
-			options: {
-				name: `svg`,
-				path: `${__dirname}/src/assets/svg/`,
-			},
-		},
-		{
 			resolve: "gatsby-transformer-remark",
 			options: {
 				plugins: [
@@ -61,12 +54,6 @@ module.exports = {
 							// the content container as this plugin uses this as the
 							// base for generating different widths of each image.
 							maxWidth: 2048,
-						},
-					},
-					{
-						resolve: "gatsby-remark-copy-linked-files",
-						options: {
-							destinationDir: "static",
 						},
 					},
 				],
@@ -89,30 +76,6 @@ module.exports = {
 			},
 		},
 		{
-			resolve: `@oddbluedog/gatsby-source-strapi-support-markdown-images`,
-			options: {
-				apiURL: `https://monknow-cms.herokuapp.com`,
-				queryLimit: 1000, // Defaults to 100
-				collectionTypes: [
-					{
-						name: `posts`,
-						api: {qs: {_locale: `all`}},
-					},
-					{
-						name: `proyectos`,
-						api: {qs: {_locale: `all`}},
-					},
-				],
-				contentTypes: [
-					// List of the Content Types you want to be able to request from Gatsby.
-					"post",
-				],
-				markdownImages: {
-					typesToParse: {
-						post: ["texto"],
-					},
-				},
-			},
 			resolve: `gatsby-source-strapi`,
 			options: {
 				apiURL: `https://monknow-cms.herokuapp.com`,
