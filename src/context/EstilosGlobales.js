@@ -9,7 +9,7 @@ const EstilosGlobales = createGlobalStyle`
 
     html{
         scroll-behavior: smooth;
-        font-family: "Open Sans Regular";
+        font-family: "Open Sans Regular", Sans-Serif;
         font-size: clamp(12px, 4vw, 16px);
     }
 `;

@@ -63,8 +63,6 @@ function Galeria({esBlog, titulo, subtitulo, cuadros, ...props}) {
 						? getImage(cuadro.imagenPrincipal.localFile)
 						: getImage(cuadro.portada.localFile);
 
-					console.log(cuadro);
-
 					return (
 						<Cuadro
 							key={tituloCuadro}

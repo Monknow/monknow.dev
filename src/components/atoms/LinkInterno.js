@@ -12,7 +12,6 @@ const LinkInternoEstilizado = styled.div`
 
 		color: #141c3a;
 
-		font-family: "Open Sans Regular";
 		font-size: 1.3rem;
 	}
 `;

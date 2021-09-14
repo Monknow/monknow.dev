@@ -90,7 +90,7 @@ const FooterPagina = ({atribucion, atribucionURL}) => {
 			<FooterFrase>{contenidoPorLenguaje.frase}</FooterFrase>
 			<FooterRedesSociales>
 				{redesSociales.map(({url, Svg}) => {
-					return <RedSocial Svg={Svg} url={url} fill="#fff"></RedSocial>;
+					return <RedSocial key={url} Svg={Svg} url={url} fill="#fff"></RedSocial>;
 				})}
 			</FooterRedesSociales>
 			<DerechosAutor>{contenidoPorLenguaje.derechosDeAutor}</DerechosAutor>

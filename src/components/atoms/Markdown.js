@@ -1,8 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {dark} from "react-syntax-highlighter/dist/esm/styles/prism";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const MarkdownEstilizado = styled(ReactMarkdown)`
 	width: clamp(100px, 80vw, 700px);
@@ -65,7 +67,7 @@ const estilosCodigo = {
 	textShadow: "#fff0",
 };
 
-const Markdown = ({markdown}) => {
+const Markdown = ({markdown, markdownImagenes}) => {
 	return (
 		<MarkdownEstilizado
 			children={markdown}
@@ -84,6 +86,18 @@ const Markdown = ({markdown}) => {
 						/>
 					) : (
 						<code {...props}>{children}</code>
+					);
+				},
+
+				img({src, alt, ...props}) {
+					return (
+						<LazyLoadImage
+							alt={alt}
+							height="auto"
+							effect="blur"
+							src={src} // use normal <img> attributes as props
+							width="100%"
+						/>
 					);
 				},
 			}}

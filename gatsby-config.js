@@ -52,6 +52,30 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `@oddbluedog/gatsby-source-strapi-support-markdown-images`,
+			options: {
+				apiURL: `https://monknow-cms.herokuapp.com`,
+				queryLimit: 1000, // Defaults to 100
+				collectionTypes: [
+					{
+						name: `posts`,
+						api: {qs: {_locale: `all`}},
+					},
+					{
+						name: `proyectos`,
+						api: {qs: {_locale: `all`}},
+					},
+				],
+				contentTypes: [
+					// List of the Content Types you want to be able to request from Gatsby.
+					"post",
+				],
+				markdownImages: {
+					typesToParse: {
+						post: ["texto"],
+					},
+				},
+			},
 			resolve: `gatsby-source-strapi`,
 			options: {
 				apiURL: `https://monknow-cms.herokuapp.com`,
@@ -66,6 +90,11 @@ module.exports = {
 						api: {qs: {_locale: `all`}},
 					},
 				],
+				markdownImages: {
+					typesToParse: {
+						posts: ["texto"],
+					},
+				},
 			},
 		},
 	],
