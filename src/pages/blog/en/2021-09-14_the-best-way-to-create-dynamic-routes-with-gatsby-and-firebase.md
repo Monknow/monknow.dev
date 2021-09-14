@@ -6,9 +6,7 @@ subtitulo: Firebase + Gatsby = ❤
 portada: /assets/hnet.com-image.png
 descripcionImagen: Firebase + Gatsby = ❤
 cuerpo: >-
-  ![]()
-
-
+  
   # Introduction
 
 
