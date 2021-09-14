@@ -12,8 +12,8 @@ const ContenedorGaleriaBlogEstilizado = styled.div`
 	min-height: 100vh;
 `;
 
-const BlogPostsPage = (props) => {
-	const posts = props.data.allStrapiPosts.nodes;
+const BlogPostsPage = ({data}) => {
+	const posts = data.allStrapiPosts.nodes;
 
 	return (
 		<div>
