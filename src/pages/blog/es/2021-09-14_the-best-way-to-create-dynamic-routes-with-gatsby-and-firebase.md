@@ -5,7 +5,7 @@ titulo: La mejor manera de crear rutas dinamicas con Gatsby y Firebase
 subtitulo: Firebase + Gatsby = ❤
 portada: /assets/hnet.com-image.png
 descripcionImagen: Firebase + Gatsby = ❤
-cuerpo: >+2
+cuerpo: >2
    
   # Introducción
 
@@ -31,6 +31,7 @@ cuerpo: >+2
    
   ## 1. Iniciar un nuevo proyecto Gatsby
    
+
 
    
   Para comenzar, tenemos que inicializar un nuevo [proyecto de Gatsby](https://www.gatsbyjs.com/docs/quick-start/) con el siguiente comando
@@ -95,6 +96,7 @@ cuerpo: >+2
    
   Luego, puedes [agregar Firestore](https://firebase.google.com/docs/firestore/quickstart) a tu proyecto en "Modo de prueba"
    
+
 
    
   ![enter image description here](https://res.cloudinary.com/ddzynrhrx/image/upload/v1631374174/firebase_create_database_dc71b2af5f.png)
@@ -161,6 +163,7 @@ cuerpo: >+2
   const UserPage = ({id}) => {
       return <h1>{id}</h1>;
 
+
       
   };
    
@@ -182,6 +185,7 @@ cuerpo: >+2
 
   import { getFirestore, collection } from "firebase/firestore";
    
+
 
    
   // Your web app's Firebase configuration
@@ -209,7 +213,9 @@ cuerpo: >+2
   Ahora necesitamos crear una consulta para la colección de usuarios que busque un usuario con el mismo id que el id de la URL. Para lograr esto, importamos el módulo query de Firestore con un par de funciones más. Luego ejecutaremos la consulta dentro de un useEffect.
    
 
+
    
+
 
    
   ```jsx
