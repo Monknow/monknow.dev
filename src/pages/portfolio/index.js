@@ -3,11 +3,11 @@ import {graphql} from "gatsby";
 import styled from "styled-components";
 import {useLocalization} from "gatsby-theme-i18n";
 import {Helmet} from "react-helmet";
-import NavBar from "../components/organisms/NavBar";
-import Contactame from "../components/molecules/Contactame";
-import FooterPagina from "../components/organisms/FooterPagina";
-import iconoFavicon from "../assets/images/favicon.ico";
-import Galeria from "../components/organisms/Galeria";
+import NavBar from "../../components/organisms/NavBar";
+import Contactame from "../../components/molecules/Contactame";
+import FooterPagina from "../../components/organisms/FooterPagina";
+import iconoFavicon from "../../assets/images/favicon.ico";
+import Galeria from "../../components/organisms/Galeria";
 
 const ContenedorGaleriaPortafolioEstilizado = styled.div`
 	min-height: 100vh;

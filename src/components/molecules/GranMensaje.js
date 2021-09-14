@@ -1,6 +1,5 @@
 import * as React from "react";
 import {navigate} from "gatsby-link";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import styled from "styled-components";
 import Titulo from "../atoms/Titulo";
 import Subtitulo from "../atoms/Subtitulo";
