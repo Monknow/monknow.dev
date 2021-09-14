@@ -1,0 +1,26 @@
+i18n:
+    structure: multiple_folders
+    locales: [en, es]
+    default_locale: en
+backend:
+    name: github
+    repo: Monknow/monknow.dev
+    branch: master
+media_folder: static/assets
+public_folder: /assets
+collections:
+    - name: blog
+      label: Blog
+      folder: blog
+      i18n: true
+      create: true
+      fields:
+          - {name: slug, label: Slug, i18n: duplicate}
+          - {name: fecha, label: Fecha, widget: datetime, i18n: duplicate}
+          - {name: titulo, label: Titulo, i18n: true}
+          - {name: subtitulo, label: Subtitulo, i18n: true}
+          - {name: portada, label: Portada, widget: image, i18n: true}
+          - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
+          - {name: atribucionImagen, label: Atribución de Imagen, i18n: true, required: false}
+          - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, i18n: true, required: false}
+          - {name: cuerpo, label: Cuerpo, widget: markdown, i18n: true}
