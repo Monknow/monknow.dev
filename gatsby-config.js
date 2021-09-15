@@ -4,15 +4,6 @@ module.exports = {
 		title: "Monknow",
 	},
 	plugins: [
-		`gatsby-plugin-image`,
-		{
-			resolve: `gatsby-plugin-sharp`,
-			options: {
-				defaults: {
-					quality: 50,
-				},
-			},
-		},
 		{
 			// keep as first gatsby-source-filesystem plugin for gatsby image support
 			resolve: "gatsby-source-filesystem",
@@ -29,6 +20,16 @@ module.exports = {
 				name: "pages",
 			},
 		},
+		`gatsby-plugin-image`,
+		{
+			resolve: `gatsby-plugin-sharp`,
+			options: {
+				defaults: {
+					quality: 50,
+				},
+			},
+		},
+
 		`gatsby-transformer-sharp`,
 		"gatsby-plugin-styled-components",
 		"gatsby-plugin-gatsby-cloud",
