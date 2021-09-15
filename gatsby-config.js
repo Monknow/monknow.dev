@@ -20,15 +20,6 @@ module.exports = {
 				name: "pages",
 			},
 		},
-		`gatsby-plugin-image`,
-		{
-			resolve: `gatsby-plugin-sharp`,
-			options: {
-				defaults: {
-					quality: 50,
-				},
-			},
-		},
 
 		`gatsby-transformer-sharp`,
 		"gatsby-plugin-styled-components",
@@ -43,7 +34,16 @@ module.exports = {
 				],
 			},
 		},
-		`gatsby-transformer-remark`,
+		`gatsby-plugin-image`,
+		{
+			resolve: `gatsby-plugin-sharp`,
+			options: {
+				defaults: {
+					quality: 50,
+				},
+			},
+		},
+
 		`gatsby-plugin-netlify-cms`,
 		`gatsby-plugin-react-helmet`,
 		{
