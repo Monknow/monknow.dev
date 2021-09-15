@@ -5,7 +5,7 @@ en:
   titulo: The best way to create dynamic routes with Gatsby and Firebase
   subtitulo: Gatsby + Firebase = ❤
   descripcionImagen: Gatsby + Firebase = ❤
-  portada: /assets/hnet.com-image.png
+  portada: /assets/fondo-compartir-app-clima.png
   cuerpo: >-
     # Introduction
 
@@ -191,6 +191,7 @@ en:
 
     const UserPage = ({id}) => {
     	return <h1>{id}</h1>;
+
 
     	
     };
@@ -574,6 +575,7 @@ es:
     const UserPage = ({id}) => {
         return <h1>{id}</h1>;
 
+
         
     };
      
@@ -598,6 +600,7 @@ es:
 
     import { getFirestore, collection } from "firebase/firestore";
      
+
 
      
     // Your web app's Firebase configuration
