@@ -97,7 +97,7 @@ exports.onCreateNode = async ({node, actions, getNode}) => {
 
 	if (node.internal.type === "MarkdownRemark") {
 		const parent = getNode(node.parent);
-		const locale = parent.name.replace("index.", "") ?? "en";
+		const locale = parent.name ? parent.name.replace("index.", "") : "en";
 		createNodeField({
 			node,
 			name: "locale",
