@@ -46,8 +46,8 @@ const IndexPage = ({data}) => {
 			<Inicio></Inicio>
 			<SobreMi></SobreMi>
 			<Habilidades></Habilidades>
-			<Galeria id="portfolio" cuadros={data.allStrapiProyectos.nodes}></Galeria>
-			<Galeria id="blog" esBlog cuadros={data.allStrapiPosts.nodes}></Galeria>
+			<Galeria id="portfolio" cuadros={data.proyectos.nodes}></Galeria>
+			<Galeria id="blog" esBlog cuadros={data.posts.nodes}></Galeria>
 			<Contactame></Contactame>
 			<FooterPagina atribucion={atribucion} atribucionURL="https://storyset.com/"></FooterPagina>
 		</div>
@@ -58,37 +58,44 @@ export default IndexPage;
 
 export const query = graphql`
 	query AllStrapiCollectionTypesForIndexPageQuery($locale: String!) {
-		allStrapiPosts(limit: 4, filter: {locale: {eq: $locale}}) {
+		posts: allMarkdownRemark(
+			filter: {frontmatter: {tipo: {eq: "blog"}}, fields: {locale: {eq: $locale}}}
+			limit: 4
+		) {
 			nodes {
-				id
-				titulo
-				subtitulo
-				slug
-				imagenPrincipal {
-					url
-					localFile {
+				frontmatter {
+					atribucionImagen
+					descripcionImagen
+					fecha(formatString: "DD, MMM, YYYY")
+					slug
+					subtitulo
+					titulo
+					portada {
 						childImageSharp {
 							gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
 						}
+						publicURL
 					}
+					urlAtribucionImagen
 				}
+				html
 			}
 		}
-		allStrapiProyectos(limit: 4, filter: {locale: {eq: $locale}}) {
+		proyectos: allMarkdownRemark(
+			filter: {frontmatter: {tipo: {eq: "portafolio"}}, fields: {locale: {eq: $locale}}}
+			limit: 6
+		) {
 			nodes {
-				id
-				titulo
-				stack
-				portada {
+				frontmatter {
+					subtitulo
+					titulo
 					url
-					localFile {
+					portada {
 						childImageSharp {
 							gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
 						}
 					}
 				}
-				url
-				locale
 			}
 		}
 	}

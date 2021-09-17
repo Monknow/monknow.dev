@@ -1,19 +1,16 @@
 import * as React from "react";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {dark} from "react-syntax-highlighter/dist/esm/styles/prism";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import {useEffect, useState} from "react";
+import procesadorHTMLaJSX from "../../functions/procesadorHTMLaJSX";
 
-const MarkdownEstilizado = styled(ReactMarkdown)`
+const MarkdownEstilizado = styled.div`
 	width: clamp(100px, 80vw, 700px);
 	margin: 0px auto;
 
-	font-family: "Open Sans Light";
-
 	line-height: clamp(25px, 5vw, 35px);
 	text-align: justify;
+
+	color: #141c3a;
 
 	& {
 		p {
@@ -42,66 +39,80 @@ const MarkdownEstilizado = styled(ReactMarkdown)`
 		}
 
 		img {
-			width: 100%;
 			margin: 40px 0px;
 			box-shadow: 0px 9px 14px -5px rgba(0, 0, 0, 0.75);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column nowrap;
+
+			color: #000000;
+			background-color: rgba(255, 255, 255, 0.5);
+
+			&:empty {
+				color: #141c3a;
+				background-color: rgba(255, 255, 255, 0);
+				//Cuando la imagen no tiene hijos (::after y ::before) no se muestra el texto alternativo, y por lo tanto no hay un error.
+				// Así que cuando está :empty está cargada
+			}
+
+			&::before {
+				font-size: 1.3rem;
+			}
 		}
 	}
 `;
 
-const estilosCodigo = {
-	display: "block",
+const FondoDeTextoSinProcesar = styled.p`
+	// prettier-ignore
+	background-image: 
+		linear-gradient(to bottom, white 50%, #eee 50%), 
+		linear-gradient(white 100%, transparent 0);
 
-	margin: "30px 0px",
-	padding: "8px",
-	border: "none",
-	borderRadius: "4px",
+	// prettier-ignore
+	background-size: 
+		100% clamp(30px, 5vw, 50px), 
+		100% 100%;
 
-	width: "100%",
+	// prettier-ignore
+	background-position: 
+		0 0, 
+		0 0;
 
-	fontWeight: "500",
-	fontSize: "clamp(12px, 3vw, 15px)",
+	max-width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+`;
 
-	backgroundColor: "#201c29",
-	color: "#ddd",
-	textShadow: "#fff0",
-};
+const TextoSinProcesar = styled.div`
+	background-position: 0 0;
+	background-clip: text;
+	color: transparent;
+	line-height: 20px;
+`;
 
-const Markdown = ({markdown, markdownImagenes}) => {
+const Markdown = ({html}) => {
+	const [contenido, setContenido] = useState(null);
+
+	useEffect(() => {
+		const convertirHtmlAJsx = async () => {
+			const resultado = (await procesadorHTMLaJSX.process(html)).result;
+			setContenido(resultado);
+		};
+
+		convertirHtmlAJsx();
+	}, [html]);
+
 	return (
-		<MarkdownEstilizado
-			children={markdown}
-			components={{
-				code({node, inline, className, children, ...props}) {
-					const match = /language-(\w+)/.exec(className || "");
-					return !inline && match ? (
-						<SyntaxHighlighter
-							children={String(children).replace(/\n$/, "")}
-							language={match[1]}
-							style={dark}
-							showLineNumbers
-							customStyle={estilosCodigo}
-							PreTag="div"
-							{...props}
-						/>
-					) : (
-						<code {...props}>{children}</code>
-					);
-				},
-
-				img({src, alt, ...props}) {
-					return (
-						<LazyLoadImage
-							alt={alt}
-							height="auto"
-							effect="blur"
-							src={src} // use normal <img> attributes as props
-							width="100%"
-						/>
-					);
-				},
-			}}
-		/>
+		<MarkdownEstilizado>
+			{contenido ? (
+				contenido
+			) : (
+				<FondoDeTextoSinProcesar>
+					<TextoSinProcesar>{html}</TextoSinProcesar>
+				</FondoDeTextoSinProcesar>
+			)}
+		</MarkdownEstilizado>
 	);
 };
 

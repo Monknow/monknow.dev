@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState, useContext} from "react";
-import ContextoURL from "../../context/ContextoURL";
-import Markdown from "../../components/atoms/Markdown";
+import ContextoURL from "../context/ContextoURL";
+import Markdown from "../components/atoms/Markdown";
 import {graphql} from "gatsby";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import {Helmet} from "react-helmet";
@@ -9,16 +9,16 @@ import styled from "styled-components";
 import {useLocalization} from "gatsby-theme-i18n";
 import slugify from "@sindresorhus/slugify";
 
-import Titulo from "../../components/atoms/Titulo";
-import Subtitulo from "../../components/atoms/Subtitulo";
-import NavBar from "../../components/organisms/NavBar";
-import Compartir from "../../components/molecules/Compartir";
-import Galeria from "../../components/organisms/Galeria";
-import FooterPagina from "../../components/organisms/FooterPagina";
-import CompartirMetaTags from "../../components/atoms/CompartirMetaTags";
+import Titulo from "../components/atoms/Titulo";
+import Subtitulo from "../components/atoms/Subtitulo";
+import NavBar from "../components/organisms/NavBar";
+import Compartir from "../components/molecules/Compartir";
+import FooterPagina from "../components/organisms/FooterPagina";
+import CompartirMetaTags from "../components/atoms/CompartirMetaTags";
+import Galeria from "../components/organisms/Galeria";
 
-import iconoFavicon from "../../assets/images/favicon.ico";
-import LinkInterno from "../../components/atoms/LinkInterno";
+import iconoFavicon from "../assets/images/favicon.ico";
+import LinkInterno from "../components/atoms/LinkInterno";
 
 const InicioBlogPostEstilizado = styled.section`
 	display: flex;
@@ -62,20 +62,20 @@ const DescripcionImagenPrincipal = styled.p`
 	color: #333;
 `;
 
-const PostPage = ({data}) => {
+const PostPage = ({data, ...props}) => {
 	const {locale} = useLocalization();
 	const {pathname} = useContext(ContextoURL);
 
 	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
 
-	const post = data.infoPosts;
+	const {frontmatter, wordCount, html} = data.markdownRemark;
+	const posts = data.allMarkdownRemark.nodes;
 	const siteURL = data.site.siteMetadata.siteUrl;
-	const numeroDePalabras = post.texto.split(" ").length;
-	const slugTransformado = slugify(post.slug);
+	const numeroDePalabras = wordCount.words;
+	const slugTransformado = slugify(frontmatter.slug);
 	const idiomaOpuesto = locale === "en" ? "es" : "en";
 
-	const posts = data.allStrapiPosts.nodes;
-	const imagenPrincipal = getImage(post.imagenPrincipal.localFile);
+	const portada = getImage(frontmatter.portada);
 
 	const contenido = [
 		[
@@ -114,13 +114,13 @@ const PostPage = ({data}) => {
 			<Helmet>
 				<meta charSet="utf-8" />
 				<meta name="referrer" content="origin" />
-				<title>{post.titulo}</title>
+				<title>{frontmatter.titulo}</title>
 				<link rel="icon" href={iconoFavicon} />
 			</Helmet>
 			<CompartirMetaTags
-				titulo={post.titulo}
-				subtitulo={post.subtitulo}
-				urlImagen={post.imagenPrincipal.url}
+				titulo={frontmatter.titulo}
+				subtitulo={frontmatter.subtitulo}
+				urlImagen={`${siteURL}${frontmatter.portada.publicURL}`}
 				url={`${siteURL}${pathname}`}
 			/>
 
@@ -132,77 +132,85 @@ const PostPage = ({data}) => {
 			<Compartir siteURL={siteURL}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
-					<Titulo> {post.titulo}</Titulo>
-					<Subtitulo>{post.subtitulo}</Subtitulo>
+					<Titulo> {frontmatter.titulo}</Titulo>
+					<Subtitulo>{frontmatter.subtitulo}</Subtitulo>
 				</HeaderEstilizado>
 
 				<ContenedorImagenPrincipal>
 					<MetaDatosBlogPost>
-						<span>
-							{post.published_at} ({post.updated_at})
-						</span>
+						<span>{frontmatter.fecha}</span>
 						<span>
 							{tiempoDeLectura} {textoDetiempoDeLectura}
 						</span>
 					</MetaDatosBlogPost>
-					<GatsbyImage image={imagenPrincipal} alt={post.descripcionImagen}></GatsbyImage>
+					<GatsbyImage image={portada} alt={frontmatter.descripcionImagen}></GatsbyImage>
 				</ContenedorImagenPrincipal>
-				<DescripcionImagenPrincipal>{post.descripcionImagen}</DescripcionImagenPrincipal>
+				<DescripcionImagenPrincipal>{frontmatter.descripcionImagen}</DescripcionImagenPrincipal>
 			</InicioBlogPostEstilizado>
 
-			<Markdown markdown={post.texto}></Markdown>
+			<Markdown html={html}></Markdown>
+			<Galeria cuadros={posts} esBlog></Galeria>
 
-			<Galeria esBlog cuadros={posts}></Galeria>
 			<FooterPagina
-				atribucion={post?.atribucionImagen ? `${atribucionPrefijo} ${post.atribucionImagen}` : null}
-				atribucionURL={post?.urlAtribucionImagen}></FooterPagina>
+				atribucion={
+					frontmatter?.atribucionImagen ? `${atribucionPrefijo} ${frontmatter.atribucionImagen}` : null
+				}
+				atribucionURL={frontmatter?.urlAtribucionImagen}></FooterPagina>
 		</div>
 	);
 };
 
 export default PostPage;
 
-export const query = graphql`
-	query PostEnQueryPostPage($slug: String!, $locale: String!) {
+export const PostPageQuery = graphql`
+	query PostTemplateQuery($locale: String!, $slug: String!) {
 		site {
 			siteMetadata {
 				siteUrl
 			}
 		}
-		infoPosts: strapiPosts(slug: {eq: $slug}, locale: {eq: $locale}) {
-			id
-			titulo
-			subtitulo
-			published_at(formatString: "DD MMM, YYYY")
-			updated_at(formatString: "DD MMM, YYYY")
-			texto
-			slug
-			imagenPrincipal {
-				url
-				localFile {
+		markdownRemark(frontmatter: {slug: {eq: $slug}}, fields: {locale: {eq: $locale}}) {
+			frontmatter {
+				atribucionImagen
+				descripcionImagen
+				fecha(formatString: "DD, MMM, YYYY")
+				slug
+				subtitulo
+				titulo
+				portada {
 					childImageSharp {
 						gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
 					}
+					publicURL
 				}
+				urlAtribucionImagen
 			}
-			descripcionImagen
-			urlAtribucionImagen
-			atribucionImagen
+			html
+			wordCount {
+				words
+			}
 		}
-		allStrapiPosts(limit: 4, filter: {slug: {ne: $slug}, locale: {eq: $locale}}) {
+		allMarkdownRemark(
+			filter: {frontmatter: {tipo: {eq: "blog"}, slug: {ne: $slug}}, fields: {locale: {eq: $locale}}}
+			limit: 4
+		) {
 			nodes {
-				id
-				titulo
-				subtitulo
-				slug
-				imagenPrincipal {
-					url
-					localFile {
+				frontmatter {
+					atribucionImagen
+					descripcionImagen
+					fecha(formatString: "DD, MMM, YYYY")
+					slug
+					subtitulo
+					titulo
+					portada {
 						childImageSharp {
 							gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
 						}
+						publicURL
 					}
+					urlAtribucionImagen
 				}
+				html
 			}
 		}
 	}

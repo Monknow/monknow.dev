@@ -1,11 +1,10 @@
 i18n:
-    structure: single_file
+    structure: multiple_files
     locales: [en, es]
     default_locale: en
 backend:
-    name: github
-    repo: Monknow/monknow.dev
-    branch: master
+    name: git-gateway
+local_backend: true
 media_folder: static/assets
 public_folder: /assets
 publish_mode: editorial_workflow
@@ -14,31 +13,43 @@ display_url: https://www.monknow.dev
 logo_url: https://www.monknow.dev/static/237fb7a3582df41fbbe11d2032729a66/fa07f/android-chrome-512x512.png
 collections:
     - name: blog
-      identifier_field: slug
       folder: "src/pages/blog"
+      path: "{{slug}}/index"
+      media_folder: ""
+      public_folder: ""
       label: Blog
       i18n: true
+      extension: md
+      format: frontmatter
       create: true
+      identifier_field: slug
       slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
       fields:
-          - {name: slug, label: Slug, i18n: duplicate}
-          - {name: fecha, label: Fecha, widget: datetime, allow_multiple: false, choose_url: false, i18n: duplicate}
+          - {name: tipo, label: Tipo, widget: hidden, i18n: duplicate, default: blog}
+          - {name: slug, label: Slug, widget: string, i18n: duplicate}
+          - {name: fecha, label: Fecha, widget: datetime, i18n: duplicate}
           - {name: titulo, label: Titulo, i18n: true}
           - {name: subtitulo, label: Subtitulo, i18n: true}
-          - {name: portada, label: Portada, widget: image, i18n: true}
+          - {name: portada, label: Portada, widget: image, allow_multiple: false, choose_url: false, i18n: true}
           - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
-          - {name: atribucionImagen, label: Atribución de Imagen, i18n: true, required: false}
-          - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, i18n: true, required: false}
-          - {name: cuerpo, label: Cuerpo, widget: markdown, i18n: true}
+          - {name: atribucionImagen, label: Atribución de Imagen, required: false, i18n: true}
+          - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, required: false, i18n: true}
+          - {name: body, label: Cuerpo, widget: markdown, i18n: true}
     - name: portafolio
-      identifier_field: slug
-      folder: "src/pages/portfolio"
       label: Portafolio
+      folder: "src/pages/portfolio"
+      path: "{{slug}}/index"
+      media_folder: ""
+      public_folder: ""
+      extension: md
+      format: frontmatter
       i18n: true
       create: true
+      identifier_field: slug
       slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
       fields:
-          - {name: slug, label: Slug, i18n: duplicate}
+          - {name: tipo, label: Tipo, widget: hidden, i18n: duplicate, default: portafolio}
+          - {name: slug, label: Slug, widget: string, i18n: duplicate}
           - {name: titulo, label: Titulo, i18n: true}
           - {name: subtitulo, label: Subtitulo, i18n: true}
           - {name: portada, label: Portada, widget: image, allow_multiple: false, choose_url: false, i18n: true}

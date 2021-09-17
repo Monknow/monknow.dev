@@ -55,21 +55,16 @@ function Galeria({esBlog, titulo, subtitulo, cuadros, ...props}) {
 			<Subtitulo>{subtitulo ? subtitulo : esBlog ? blog.subtitulo : portafolio.subtitulo}</Subtitulo>
 			{/* Si hay un titulo o subtitulo custom, colocalo. Si no, coloca el default dependiendo si es una galeria del blog o portafolio */}
 			<Cuadros>
-				{cuadros.map((cuadro) => {
-					const tituloCuadro = cuadro.titulo;
-					const subtituloCuadro = esBlog ? cuadro.subtitulo : cuadro.stack;
-					const urlCuadro = esBlog ? `/blog/${slugify(cuadro.slug)}/` : cuadro.url;
-					const imagenCuadro = esBlog
-						? getImage(cuadro.imagenPrincipal.localFile)
-						: getImage(cuadro.portada.localFile);
-
+				{cuadros.map(({frontmatter}) => {
+					const urlCuadro = esBlog ? `/blog/${slugify(frontmatter.slug)}/` : frontmatter.url;
+					console.dir(frontmatter);
 					return (
 						<Cuadro
-							key={tituloCuadro}
-							titulo={tituloCuadro}
-							subtitulo={subtituloCuadro}
+							key={frontmatter.titulo}
+							titulo={frontmatter.titulo}
+							subtitulo={frontmatter.subtitulo}
 							url={urlCuadro}
-							imagen={imagenCuadro}
+							imagen={getImage(frontmatter.portada)}
 							linkInterno={esBlog}></Cuadro>
 					);
 				})}

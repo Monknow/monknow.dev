@@ -4,47 +4,10 @@ module.exports = {
 		title: "Monknow",
 	},
 	plugins: [
-		{
-			// keep as first gatsby-source-filesystem plugin for gatsby image support
-			resolve: "gatsby-source-filesystem",
-			options: {
-				path: `${__dirname}/static/assets`,
-				name: "uploads",
-			},
-		},
-		{
-			// keep as first gatsby-source-filesystem plugin for gatsby image support
-			resolve: "gatsby-source-filesystem",
-			options: {
-				path: `${__dirname}/src/pages`,
-				name: "pages",
-			},
-		},
-
 		`gatsby-transformer-sharp`,
 		"gatsby-plugin-styled-components",
-		"gatsby-plugin-gatsby-cloud",
-		{
-			resolve: `gatsby-plugin-netlify`,
-			options: {
-				allPageHeaders: [
-					"cache-control: public",
-					"cache-control: max-age=31536000",
-					"cache-control: immutable",
-				],
-			},
-		},
 		`gatsby-plugin-image`,
-		{
-			resolve: `gatsby-plugin-sharp`,
-			options: {
-				defaults: {
-					quality: 50,
-				},
-			},
-		},
-
-		`gatsby-plugin-netlify-cms`,
+		`gatsby-plugin-sharp`,
 		`gatsby-plugin-react-helmet`,
 		{
 			resolve: "gatsby-transformer-remark",
@@ -53,7 +16,7 @@ module.exports = {
 					{
 						resolve: "gatsby-remark-relative-images",
 						options: {
-							name: "uploads",
+							name: "assets",
 						},
 					},
 					{
@@ -75,6 +38,13 @@ module.exports = {
 			},
 		},
 		{
+			resolve: "gatsby-source-filesystem",
+			options: {
+				path: `${__dirname}/src/pages`,
+				name: "pages",
+			},
+		},
+		{
 			resolve: `gatsby-theme-i18n`,
 			options: {
 				defaultLang: `en`,
@@ -90,27 +60,17 @@ module.exports = {
 				},
 			},
 		},
+
 		{
-			resolve: `gatsby-source-strapi`,
+			resolve: `gatsby-plugin-netlify`,
 			options: {
-				apiURL: `https://monknow-cms.herokuapp.com`,
-				queryLimit: 1000, // Defaults to 100
-				collectionTypes: [
-					{
-						name: `posts`,
-						api: {qs: {_locale: `all`}},
-					},
-					{
-						name: `proyectos`,
-						api: {qs: {_locale: `all`}},
-					},
+				allPageHeaders: [
+					"cache-control: public",
+					"cache-control: max-age=31536000",
+					"cache-control: immutable",
 				],
-				markdownImages: {
-					typesToParse: {
-						posts: ["texto"],
-					},
-				},
 			},
 		},
+		`gatsby-plugin-netlify-cms`,
 	],
 };
