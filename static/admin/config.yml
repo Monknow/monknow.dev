@@ -3,7 +3,9 @@ i18n:
     locales: [en, es]
     default_locale: en
 backend:
-    name: git-gateway
+    name: github
+    repo: Monknow/monknow.dev
+    branch: master
 local_backend: true
 media_folder: static/assets
 public_folder: /assets
