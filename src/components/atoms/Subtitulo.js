@@ -6,7 +6,7 @@ const SubtituloEstilizado = styled.h1`
 	padding: 0px 30px;
 
 	font-size: 0.8em;
-	font-family: "Open Sans Semibold";
+	font-family: "Open Sans Semibold", Sans-Serif;
 
 	text-align: center;
 

@@ -19,7 +19,7 @@ const ContactameEstilizado = styled.section`
 	border-radius: 12px;
 	padding: 40px 20px 20px 20px;
 
-	font-family: "Open Sans Regular";
+	font-family: "Open Sans Regular", Sans-Serif;
 
 	background-color: #141c3a;
 	color: #fff;

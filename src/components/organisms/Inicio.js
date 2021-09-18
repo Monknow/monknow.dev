@@ -33,7 +33,7 @@ const InicioHeaderSubtitulo = styled.h2`
 	margin: 10px 0px 15px 0px;
 
 	font-size: 0.8em;
-	font-family: "Open Sans Light";
+	font-family: "Open Sans Light", Sans-Serif;;
 
 	color: #141c3a;
 `;

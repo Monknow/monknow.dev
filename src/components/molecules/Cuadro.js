@@ -65,7 +65,7 @@ const Detalles = styled.div`
 	padding: 20px;
 	border-radius: 12px;
 
-	font-family: "Open Sans Regular";
+	font-family: "Open Sans Regular", Sans-Serif;;
 	font-size: clamp(14px, 5vw, 20px);
 
 	color: #fff;
@@ -85,7 +85,7 @@ const TituloCuadro = styled(Titulo)`
 const SubtituloCuadro = styled(Subtitulo)`
 	margin: clamp(0px, 0.5vw, 10px) 0px;
 
-	font-family: "Open Sans Light";
+	font-family: "Open Sans Light", Sans-Serif;;
 	font-size: 0.7em;
 	text-align: center;
 `;

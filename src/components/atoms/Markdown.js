@@ -16,7 +16,7 @@ const MarkdownEstilizado = styled.div`
 		p {
 			margin: clamp(12px, 3vw, 20px) 0px;
 			font-size: clamp(12px, 4vw, 18px);
-			font-family: "Open Sans Regular";
+			font-family: "Open Sans Regular", Sans-Serif;
 		}
 
 		h1 {
@@ -35,7 +35,7 @@ const MarkdownEstilizado = styled.div`
 		h6 {
 			margin: clamp(24px, 3vw, 40px) 0px;
 
-			font-family: "Open Sans Semibold";
+			font-family: "Open Sans Semibold", Sans-Serif;
 		}
 
 		img {
