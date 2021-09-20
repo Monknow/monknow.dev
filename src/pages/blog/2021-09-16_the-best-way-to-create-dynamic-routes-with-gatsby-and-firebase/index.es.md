@@ -1,6 +1,6 @@
 ---
 tipo: blog
-slug: The best way to create dynamic routes with Gatsby and Firebase
+slug: The best way to create dynamic routes with Gatsby and Firebaseááá´´á
 fecha: 2021-09-16T13:02:28.362Z
 titulo: La mejor manera de crear rutas dinamicas con Gatsby y Firebase
 subtitulo: Firebase + Gatsby = ❤
