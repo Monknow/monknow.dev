@@ -25,7 +25,7 @@ const estilosCodigo = {
 	textShadow: "#fff0",
 };
 
-const procesadorHTMLaJSX = unified()
+const procesadorHtmlAJsx = unified()
 	.use(rehypeParse, {emitParseErrors: true, fragment: true})
 	.use(rehypeReact, {
 		createElement: createElement,
@@ -57,4 +57,4 @@ const procesadorHTMLaJSX = unified()
 		},
 	});
 
-export default procesadorHTMLaJSX;
+export default procesadorHtmlAJsx;

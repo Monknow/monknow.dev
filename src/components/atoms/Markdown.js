@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import {useState, useMemo} from "react";
-import procesadorHTMLaJSX from "../../functions/procesadorHTMLaJSX";
+import procesadorHtmlAJsx from "../../functions/procesadorHTMLaJSX";
 
 const MarkdownEstilizado = styled.div`
 	width: clamp(100px, 80vw, 700px);
@@ -59,18 +58,7 @@ const MarkdownEstilizado = styled.div`
 `;
 
 const Markdown = ({html}) => {
-	const [contenido, setContenido] = useState(null);
-
-	useMemo(() => {
-		const esperarProcesarHTMLaJSX = async () => {
-			const resultado = (await procesadorHTMLaJSX.process(html)).result;
-			console.log(resultado);
-			setContenido(resultado);
-		};
-		esperarProcesarHTMLaJSX();
-	}, [html]);
-
-	return <MarkdownEstilizado>{contenido && contenido}</MarkdownEstilizado>;
+	return <MarkdownEstilizado>{procesadorHtmlAJsx.processSync(html).result}</MarkdownEstilizado>;
 };
 
 export default Markdown;

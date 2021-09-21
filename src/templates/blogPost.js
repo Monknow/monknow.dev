@@ -54,11 +54,9 @@ const ContenedorImagenPrincipal = styled.div`
 `;
 
 const DescripcionImagenPrincipal = styled.p`
-	font-size: clamp(9px, 1.3vw, 16px);
+	font-size: 1.2rem;
 
 	text-align: center;
-
-	color: #333;
 `;
 
 const PostPage = ({data, ...props}) => {
