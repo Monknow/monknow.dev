@@ -3,10 +3,9 @@ i18n:
     locales: [en, es]
     default_locale: en
 backend:
-    name: github
+    name: gt
     repo: Monknow/monknow.dev
     branch: master
-local_backend: true
 media_folder: static/assets
 public_folder: /assets
 publish_mode: editorial_workflow
@@ -51,6 +50,7 @@ collections:
           - {name: descripcionImagen, label: Descripción de Imagen, required: true, i18n: true}
           - {name: atribucionImagen, label: Atribución de Imagen, required: false, i18n: true}
           - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, required: false, i18n: true}
+          - {name: descripcion, label: Descripcion del Post (SEO), widget: string, required: true, i18n: true}
           - {name: body, label: Cuerpo, widget: markdown, required: true, i18n: true}
     - name: portafolio
       label: Portafolio

@@ -110,11 +110,11 @@ const PostPage = ({data, ...props}) => {
 		<BlogPostEstilizado itemscope itemtype="https://schema.org/Article">
 			<Helmet>
 				<title>{frontmatter.titulo}</title>
-				<meta name="description" content={frontmatter.titulo} />
+				<meta name="description" content={frontmatter.descripcion} />
 			</Helmet>
 			<CompartirMetaTags
 				titulo={frontmatter.titulo}
-				subtitulo={frontmatter.subtitulo}
+				descripcion={frontmatter.descripcion}
 				urlImagen={`${siteURL}${frontmatter.portada.publicURL}`}
 				url={`${siteURL}${pathname}`}
 			/>
@@ -167,6 +167,7 @@ export const PostPageQuery = graphql`
 		markdownRemark(frontmatter: {slug: {eq: $slug}}, fields: {locale: {eq: $locale}}) {
 			frontmatter {
 				atribucionImagen
+				descripcion
 				descripcionImagen
 				fecha(formatString: "DD, MMM, YYYY")
 				slug
@@ -193,6 +194,7 @@ export const PostPageQuery = graphql`
 			nodes {
 				frontmatter {
 					atribucionImagen
+					descripcion
 					descripcionImagen
 					fecha(formatString: "DD, MMM, YYYY")
 					slug

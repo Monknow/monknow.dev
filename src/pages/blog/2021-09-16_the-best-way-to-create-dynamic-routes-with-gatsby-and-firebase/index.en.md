@@ -8,6 +8,9 @@ portada: gatsby-firebase-love.png
 descripcionImagen: Gatsby + Firebase = ❤
 atribucionImagen: '""'
 urlAtribucionImagen: '""'
+descripcion: How to to create dynamic routes with Gatsby and Firebase using
+  Gatsby's Client Only Routes and File System Route API, and Firebase's
+  Firestore
 ---
 # Introduction
 
