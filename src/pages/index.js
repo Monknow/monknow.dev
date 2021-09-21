@@ -10,7 +10,6 @@ import Habilidades from "../components/organisms/Habilidades";
 import Galeria from "../components/organisms/Galeria";
 import Contactame from "../components/molecules/Contactame";
 import FooterPagina from "../components/organisms/FooterPagina";
-import iconoFavicon from "../assets/images/favicon.ico";
 
 // markup
 const IndexPage = ({data}) => {
@@ -21,26 +20,28 @@ const IndexPage = ({data}) => {
 			"es",
 			{
 				atribucion: "Ilustración por StorySet",
+				descripcion:
+					"Me llamo Juan Diego Rodriguez, mucho gusto. Soy un desarrollador web especializado en el frontend. Uso principalmente React, pero me adapto bien y conozco las tecnologías usadas en el desarrollo web moderno. Me desempeño en trabajos remotos.",
 			},
 		],
 		[
 			"en",
 			{
 				atribucion: "Illustration by StorySet",
+				descripcion:
+					"My name is Juan Diego Rodriguez, nice to meet you. I am a web developer specialized in the frontend. I mainly use React, but I adapt well and I know the technologies used in modern web development. I work in remote jobs.",
 			},
 		],
 	];
 	const mapaContenido = new Map(contenido);
 
-	const {atribucion} = mapaContenido.get(locale);
+	const {atribucion, descripcion} = mapaContenido.get(locale);
 
 	return (
 		<div>
 			<Helmet>
-				<meta charSet="utf-8" />
-				<meta name="referrer" content="origin" />
 				<title>Monknow.dev</title>
-				<link rel="icon" href={iconoFavicon} />
+				<meta name="description" content={descripcion} />
 			</Helmet>
 			<NavBar></NavBar>
 			<Inicio></Inicio>

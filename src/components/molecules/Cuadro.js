@@ -4,7 +4,6 @@ import {LocalizedLink, useLocalization} from "gatsby-theme-i18n";
 import {BgImage} from "gbimage-bridge";
 import Boton from "../atoms/Boton";
 import Titulo from "../atoms/Titulo";
-import Subtitulo from "../atoms/Subtitulo";
 
 const crecerImagen = keyframes`
 	from{
@@ -65,7 +64,6 @@ const Detalles = styled.div`
 	padding: 20px;
 	border-radius: 12px;
 
-	font-family: "Open Sans Regular", Sans-Serif;;
 	font-size: clamp(14px, 5vw, 20px);
 
 	color: #fff;
@@ -82,10 +80,10 @@ const TituloCuadro = styled(Titulo)`
 	text-align: center;
 `;
 
-const SubtituloCuadro = styled(Subtitulo)`
+const SubtituloCuadro = styled(Titulo)`
 	margin: clamp(0px, 0.5vw, 10px) 0px;
 
-	font-family: "Open Sans Light", Sans-Serif;;
+	font-family: "Open Sans Light", sans-serif;
 	font-size: 0.7em;
 	text-align: center;
 `;

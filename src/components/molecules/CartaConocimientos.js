@@ -20,7 +20,7 @@ const CartaConocimientosEstilizada = styled.div`
 		margin-bottom: 7px;
 
 		font-size: 0.8em;
-		font-family: "Open Sans Light", Sans-Serif;
+		font-family: "Open Sans Light", sans-serif;
 
 		text-align: center;
 	}
@@ -32,7 +32,7 @@ const DescripcionCarta = styled.p`
 	margin: 10px 0px;
 
 	font-size: 0.9em;
-	font-family: "Open Sans Semibold", Sans-Serif;
+	font-family: "Open Sans Semibold", sans-serif;
 
 	text-align: center;
 

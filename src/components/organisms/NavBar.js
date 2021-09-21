@@ -66,10 +66,10 @@ const NavBar = (props) => {
 					<LinkInterno to="/#skills">{contenidoPorLenguaje.habilidades}</LinkInterno>
 				</li>
 				<li>
-					<LinkInterno to="/#portfolio">{contenidoPorLenguaje.portafolio}</LinkInterno>
+					<LinkInterno to="/portfolio">{contenidoPorLenguaje.portafolio}</LinkInterno>
 				</li>
 				<li>
-					<LinkInterno to="/#blog">{contenidoPorLenguaje.blog}</LinkInterno>
+					<LinkInterno to="/blog">{contenidoPorLenguaje.blog}</LinkInterno>
 				</li>
 				<li>
 					<LinkInterno to="/#contact-me">{contenidoPorLenguaje.contactame}</LinkInterno>

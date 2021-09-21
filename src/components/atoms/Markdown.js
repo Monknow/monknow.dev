@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import {useEffect, useState} from "react";
+import {useState, useMemo} from "react";
 import procesadorHTMLaJSX from "../../functions/procesadorHTMLaJSX";
 
 const MarkdownEstilizado = styled.div`
@@ -16,18 +16,13 @@ const MarkdownEstilizado = styled.div`
 		p {
 			margin: clamp(12px, 3vw, 20px) 0px;
 			font-size: clamp(12px, 4vw, 18px);
-			font-family: "Open Sans Regular", Sans-Serif;
+			font-family: "Open Sans Regular", sans-serif;
 		}
 
 		h1 {
-			font-size: 2rem;
+			margin: clamp(24px, 3vw, 40px) 0px;
 		}
 
-		h2 {
-			font-size: 1.5rem;
-		}
-
-		h1,
 		h2,
 		h3,
 		h4,
@@ -35,7 +30,7 @@ const MarkdownEstilizado = styled.div`
 		h6 {
 			margin: clamp(24px, 3vw, 40px) 0px;
 
-			font-family: "Open Sans Semibold", Sans-Serif;
+			font-family: "Open Sans Semibold", sans-serif;
 		}
 
 		img {
@@ -63,57 +58,19 @@ const MarkdownEstilizado = styled.div`
 	}
 `;
 
-const FondoDeTextoSinProcesar = styled.p`
-	// prettier-ignore
-	background-image: 
-		linear-gradient(to bottom, white 50%, #eee 50%), 
-		linear-gradient(white 100%, transparent 0);
-
-	// prettier-ignore
-	background-size: 
-		100% clamp(30px, 5vw, 50px), 
-		100% 100%;
-
-	// prettier-ignore
-	background-position: 
-		0 0, 
-		0 0;
-
-	max-width: 100%;
-	text-overflow: ellipsis;
-	overflow: hidden;
-`;
-
-const TextoSinProcesar = styled.div`
-	background-position: 0 0;
-	background-clip: text;
-	color: transparent;
-	line-height: 20px;
-`;
-
 const Markdown = ({html}) => {
 	const [contenido, setContenido] = useState(null);
 
-	useEffect(() => {
-		const convertirHtmlAJsx = async () => {
+	useMemo(() => {
+		const esperarProcesarHTMLaJSX = async () => {
 			const resultado = (await procesadorHTMLaJSX.process(html)).result;
+			console.log(resultado);
 			setContenido(resultado);
 		};
-
-		convertirHtmlAJsx();
+		esperarProcesarHTMLaJSX();
 	}, [html]);
 
-	return (
-		<MarkdownEstilizado>
-			{contenido ? (
-				contenido
-			) : (
-				<FondoDeTextoSinProcesar>
-					<TextoSinProcesar>{html}</TextoSinProcesar>
-				</FondoDeTextoSinProcesar>
-			)}
-		</MarkdownEstilizado>
-	);
+	return <MarkdownEstilizado>{contenido && contenido}</MarkdownEstilizado>;
 };
 
 export default Markdown;

@@ -4,7 +4,6 @@ import {LocalizedLink, useLocalization} from "gatsby-theme-i18n";
 import {getImage} from "gatsby-plugin-image";
 import Cuadro from "../molecules/Cuadro";
 import Titulo from "../atoms/Titulo";
-import Subtitulo from "../atoms/Subtitulo";
 import slugify from "@sindresorhus/slugify";
 import Boton from "../atoms/Boton";
 
@@ -52,12 +51,11 @@ function Galeria({esBlog, titulo, subtitulo, cuadros, ...props}) {
 	return (
 		<GaleriaEstilizada {...props}>
 			<Titulo>{titulo ? titulo : esBlog ? blog.titulo : portafolio.titulo}</Titulo>
-			<Subtitulo>{subtitulo ? subtitulo : esBlog ? blog.subtitulo : portafolio.subtitulo}</Subtitulo>
+			<Titulo subtitulo>{subtitulo ? subtitulo : esBlog ? blog.subtitulo : portafolio.subtitulo}</Titulo>
 			{/* Si hay un titulo o subtitulo custom, colocalo. Si no, coloca el default dependiendo si es una galeria del blog o portafolio */}
 			<Cuadros>
 				{cuadros.map(({frontmatter}) => {
 					const urlCuadro = esBlog ? `/blog/${slugify(frontmatter.slug)}/` : frontmatter.url;
-					console.dir(frontmatter);
 					return (
 						<Cuadro
 							key={frontmatter.titulo}

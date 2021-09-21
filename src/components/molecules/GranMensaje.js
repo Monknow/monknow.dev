@@ -2,7 +2,6 @@ import * as React from "react";
 import {navigate} from "gatsby-link";
 import styled from "styled-components";
 import Titulo from "../atoms/Titulo";
-import Subtitulo from "../atoms/Subtitulo";
 import Boton from "../atoms/Boton";
 
 const GranMensajeEstilizado = styled.section`
@@ -20,7 +19,7 @@ const GranMensaje = ({titulo, subtitulo, Svg, contenidoBoton}) => {
 	return (
 		<GranMensajeEstilizado>
 			<Titulo> {titulo}</Titulo>
-			<Subtitulo> {subtitulo}</Subtitulo>
+			<Titulo subtitulo> {subtitulo}</Titulo>
 			<Boton aria-label={contenidoBoton} onClick={() => navigate(-1)}>
 				{contenidoBoton}
 			</Boton>

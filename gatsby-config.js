@@ -9,6 +9,35 @@ module.exports = {
 		`gatsby-plugin-image`,
 		`gatsby-plugin-sharp`,
 		`gatsby-plugin-react-helmet`,
+		`gatsby-plugin-remove-fingerprints`,
+		{
+			resolve: "gatsby-plugin-sitemap",
+			options: {
+				query: `
+				{ 
+					site {
+						siteMetadata {
+							siteUrl
+						}
+					}
+					allSitePage {
+						nodes {
+							path
+						}
+					}
+				}			
+				`,
+				resolveSiteUrl: ({site}) => site.siteMetadata.siteUrl,
+				resolvePages: ({allSitePage: {nodes: allPages}}) => {
+					return allPages;
+				},
+				serialize: ({path}) => {
+					return {
+						url: path,
+					};
+				},
+			},
+		},
 		{
 			resolve: "gatsby-transformer-remark",
 			options: {
@@ -60,17 +89,7 @@ module.exports = {
 				},
 			},
 		},
-
-		{
-			resolve: `gatsby-plugin-netlify`,
-			options: {
-				allPageHeaders: [
-					"cache-control: public",
-					"cache-control: max-age=31536000",
-					"cache-control: immutable",
-				],
-			},
-		},
+		`gatsby-plugin-netlify`,
 		`gatsby-plugin-netlify-cms`,
 	],
 };

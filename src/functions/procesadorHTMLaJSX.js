@@ -5,6 +5,7 @@ import rehypeParse from "rehype-parse";
 import rehypeReact from "rehype-react";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {dark} from "react-syntax-highlighter/dist/esm/styles/prism";
+import Titulo from "../components/atoms/Titulo";
 
 const estilosCodigo = {
 	display: "block",
@@ -25,11 +26,11 @@ const estilosCodigo = {
 };
 
 const procesadorHTMLaJSX = unified()
-	.use(rehypeParse, {emitParseErrors: true})
+	.use(rehypeParse, {emitParseErrors: true, fragment: true})
 	.use(rehypeReact, {
 		createElement: createElement,
 		components: {
-			code({node, inline, className, children}) {
+			code({inline, className, children}) {
 				const match = /language-(\w+)/.exec(className || "");
 				return !inline && match ? (
 					<SyntaxHighlighter
@@ -41,6 +42,16 @@ const procesadorHTMLaJSX = unified()
 					/>
 				) : (
 					<code className={className}>{children}</code>
+				);
+			},
+			h1({children}) {
+				return <Titulo align="left">{children}</Titulo>;
+			},
+			h2({children}) {
+				return (
+					<Titulo subtitulo align="left">
+						{children}
+					</Titulo>
 				);
 			},
 		},

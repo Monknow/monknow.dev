@@ -28,7 +28,7 @@ const FooterLogo = styled.img`
 const FooterFrase = styled.p`
 	margin-bottom: 15px;
 
-	font-family: "Open Sans Semibold", Sans-Serif;;
+	font-family: "Open Sans Semibold", sans-serif;
 	font-size: 0.9em;
 `;
 

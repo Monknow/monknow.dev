@@ -2,10 +2,11 @@ import * as React from "react";
 import {graphql} from "gatsby";
 import styled from "styled-components";
 import {Helmet} from "react-helmet";
+import {useLocalization} from "gatsby-theme-i18n";
+
 import NavBar from "../components/organisms/NavBar";
 import Contactame from "../components/molecules/Contactame";
 import FooterPagina from "../components/organisms/FooterPagina";
-import iconoFavicon from "../assets/images/favicon.ico";
 import Galeria from "../components/organisms/Galeria";
 
 const ContenedorGaleriaBlogEstilizado = styled.div`
@@ -15,12 +16,31 @@ const ContenedorGaleriaBlogEstilizado = styled.div`
 const BlogPostsPage = ({data}) => {
 	const posts = data.allMarkdownRemark.nodes;
 
+	const {locale} = useLocalization();
+
+	const contenido = [
+		[
+			"es",
+			{
+				descripcion: "Blog sobre progrmacion, principalmente Frontend por Juan Diego Rodriguez",
+			},
+		],
+		[
+			"en",
+			{
+				descripcion: "Blog about programming, mainly Frontend. By Juan Diego Rodriguez",
+			},
+		],
+	];
+	const mapaContenido = new Map(contenido);
+
+	const {descripcion} = mapaContenido.get(locale);
+
 	return (
 		<div>
 			<Helmet>
-				<meta charSet="utf-8" />
-				<link rel="icon" href={iconoFavicon} />
 				<title>Blog</title>
+				<meta name="description" content={descripcion} />
 			</Helmet>
 			<NavBar></NavBar>
 			<ContenedorGaleriaBlogEstilizado>

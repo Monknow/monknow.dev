@@ -4,7 +4,6 @@ import {useLocalization} from "gatsby-theme-i18n";
 import NavBar from "../components/organisms/NavBar";
 import GranMensaje from "../components/molecules/GranMensaje";
 import FooterPagina from "../components/organisms/FooterPagina";
-import iconoFavicon from "../assets/images/favicon.ico";
 import IlustracionGracias from "../assets/svg/thank-you-rafiki.inline.svg";
 
 // markup
@@ -38,10 +37,7 @@ const GraciasPage = (props) => {
 	return (
 		<main>
 			<Helmet>
-				<meta charSet="utf-8" />
-				<link rel="icon" href={iconoFavicon} />
 				<title>{contenidoPorLenguaje.titulo}</title>
-				<meta name="referrer" content="origin" />
 			</Helmet>
 			<NavBar location={props.location}></NavBar>
 			<GranMensaje

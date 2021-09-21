@@ -9,7 +9,7 @@ const BotonEstilizado = styled.button`
 	border-radius: 20px;
 	padding: 6px 0px;
 
-	font-family: "Open Sans Semibold", Sans-Serif;
+	font-family: "Open Sans Semibold", sans-serif;
 	font-size: clamp(14px, 2vw, 20px);
 
 	text-decoration: none;

@@ -6,7 +6,6 @@ import {Helmet} from "react-helmet";
 import NavBar from "../components/organisms/NavBar";
 import Contactame from "../components/molecules/Contactame";
 import FooterPagina from "../components/organisms/FooterPagina";
-import iconoFavicon from "../assets/images/favicon.ico";
 import Galeria from "../components/organisms/Galeria";
 
 const ContenedorGaleriaPortafolioEstilizado = styled.div`
@@ -23,26 +22,26 @@ const PortafolioPage = ({data}) => {
 			"es",
 			{
 				titulo: "Portafolio",
+				descripcion: "Proyectos sobre progrmacion, principalmente Frontend por Juan Diego Rodriguez",
 			},
 		],
 		[
 			"en",
 			{
 				titulo: "Portfolio",
+				descripcion: "Programming projects, mainly Frontend. By Juan Diego Rodriguez",
 			},
 		],
 	];
 	const mapaContenido = new Map(contenido);
 
-	const {titulo} = mapaContenido.get(locale);
+	const {titulo, descripcion} = mapaContenido.get(locale);
 
 	return (
 		<div>
 			<Helmet>
-				<meta charSet="utf-8" />
-				<link rel="icon" href={iconoFavicon} />
 				<title>{titulo}</title>
-				<meta name="referrer" content="origin" />
+				<meta name="description" content={descripcion} />
 			</Helmet>
 			<NavBar></NavBar>
 			<ContenedorGaleriaPortafolioEstilizado>

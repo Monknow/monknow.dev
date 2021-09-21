@@ -10,15 +10,14 @@ import {useLocalization} from "gatsby-theme-i18n";
 import slugify from "@sindresorhus/slugify";
 
 import Titulo from "../components/atoms/Titulo";
-import Subtitulo from "../components/atoms/Subtitulo";
 import NavBar from "../components/organisms/NavBar";
 import Compartir from "../components/molecules/Compartir";
 import FooterPagina from "../components/organisms/FooterPagina";
 import CompartirMetaTags from "../components/atoms/CompartirMetaTags";
 import Galeria from "../components/organisms/Galeria";
-
-import iconoFavicon from "../assets/images/favicon.ico";
 import LinkInterno from "../components/atoms/LinkInterno";
+
+const BlogPostEstilizado = styled.article``;
 
 const InicioBlogPostEstilizado = styled.section`
 	display: flex;
@@ -68,7 +67,7 @@ const PostPage = ({data, ...props}) => {
 
 	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
 
-	const {frontmatter, wordCount, html} = data.markdownRemark;
+	const {frontmatter, wordCount, html, htmlAst} = data.markdownRemark;
 	const posts = data.allMarkdownRemark.nodes;
 	const siteURL = data.site.siteMetadata.siteUrl;
 	const numeroDePalabras = wordCount.words;
@@ -110,12 +109,10 @@ const PostPage = ({data, ...props}) => {
 	}, [numeroDePalabras]);
 
 	return (
-		<div>
+		<BlogPostEstilizado itemscope itemtype="https://schema.org/Article">
 			<Helmet>
-				<meta charSet="utf-8" />
-				<meta name="referrer" content="origin" />
 				<title>{frontmatter.titulo}</title>
-				<link rel="icon" href={iconoFavicon} />
+				<meta name="description" content={frontmatter.titulo} />
 			</Helmet>
 			<CompartirMetaTags
 				titulo={frontmatter.titulo}
@@ -132,13 +129,13 @@ const PostPage = ({data, ...props}) => {
 			<Compartir siteURL={siteURL}></Compartir>
 			<InicioBlogPostEstilizado>
 				<HeaderEstilizado>
-					<Titulo> {frontmatter.titulo}</Titulo>
-					<Subtitulo>{frontmatter.subtitulo}</Subtitulo>
+					<Titulo itemProp="headline"> {frontmatter.titulo}</Titulo>
+					<Titulo subtitulo>{frontmatter.subtitulo}</Titulo>
 				</HeaderEstilizado>
 
 				<ContenedorImagenPrincipal>
 					<MetaDatosBlogPost>
-						<span>{frontmatter.fecha}</span>
+						<span itemProp="datePublished">{frontmatter.fecha}</span>
 						<span>
 							{tiempoDeLectura} {textoDetiempoDeLectura}
 						</span>
@@ -148,7 +145,7 @@ const PostPage = ({data, ...props}) => {
 				<DescripcionImagenPrincipal>{frontmatter.descripcionImagen}</DescripcionImagenPrincipal>
 			</InicioBlogPostEstilizado>
 
-			<Markdown html={html}></Markdown>
+			<Markdown itemProp="articleBody text" html={html} htmlAst={htmlAst}></Markdown>
 			<Galeria cuadros={posts} esBlog></Galeria>
 
 			<FooterPagina
@@ -156,7 +153,7 @@ const PostPage = ({data, ...props}) => {
 					frontmatter?.atribucionImagen ? `${atribucionPrefijo} ${frontmatter.atribucionImagen}` : null
 				}
 				atribucionURL={frontmatter?.urlAtribucionImagen}></FooterPagina>
-		</div>
+		</BlogPostEstilizado>
 	);
 };
 
@@ -186,6 +183,7 @@ export const PostPageQuery = graphql`
 				urlAtribucionImagen
 			}
 			html
+			htmlAst
 			wordCount {
 				words
 			}
@@ -210,7 +208,6 @@ export const PostPageQuery = graphql`
 					}
 					urlAtribucionImagen
 				}
-				html
 			}
 		}
 	}

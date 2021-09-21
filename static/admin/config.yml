@@ -27,16 +27,31 @@ collections:
       identifier_field: slug
       slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
       fields:
-          - {name: tipo, label: Tipo, widget: hidden, i18n: duplicate, default: blog}
-          - {name: slug, label: Slug, widget: string, i18n: duplicate}
+          - {name: tipo, label: Tipo, widget: hidden, required: true, i18n: duplicate, default: blog}
+          - {
+                name: slug,
+                label: Slug,
+                widget: string,
+                required: true,
+                pattern: ["[A-z0-9 ]+(?:-[A-z0-9 ]+)*", "A slug can't have special characters"],
+                i18n: duplicate,
+            }
           - {name: fecha, label: Fecha, widget: datetime, i18n: duplicate}
-          - {name: titulo, label: Titulo, i18n: true}
-          - {name: subtitulo, label: Subtitulo, i18n: true}
-          - {name: portada, label: Portada, widget: image, allow_multiple: false, choose_url: false, i18n: true}
-          - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
+          - {name: titulo, label: Titulo, required: true, i18n: true}
+          - {name: subtitulo, label: Subtitulo, required: true, i18n: true}
+          - {
+                name: portada,
+                label: Portada,
+                widget: image,
+                required: true,
+                allow_multiple: false,
+                choose_url: false,
+                i18n: true,
+            }
+          - {name: descripcionImagen, label: Descripción de Imagen, required: true, i18n: true}
           - {name: atribucionImagen, label: Atribución de Imagen, required: false, i18n: true}
           - {name: urlAtribucionImagen, label: URL de atribucion de Imagen, required: false, i18n: true}
-          - {name: body, label: Cuerpo, widget: markdown, i18n: true}
+          - {name: body, label: Cuerpo, widget: markdown, required: true, i18n: true}
     - name: portafolio
       label: Portafolio
       folder: "src/pages/portfolio"
@@ -50,10 +65,25 @@ collections:
       identifier_field: slug
       slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
       fields:
-          - {name: tipo, label: Tipo, widget: hidden, i18n: duplicate, default: portafolio}
-          - {name: slug, label: Slug, widget: string, i18n: duplicate}
-          - {name: titulo, label: Titulo, i18n: true}
-          - {name: subtitulo, label: Subtitulo, i18n: true}
-          - {name: portada, label: Portada, widget: image, allow_multiple: false, choose_url: false, i18n: true}
-          - {name: descripcionImagen, label: Descripción de Imagen, i18n: true}
-          - {name: url, label: URL, i18n: true}
+          - {name: tipo, label: Tipo, widget: hidden, required: true, i18n: duplicate, default: portafolio}
+          - {
+                name: slug,
+                label: Slug,
+                widget: string,
+                required: true,
+                pattern: ["[A-z0-9 ]+(?:-[A-z0-9 ]+)*", "A slug can't have special characters"],
+                i18n: duplicate,
+            }
+          - {name: titulo, label: Titulo, required: true, i18n: true}
+          - {name: subtitulo, label: Subtitulo, required: true, i18n: true}
+          - {
+                name: portada,
+                label: Portada,
+                widget: image,
+                required: true,
+                allow_multiple: false,
+                choose_url: false,
+                i18n: true,
+            }
+          - {name: descripcionImagen, label: Descripción de Imagen, required: true, i18n: true}
+          - {name: url, label: URL, required: true, i18n: true}

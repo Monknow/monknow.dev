@@ -5,7 +5,6 @@ import NavBar from "../components/organisms/NavBar";
 import GranMensaje from "../components/molecules/GranMensaje";
 import FooterPagina from "../components/organisms/FooterPagina";
 import IlustracionError404 from "../assets/svg/error-rafiki.inline.svg";
-import iconoFavicon from "../assets/images/favicon.ico";
 
 const NotFoundPage = (props) => {
 	const {locale} = useLocalization();
@@ -37,10 +36,7 @@ const NotFoundPage = (props) => {
 	return (
 		<main>
 			<Helmet>
-				<meta charSet="utf-8" />
-				<link rel="icon" href={iconoFavicon} />
 				<title>{contenidoPorLenguaje.titulo}</title>
-				<meta name="referrer" content="origin" />
 			</Helmet>
 			<NavBar location={props.location}></NavBar>
 			<GranMensaje

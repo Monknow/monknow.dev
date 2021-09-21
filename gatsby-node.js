@@ -47,14 +47,11 @@ exports.createPages = ({graphql, actions}) => {
 
 	const {createPage} = actions;
 	const blogPostTemplate = path.resolve(`src/templates/blogPost.js`);
-	// Query for markdown nodes to use in creating pages.
-	// You can query for whatever data you want to create pages for e.g.
-	// products, portfolio items, landing pages, etc.
-	// Variables can be added as the second function parameter
+
 	return graphql(
 		`
-			query loadPagesQuery($limit: Int!) {
-				allMarkdownRemark(filter: {frontmatter: {tipo: {eq: "blog"}}}, limit: $limit) {
+			query loadPagesQuery {
+				allMarkdownRemark(filter: {frontmatter: {tipo: {eq: "blog"}}}) {
 					nodes {
 						frontmatter {
 							slug
@@ -73,19 +70,10 @@ exports.createPages = ({graphql, actions}) => {
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
 			createPage({
-				// Path for this page — required
 				path: `blog/${slug}`,
 				component: blogPostTemplate,
 				context: {
 					slug: node.frontmatter.slug,
-					// Add optional context data to be inserted
-					// as props into the page component.
-					//
-					// The context data can also be used as
-					// arguments to the page GraphQL query.
-					//
-					// The page "path" is always available as a GraphQL
-					// argument.
 				},
 			});
 		});
@@ -98,6 +86,7 @@ exports.onCreateNode = async ({node, actions, getNode}) => {
 	if (node.internal.type === "MarkdownRemark") {
 		const parent = getNode(node.parent);
 		const locale = parent.name ? parent.name.replace("index.", "") : "en";
+
 		createNodeField({
 			node,
 			name: "locale",
