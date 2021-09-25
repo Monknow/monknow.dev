@@ -3,7 +3,7 @@ i18n:
     locales: [en, es]
     default_locale: en
 backend:
-    name: gt
+    name: github
     repo: Monknow/monknow.dev
     branch: master
 media_folder: static/assets
