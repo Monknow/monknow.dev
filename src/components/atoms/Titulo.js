@@ -7,7 +7,7 @@ const estilosConjuntos = {
 };
 
 const TituloEstilizado = styled.h1`
-	font-size: 2rem;
+	font-size: 2em;
 	font-family: "Open Sans Bold", sans-serif;
 
 	text-align: ${estilosConjuntos.textAlign};
@@ -16,7 +16,7 @@ const TituloEstilizado = styled.h1`
 `;
 
 const SubtituloEstilizado = styled.h2`
-	font-size: 1.4rem;
+	font-size: 1.4em;
 	font-family: "Open Sans Semibold", sans-serif;
 
 	text-align: ${estilosConjuntos.textAlign};

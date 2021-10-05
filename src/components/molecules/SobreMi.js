@@ -8,6 +8,7 @@ const SobreMiEstilizado = styled.section`
 	align-items: center;
 	justify-content: center;
 	flex-flow: column;
+	gap: clamp(10px, 10vw, 20px);
 
 	padding: 0px 30px 150px 30px;
 
@@ -22,7 +23,7 @@ const SobreMiTexto = styled.p`
 	width: clamp(100px, 90vw, 800px);
 
 	font-family: "Open Sans Light";
-	font-size: clamp(12px, 0.9em, 24px);
+	font-size: clamp(12px, 1.2rem, 24px);
 
 	text-align: center;
 	line-height: 30px;

@@ -64,7 +64,7 @@ const Detalles = styled.div`
 	padding: 20px;
 	border-radius: 12px;
 
-	font-size: clamp(14px, 5vw, 20px);
+	font-size: clamp(8px, 2vw, 10px);
 
 	color: #fff;
 	background: #141c3a;
@@ -76,7 +76,6 @@ const Detalles = styled.div`
 const TituloCuadro = styled(Titulo)`
 	margin: clamp(0px, 0.5vw, 10px) 0px;
 
-	font-size: 1em;
 	text-align: center;
 `;
 
@@ -84,7 +83,6 @@ const SubtituloCuadro = styled(Titulo)`
 	margin: clamp(0px, 0.5vw, 10px) 0px;
 
 	font-family: "Open Sans Light", sans-serif;
-	font-size: 0.7em;
 	text-align: center;
 `;
 
