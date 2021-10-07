@@ -56,7 +56,6 @@ function Galeria({esBlog, titulo, subtitulo, cuadros, ...props}) {
 			<Cuadros>
 				{cuadros.map(({frontmatter}) => {
 					const urlCuadro = esBlog ? `/blog/${slugify(frontmatter.slug)}/` : frontmatter.url;
-					console.log(urlCuadro);
 					return (
 						<Cuadro
 							key={frontmatter.titulo}

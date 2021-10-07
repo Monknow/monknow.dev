@@ -27,8 +27,6 @@ const CuadroEstilizado = styled(BgImage)`
 	border-radius: 12px;
 	margin: 20px 30px;
 
-	font-size: clamp(16px, 2vw, 24px);
-
 	&::before,
 	&::after {
 		border-radius: 12px;
@@ -83,6 +81,7 @@ const SubtituloCuadro = styled(Titulo)`
 	margin: clamp(0px, 0.5vw, 10px) 0px;
 
 	font-family: "Open Sans Light", sans-serif;
+	font-size: 1rem;
 	text-align: center;
 `;
 
@@ -101,7 +100,9 @@ function Cuadro({imagen, titulo, subtitulo, url, linkInterno}) {
 		<CuadroEstilizado image={imagen}>
 			<Detalles className="detalles">
 				<TituloCuadro claro>{titulo}</TituloCuadro>
-				<SubtituloCuadro claro>{subtitulo}</SubtituloCuadro>
+				<SubtituloCuadro subtitulo claro>
+					{subtitulo}
+				</SubtituloCuadro>
 				{linkInterno ? (
 					<LocalizedLink to={url}>
 						<Boton aria-label={visitar}>{visitar}</Boton>
