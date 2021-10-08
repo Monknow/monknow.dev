@@ -22,7 +22,7 @@ const CuadroEstilizado = styled(BgImage)`
 	flex-flow: column;
 
 	aspect-ratio: 16 / 9;
-	width: clamp(150px, 80vw, 400px);
+	width: clamp(150px, 80vw, 500px);
 
 	border-radius: 12px;
 	margin: 20px 30px;
