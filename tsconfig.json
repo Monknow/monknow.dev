@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"useDefineForClassFields": true,
+		"lib": ["es5", "DOM"],
+		"moduleResolution": "Node",
+		"strict": true,
+		"sourceMap": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"noEmit": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"jsx": "react",
+		"baseUrl": "./",
+		"paths": {
+			"@assets/*": ["src/assets/*"],
+			"@components/*": ["src/components/*"],
+			"@context/*": ["src/context/*"],
+			"@data/*": ["src/data/*"],
+			"@functions/*": ["src/functions/*"],
+			"@global/*": ["src/global/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@interfaces/*": ["src/interfaces/*"],
+			"@pages/*": ["src/pages/*"]
+		}
+	},
+	"include": ["./src", "./index.d.ts"],
+	"exclude": ["./src/functions/procesadorHTMLaJSX.tsx"]
+}

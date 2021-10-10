@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
 	siteMetadata: {
 		siteUrl: "https://monknow.dev",
@@ -10,6 +12,23 @@ module.exports = {
 		`gatsby-plugin-sharp`,
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-remove-fingerprints`,
+		{
+			resolve: `gatsby-plugin-alias-imports`,
+			options: {
+				alias: {
+					"@assets": path.resolve(__dirname, "src/assets"),
+					"@components": path.resolve(__dirname, "src/components"),
+					"@context": path.resolve(__dirname, "src/context"),
+					"@data": path.resolve(__dirname, "src/data"),
+					"@functions": path.resolve(__dirname, "src/functions"),
+					"@global": path.resolve(__dirname, "src/global"),
+					"@hooks": path.resolve(__dirname, "src/hooks"),
+					"@interfaces": path.resolve(__dirname, "src/interfaces"),
+					"@pages": path.resolve(__dirname, "src/pages"),
+				},
+				extensions: [],
+			},
+		},
 		{
 			resolve: "gatsby-plugin-sitemap",
 			options: {
@@ -42,12 +61,6 @@ module.exports = {
 			resolve: "gatsby-transformer-remark",
 			options: {
 				plugins: [
-					{
-						resolve: "gatsby-remark-relative-images",
-						options: {
-							name: "assets",
-						},
-					},
 					{
 						resolve: "gatsby-remark-images",
 						options: {
