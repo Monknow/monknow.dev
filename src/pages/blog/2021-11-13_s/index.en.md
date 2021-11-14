@@ -90,7 +90,7 @@ We pass `null` as the first argument of `useRef` to use it as the initial value 
 
 ## 3. Create a Context
 
-You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. 
+You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. The "2d" parameter of `getContext` defines the context type of the canvas, which can be 2d and 3d.
 
 ```jsx
 // canvas/src/App.js
@@ -181,12 +181,106 @@ export default App;
 
 ## 4. Draw something!
 
-Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size and drawing a triangle on it.
+Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size, changing the background color every time the user clicks on the canvas.
 
-If we inspect the canvas element with the dev tools, we will see that the canvas is a small rectangle at the page corner. To resize it, we can access the `window` object to get its width and height properties and then use the 
+If you inspect the canvas element with the dev tools, you will see that the canvas is a small rectangle at the page corner. 
 
 ![Canvas element occupying a small part of the window](canvas-size-on-windows.png "Canvas element in the window")
 
- 
+ To resize it, you can access the `window` object to get its width and height properties and then use `canvasRef.current` to change the canvas element size. 
+
+```jsx
+// canvas/src/App.js
+
+import {useRef, useState, useEffect} from "react";
+
+function App() {
+	const [canvasContext, setCanvasContext] = useState(null);
+
+	const canvasRef = useRef(null);
+
+	useEffect(() => {
+		const windowWidth = window.innerWidth;
+		const windowHeight = window.innerHeight;
+
+		const canvas = canvasRef.current;
+
+		canvas.width = windowWidth;
+		canvas.height = windowHeight;
+
+		const context = canvas.getContext("2d");
+		setCanvasContext(context);
+	}, [canvasRef]);
+
+	return (
+		<div>
+			<canvas ref={canvasRef}></canvas>
+		</div>
+	);
+}
+
+export default App;
+
+```
+
+To finish, you can use the context variable to manipulate the canvas content inside the `onClick` canvas' attribute. You can use the `context.fillStyle` method to change the color of the rectangle, and then use the `context.fillRect` method to actually draw the rectangle. `context.fillRect` takes 4 arguments, the two first are the starting x and y coordinates (which will be 0,0), and the last two are the finish point (which will be the canvas width and height).
+
+```jsx
+// canvas/src/App.js
+
+//...
+	return (
+		<div>
+			<canvas
+				ref={canvasRef}
+				onClick={() => {
+					canvasContext.fillStyle = "red";
+					canvasContext.fillRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+				}}></canvas>
+		</div>
+	);
+}
+//...
+
+```
+
+Now if you click the canvas element, it will change from white to red. Now, you can add an array with color names and use [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get a random color every time there is a click.
+
+```jsx
+// canvas/src/App.js
+
+const colors = ["red", "green", "blue", "yellow", "purple", "orange", "black", "white", "brown"];
+
+const getRandomColor = () => {
+	const randomIndex = Math.floor(Math.random() * colors.length);
+	return colors[randomIndex];
+}
+
+//...
+	return (
+		<div>
+            <canvas
+				ref={canvasRef}
+				onClick={() => {
+					canvasContext.fillStyle = getRandomColor();
+					canvasContext.fillRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+				}}>
+            </canvas>
+		</div>
+	);
+}
+//...
+
+```
+
+### Note
+
+`Math.random` returns a random value between 0 to 1, so we had to multiply times the colors array length.
+
+### Result
+
+
 
 # Conclusion
+
+As you can see, now you can use the drawing context across the component. It is worth noticing that if you need to use the canvas HTMLElement reference, you can globally use the `canvasRef.current` property, or the read-only [`canvasContext.canvas`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/canvas)`.`  I hope you find this approach easy and readable, as well as performant. Until the next time!
