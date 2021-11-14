@@ -19,7 +19,7 @@ Normally, when using vanilla Javascript to manipulate a canvas element, you woul
 
 Create a new React app and once all packages are installed, change the directory to it. 
 
-```powershell
+```shell
  npx create-react-app canvas
 ```
 
@@ -27,15 +27,21 @@ Create a new React app and once all packages are installed, change the directory
 cd canvas
 ```
 
+Finally, you can run the start command and see a new project on [localhost:3000](http://localhost:3000/)
+
+```shell
+ npm run start
+```
+
 ### Small tip
 
-After installing the `create-react-app` dependencies, I got the following npm audit security warning, even though I just initialized the app. 
+After installing the `create-react-app` dependencies, I got the following npm audit security warning, regardless I just initialized the app. 
 
 ```powershell
 27 vulnerabilities (16 moderate, 9 high, 2 critical)
 ```
 
-Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-broken-by-design/) to check for security risks, if you don't want to see the warning you can  move `react-scripts` from `dependencies` to `devDependencies` in `package.json`. However, `npm audit` still warns for development dependencies by default, so you will have to run `npm audit --production` to not see the warnings caused by the development dependencies
+Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-broken-by-design/) to check for security risks, if you don't want to see the warning, you can  move `react-scripts` from `dependencies` to `devDependencies` in `package.json`. However, `npm audit` still warns for development dependencies by default, so you will have to run `npm audit --production` to not see the warnings.
 
 ```json
 // canvas/package.json
@@ -44,18 +50,17 @@ Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-bro
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+        "web-vitals": "^1.1.2",
 	},
 	"devDependencies": {
 		"react-scripts": "4.0.3"
 	},
 ```
 
-
-
 ## 2. Create a Canvas Element
 
-Once everything is ready, you can open the `App.js` file and delete all the boilerplate to left just a functional component with a canvas element inside.
+Once everything is ready, you can open the `App.js` file and delete all the boilerplate to left just a functional component and add a canvas element inside.
 
 ```jsx
 function App() {
@@ -67,12 +72,7 @@ function App() {
 }
 
 export default App;
-
 ```
-
- 
-
-
 
 ## 3. Reference the Canvas
 
