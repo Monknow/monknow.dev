@@ -279,6 +279,8 @@ const getRandomColor = () => {
 
 ### Result
 
+![Window randomly switching its background color ](canvas-result.gif "Result")
+
 
 
 # Conclusion
