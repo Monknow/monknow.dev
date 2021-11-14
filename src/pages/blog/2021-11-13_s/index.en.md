@@ -2,12 +2,13 @@
 tipo: blog
 slug: How to use the canvas element in React
 fecha: 2021-11-13T18:54:36.427Z
-titulo: React. How to use the canvas element
+titulo: React for beginners. How to use the canvas element
 subtitulo: The best practices; with hooks and performance
 portada: how-to-use-a-canvas-element-in-react.jpg
 descripcionImagen: React logo on a canvas
-descripcion: How to use the canvas element in React. Using the best practices;
-  with functional component, react hooks and the best performance
+descripcion: Beginners tutorial about how to use the canvas element in React.
+  Using the best practices; with functional component, react hooks and the best
+  performance
 ---
 # Introduction
 
@@ -32,6 +33,8 @@ Finally, you can run the start command and see a new project on [localhost:3000]
 ```shell
  npm run start
 ```
+
+![New React project on localhost. React logo floating behind a gray background ](react-home.png "New React project on localhost")
 
 ### Small tip
 
@@ -58,26 +61,132 @@ Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-bro
 	},
 ```
 
-## 2. Create a Canvas Element
+## 2. Create and Reference the Canvas Element
 
-Once everything is ready, you can open the `App.js` file and delete all the boilerplate to left just a functional component and add a canvas element inside.
+Once everything is ready, you can open the `src/App.js` file and delete all the boilerplate to left just a functional component and add a canvas element inside. Then import the `useRef` hook from `react` and create a reference to the canvas through the ref attribute.
 
 ```jsx
+// canvas/src/App.js
+
+import {useRef} from "react";
+
 function App() {
-  return (
-    <div>
-      <canvas></canvas>
-    </div>
-  );
+
+	const canvasRef = useRef(null);
+
+	return (
+		<div>
+			<canvas ref={canvasRef}></canvas>
+		</div>
+	);
 }
 
 export default App;
 ```
 
-## 3. Reference the Canvas
+### Note
 
-## 4. Create a Context
+We pass `null` as the first argument of `useRef` to use it as the initial value of `canvasRef`, which is the variable that will store the canvas HTMLElement.  
 
-## 5. Draw something!
+## 3. Create a Context
+
+You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. 
+
+```jsx
+// canvas/src/App.js
+
+import {useRef} from "react";
+
+function App() {
+
+	const canvasRef = useRef(null);
+
+	const canvas = canvasRef.current;
+	const context = canvas.getContext("2d");
+
+
+	return (
+		<div>
+			<canvas ref={canvasRef}></canvas>
+		</div>
+	);
+}
+
+export default App;
+
+```
+
+### Note
+
+The `HTMLCanvasReference` isn't stored directly on the `canvasRef` variable, but in its only property called .`current`
+
+However, this implementation isn't the most appropiate, since every time the component re-renders, `getContext` would get called. Although, according to the [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext),
+
+> Later calls to the `getContext `method on the same canvas element, with the same `contextType` argument, will always return the same drawing context instance as was returned the first time the method was invoked. It is not possible to get a different drawing context object on a given canvas element
+
+So you don't have to worry about your app breaking due to calling several times the `getContext` method. However, you should avoid unnecesary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
+
+```jsx
+// canvas/src/App.js
+
+import {useRef, useEffect} from "react";
+
+function App() {
+	const canvasRef = useRef(null);
+
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		const context = canvas.getContext("2d");
+	}, []);
+
+	return (
+		<div>
+			<canvas ref={canvasRef}></canvas>
+		</div>
+	);
+}
+
+export default App;
+
+```
+
+Although, now the context isn't globally available to the component; it only exists inside the `useEffect`, so to fix that you would have to create a global state with `useState` and a `null` initial value. Then inside the `useEffect`, assign the context to the state.  
+
+```jsx
+// canvas/src/App.js
+
+import {useRef, useState, useEffect} from "react";
+
+function App() {
+	const [canvasContext, setCanvasContext] = useState(null);
+
+	const canvasRef = useRef(null);
+
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		const context = canvas.getContext("2d");
+		setCanvasContext(context);
+	}, []);
+
+	return (
+		<div>
+			<canvas ref={canvasRef}></canvas>
+		</div>
+	);
+}
+
+export default App;
+
+```
+
+## 4. Draw something!
+
+Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size and drawing a triangle on it.
+
+If we inspect the canvas element with the dev tools, we will see that the canvas is a small rectangle at the page corner. To resize it, we can access the `window` object to get its width and height properties and then use the 
+
+![Canvas element occupying a small part of the window](canvas-size-on-windows.png "Canvas element in the window")
+
+ 
 
 # Conclusion
