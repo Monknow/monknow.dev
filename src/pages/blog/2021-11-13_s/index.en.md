@@ -55,6 +55,25 @@ Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-bro
 
 ## 2. Create a Canvas Element
 
+Once everything is ready, you can open the `App.js` file and delete all the boilerplate to left just a functional component with a canvas element inside.
+
+```jsx
+function App() {
+  return (
+    <div>
+      <canvas></canvas>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+ 
+
+
+
 ## 3. Reference the Canvas
 
 ## 4. Create a Context
