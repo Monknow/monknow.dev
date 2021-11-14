@@ -17,6 +17,40 @@ Normally, when using vanilla Javascript to manipulate a canvas element, you woul
 
 ## 1. Create a React App
 
+Create a new React app and once all packages are installed, change the directory to it. 
+
+```powershell
+ npx create-react-app canvas
+```
+
+```powershell
+cd canvas
+```
+
+### Small tip
+
+After installing the `create-react-app` dependencies, I got the following npm audit security warning, even though I just initialized the app. 
+
+```powershell
+27 vulnerabilities (16 moderate, 9 high, 2 critical)
+```
+
+Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-broken-by-design/) to check for security risks, if you don't want to see the warning you can  move `react-scripts` from `dependencies` to `devDependencies` in `package.json`. However, `npm audit` still warns for development dependencies by default, so you will have to run `npm audit --production` to not see the warnings caused by the development dependencies
+
+```json
+// canvas/package.json
+	"dependencies": {
+		"@testing-library/jest-dom": "^5.15.0",
+		"@testing-library/react": "^11.2.7",
+		"@testing-library/user-event": "^12.8.3",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	},
+	"devDependencies": {
+		"react-scripts": "4.0.3"
+	},
+```
+
 
 
 ## 2. Create a Canvas Element
