@@ -113,7 +113,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ### Note
@@ -122,7 +121,7 @@ The `HTMLCanvasReference` isn't stored directly on the `canvasRef` variable, but
 
 However, this implementation isn't the most appropiate, since every time the component re-renders, `getContext` would get called. Although, according to the [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext),
 
-> Later calls to the `getContext `method on the same canvas element, with the same `contextType` argument, will always return the same drawing context instance as was returned the first time the method was invoked. It is not possible to get a different drawing context object on a given canvas element
+> Later calls to the `getContext`method on the same canvas element, with the same `contextType` argument, will always return the same drawing context instance as was returned the first time the method was invoked. It is not possible to get a different drawing context object on a given canvas element
 
 So you don't have to worry about your app breaking due to calling several times the `getContext` method. However, you should avoid unnecesary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
 
@@ -147,7 +146,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 Although, now the context isn't globally available to the component; it only exists inside the `useEffect`, so to fix that you would have to create a global state with `useState` and a `null` initial value. Then inside the `useEffect`, assign the context to the state.  
@@ -176,7 +174,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ## 4. Draw something!
@@ -220,7 +217,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 To finish, you can use the context variable to manipulate the canvas content inside the `onClick` canvas' attribute. You can use the `context.fillStyle` method to change the color of the rectangle, and then use the `context.fillRect` method to actually draw the rectangle. `context.fillRect` takes 4 arguments, the two first are the starting x and y coordinates (which will be 0,0), and the last two are the finish point (which will be the canvas width and height).
@@ -228,7 +224,7 @@ To finish, you can use the context variable to manipulate the canvas content ins
 ```jsx
 // canvas/src/App.js
 
-//...
+//....
 	return (
 		<div>
 			<canvas
@@ -239,9 +235,7 @@ To finish, you can use the context variable to manipulate the canvas content ins
 				}}></canvas>
 		</div>
 	);
-}
-//...
-
+//....
 ```
 
 Now if you click the canvas element, it will change from white to red. Now, you can add an array with color names and use [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get a random color every time there is a click.
@@ -249,39 +243,56 @@ Now if you click the canvas element, it will change from white to red. Now, you 
 ```jsx
 // canvas/src/App.js
 
+import {useRef, useState, useEffect} from "react";
+
 const colors = ["red", "green", "blue", "yellow", "purple", "orange", "black", "white", "brown"];
 
 const getRandomColor = () => {
 	const randomIndex = Math.floor(Math.random() * colors.length);
 	return colors[randomIndex];
-}
+};
 
-//...
+function App() {
+	const [canvasContext, setCanvasContext] = useState(null);
+
+	const canvasRef = useRef(null);
+
+	useEffect(() => {
+		const windowWidth = window.innerWidth;
+		const windowHeight = window.innerHeight;
+
+		const canvas = canvasRef.current;
+
+		canvas.width = windowWidth;
+		canvas.height = windowHeight;
+
+		const context = canvas.getContext("2d");
+		setCanvasContext(context);
+	}, [canvasRef]);
+
 	return (
 		<div>
-            <canvas
+			<canvas
 				ref={canvasRef}
 				onClick={() => {
 					canvasContext.fillStyle = getRandomColor();
 					canvasContext.fillRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
-				}}>
-            </canvas>
+				}}></canvas>
 		</div>
 	);
 }
-//...
+
+export default App;
 
 ```
 
 ### Note
 
-`Math.random` returns a random value between 0 to 1, so we had to multiply times the colors array length.
+`Math.random` returns a random value between 0 to 1, so we had to multiply it times the colors array length.
 
 ### Result
 
 ![Window randomly switching its background color ](canvas-result.gif "Result")
-
-
 
 # Conclusion
 
