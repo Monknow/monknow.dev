@@ -12,13 +12,13 @@ descripcion: Beginners tutorial about how to use the canvas element in React.
 ---
 # Introduction
 
-Normally, when using vanilla Javascript to manipulate a canvas element, you would have to get an [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) reference of the canvas element in the DOM, then call [HTMLCanvasElement.getContext()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) to get a drawing context and start drawing onto the canvas. However, in React, you use JSX to manipulate the DOM, and when you need access to an HTMLElement reference, you can simply use the useRef hook. However, it can be tricky to know where to call useRef() and getContext(), so they just get called when needed and therefore avoid unnecessary calculations on every render.
+Normally, when using vanilla Javascript to manipulate a canvas element, you would have to get an [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) reference of the canvas element in the DOM, then call [`HTMLCanvasElement.getContext()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) to get a drawing context and start drawing onto the canvas. However, in React, you use JSX to manipulate the DOM, and when you need access to an HTMLElement reference, you can simply use the `useRef` hook. Nevertheless, it can be tricky to know where to call `useRef` and `getContext`, so they just get called when needed and therefore avoid unnecessary calculations on every render.
 
 # The Gist
 
 ## 1. Create a React App
 
-Create a new React app and once all packages are installed, change the directory to it. 
+Create a new React app and once all packages are installed, change the directory to the new folder. 
 
 ```shell
  npx create-react-app canvas
@@ -48,6 +48,7 @@ Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-bro
 
 ```json
 // canvas/package.json
+
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.15.0",
 		"@testing-library/react": "^11.2.7",
@@ -63,7 +64,7 @@ Even though [npm audit isn't the best tool](https://overreacted.io/npm-audit-bro
 
 ## 2. Create and Reference the Canvas Element
 
-Once everything is ready, you can open the `src/App.js` file and delete all the boilerplate to left just a functional component and add a canvas element inside. Then import the `useRef` hook from `react` and create a reference to the canvas through the ref attribute.
+Once everything is ready, you can open the `src/App.js` file and delete all the boilerplate to left just a functional component. Then add a canvas element inside, and import the `useRef` hook from `react` and create a reference to the canvas through the `ref` attribute.
 
 ```jsx
 // canvas/src/App.js
@@ -86,11 +87,11 @@ export default App;
 
 ### Note
 
-We pass `null` as the first argument of `useRef` to use it as the initial value of `canvasRef`, which is the variable that will store the canvas HTMLElement.  
+We pass `null` as the first argument of `useRef` to use it as the initial value of `canvasRef`, which is the variable that will store the canvas `HTMLElement`.  
 
 ## 3. Create a Context
 
-You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. The "2d" parameter of `getContext` defines the context type of the canvas, which can be 2d and 3d.
+You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. We then pass "2d" as the first parameter of `getContext, since it` defines the context type of the canvas, which can be in two and three dimension.
 
 ```jsx
 // canvas/src/App.js
@@ -117,13 +118,13 @@ export default App;
 
 ### Note
 
-The `HTMLCanvasReference` isn't stored directly on the `canvasRef` variable, but in its only property called .`current`
+The canvas reference isn't stored directly on the `canvasRef` variable, but in its only property called .`current`
 
-However, this implementation isn't the most appropiate, since every time the component re-renders, `getContext` would get called. Although, according to the [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext),
+However, **this implementation isn't the most appropriate**, since every time the component re-renders, `getContext` would get called. Although, according to the [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext),
 
 > Later calls to the `getContext`method on the same canvas element, with the same `contextType` argument, will always return the same drawing context instance as was returned the first time the method was invoked. It is not possible to get a different drawing context object on a given canvas element
 
-So you don't have to worry about your app breaking due to calling several times the `getContext` method. However, you should avoid unnecesary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
+So you don't have to worry about your app breaking due to calling several times the `getContext` method. Nevertheless, you should avoid unnecessary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
 
 ```jsx
 // canvas/src/App.js
@@ -178,7 +179,7 @@ export default App;
 
 ## 4. Draw something!
 
-Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size, changing the background color every time the user clicks on the canvas.
+Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size and changing the background color every time the user clicks on the canvas.
 
 If you inspect the canvas element with the dev tools, you will see that the canvas is a small rectangle at the page corner. 
 
@@ -283,7 +284,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ### Note
