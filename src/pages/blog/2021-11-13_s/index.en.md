@@ -91,7 +91,7 @@ We pass `null` as the first argument of `useRef` to use it as the initial value 
 
 ## 3. Create a Context
 
-You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. We then pass "2d" as the first parameter of `getContext, since it` defines the context type of the canvas, which can be in two and three dimension.
+You can create a drawing context that is globally available in the component by calling `getContext` at the top level of the function. We then pass "2d" as the first parameter of `getContext,` since it defines the context type of the canvas, which can be in two and three dimension.
 
 ```jsx
 // canvas/src/App.js
@@ -124,7 +124,7 @@ However, **this implementation isn't the most appropriate**, since every time th
 
 > Later calls to the `getContext`method on the same canvas element, with the same `contextType` argument, will always return the same drawing context instance as was returned the first time the method was invoked. It is not possible to get a different drawing context object on a given canvas element
 
-So you don't have to worry about your app breaking due to calling several times the `getContext` method. Nevertheless, you should avoid unnecessary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
+So you don't have to worry about your app breaking due to calling several times the `getContext` method. Nevertheless, you should avoid unnecessary calculations by creating the context inside the `useEffect` hook . It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
 
 ```jsx
 // canvas/src/App.js
@@ -220,7 +220,7 @@ function App() {
 export default App;
 ```
 
-To finish, you can use the context variable to manipulate the canvas content inside the `onClick` canvas' attribute. You can use the `context.fillStyle` method to change the color of the rectangle, and then use the `context.fillRect` method to actually draw the rectangle. `context.fillRect` takes 4 arguments, the two first are the starting x and y coordinates (which will be 0,0), and the last two are the finish point (which will be the canvas width and height).
+To finish, you can use the context variable to manipulate the canvas content inside the `onClick` canvas' attribute. inside, you can use the `context.fillStyle` method to change the color of the rectangle, and then use the `context.fillRect` method to actually draw the rectangle. `context.fillRect` takes 4 arguments, the two first are the starting x and y coordinates (which will be 0,0), and the last two are the finish point (which will be the canvas width and height).
 
 ```jsx
 // canvas/src/App.js

@@ -121,17 +121,13 @@ export default App;
 
 El la referencia del canvas no es almacenado directamente en el `canvasRef`, sino en su única propiedad llamada `.current`.
 
-
-
 Sin embargo, **esta implementación no es la más apropiada**, ya que cada vez que el compone sea renderizado, `getContext` será llamada. No obstante, de acuerdo a la [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext),
 
+> Ejecuciones posteriores del método `getContext` del mismo elemento canvas, con el mismo argumento de tipo de contexto, siempre devolverán el mismo contexto de dibujo como fue devuelto cuando el metodo fue invocado por primera vez. No es posible obtener otro contexto de dibujo de un mismo elemento canvas.
 
+Por lo que no te tienes que preocupar de tu app se rompa por llamar varias veces a 
 
-> Ejecuciones posteriores  del metodo `getContext` del mismo elemento canvas, con el mismo argumento de tipo de contexto, siempre devolverán el mismo contexto de dibujo como fue devuelto cuando el metodo fue invocado por primera vez. No es posible obtener otro contexto de dibujo de un mismo elemento canvas.
-
-Por lo que no te tienes que preocupar de tu app 
-
-So you don't have to worry about your app breaking due to calling several times the `getContext` method. Nevertheless, you should avoid unnecessary calculations by using the `useEffect` hook and creating the context inside. It is valuable to notice that we don't have to add the `canvasRef` variable to useEffect's dependency array, since mutating a ref doesn't trigger a re-render or a useEffect call, so we left it empty thus it only gets called once.
+So you don't have to worry about your app breaking due to calling several times al método `getContext` method. No obstante, deberías evitar cálculos inecesarios creando el contexto dentro del hook `useEffect`. Vale la pena decir que no tenemos que añadir `canvasRef`  dentro del arreglo de dependencias de `useEffect`, ya que mutar una referencia no provoca una nueva renderización, así que dejamos el arreglo vacio, y por ende sólo se ejecuta una vez.
 
 ```jsx
 // canvas/src/App.js
@@ -156,7 +152,7 @@ function App() {
 export default App;
 ```
 
-Although, now the context isn't globally available to the component; it only exists inside the `useEffect`, so to fix that you would have to create a global state with `useState` and a `null` initial value. Then inside the `useEffect`, assign the context to the state.  
+No obstante, ahora el contexto no está globalmente disponible; solamente existe en el interior de `useEffect`, así que para arreglarlo tendrías que crear un estado global con el hook `useState` y con `null` como su valor inicial. Después, dentro de `useEffect`, asignar el contexto a dicho estado.
 
 ```jsx
 // canvas/src/App.js
@@ -184,15 +180,15 @@ function App() {
 export default App;
 ```
 
-## 4. Draw something!
+## 4. Dibuja algo!
 
-Finally, we will manipulate the canvas context and canvas element by resizing the canvas to the window size and changing the background color every time the user clicks on the canvas.
+Finalmente, manipularemos el contexto y el elemento canvas al redimensionar el canvas al tamaño de la ventana, y cambiar el color del fondo cada vez que el usuario haga click en el canvas.
 
-If you inspect the canvas element with the dev tools, you will see that the canvas is a small rectangle at the page corner. 
+Si inspeccionas el elemento canvas con las *dev tools*, verás que el canvas es sólo un pequeño rectángulo en una esquina. 
 
 ![Canvas element occupying a small part of the window](canvas-size-on-windows.png "Canvas element in the window")
 
- To resize it, you can access the `window` object to get its width and height properties and then use `canvasRef.current` to change the canvas element size. 
+Para redimensionarlo, puedes acceder a la propiedad del objeto `window` para obtener sus propiedades de grosor y largo, y después utiliar `canvasRef.current` para cabiar el tamaño del canvas.  
 
 ```jsx
 // canvas/src/App.js
@@ -227,7 +223,7 @@ function App() {
 export default App;
 ```
 
-To finish, you can use the context variable to manipulate the canvas content inside the `onClick` canvas' attribute. You can use the `context.fillStyle` method to change the color of the rectangle, and then use the `context.fillRect` method to actually draw the rectangle. `context.fillRect` takes 4 arguments, the two first are the starting x and y coordinates (which will be 0,0), and the last two are the finish point (which will be the canvas width and height).
+Para finalizar, puedes utilizar el contexto para manipular el contenido del canvas dentro del atributo del elemento canvas `onClick`. Ahí, puedes usar el método `context.fillStyle` para cambiar el color del rectángulo, y después utilizar el método `context.fillRect` para dibujar el rectángulo en sí. `context.fillRect` toma 4 argumentos, los dos primeros son las coordenadas iniciales x, y (que serán 0,0) y los dos últimos son las coordenadas finales (que serán el grosor y altura del canvas).
 
 ```jsx
 // canvas/src/App.js
@@ -246,7 +242,7 @@ To finish, you can use the context variable to manipulate the canvas content ins
 //....
 ```
 
-Now if you click the canvas element, it will change from white to red. Now, you can add an array with color names and use [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get a random color every time there is a click.
+Ahora si haces click en el elemento de canvas, verás que va cambiar de blanco a rojo. Ahora puedes añadir un arreglo con los nombres de colores, y utilizar [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) para seleccionar aleatoriamente un elemento en cada vez que hay un click
 
 ```jsx
 // canvas/src/App.js
@@ -293,14 +289,14 @@ function App() {
 export default App;
 ```
 
-### Note
+### Nota
 
-`Math.random` returns a random value between 0 to 1, so we had to multiply it times the colors array length.
+`Math.random` devuelve un valor aleatorio entre 0 y 1, por lo que lo multiplicamos por el largo del arreglo de colores.
 
-### Result
+### Resultado
 
-![Window randomly switching its background color ](canvas-result.gif "Result")
+![Ventana cambiando aleatoriamente de colores](canvas-result.gif "Resultado")
 
-# Conclusion
+# Conclusión
 
-As you can see, now you can use the drawing context across the component. It is worth noticing that if you need to use the canvas HTMLElement reference, you can globally use the `canvasRef.current` property, or the read-only [`canvasContext.canvas`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/canvas)`.`  I hope you find this approach easy and readable, as well as performant. Until the next time!
+Como puedes ver, ahora puedes utilizar el contexto en todo el componente. Vale la pena recalcar que si necesitas utilizar la referencia al HTMLElement del contexto, puedes utilizar globalmente la propiedad `canvasRef.current`, o la propiedad de solo lectura [`canvasContext.canvas`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/canvas). Espero que encuentres esta enfoque fácil y leible, además que eficiente. Hasta la próxima!
