@@ -33,6 +33,14 @@ const InicioBlogPostEstilizado = styled.section`
 `;
 
 const HeaderEstilizado = styled.header`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+	gap: 10px;
+
+	width: 80%;
+
 	font-size: clamp(14px, 3vw, 24px);
 `;
 
