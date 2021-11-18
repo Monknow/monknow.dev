@@ -33,7 +33,6 @@ exports.createPages = ({graphql, actions}) => {
 		{inicio: `/blog`, destino: `/en/blog`},
 		{inicio: `/thanks`, destino: `/en/thanks`},
 		{inicio: `/portafolio`, destino: `/en/portfolio`},
-		{inicio: `/404`, destino: `/en/404`},
 	];
 
 	fuentesRedirects.forEach(({inicio, destino}) => {

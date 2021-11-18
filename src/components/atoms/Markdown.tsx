@@ -35,6 +35,7 @@ const MarkdownEstilizado = styled.div`
 	}
 
 	img {
+		width: 100%;
 		margin: 40px 0px;
 		box-shadow: 0px 9px 14px -5px rgba(0, 0, 0, 0.75);
 		display: flex;
