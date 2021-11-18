@@ -3,7 +3,7 @@ import {FC} from "react";
 import {Helmet} from "react-helmet";
 import {graphql} from "gatsby";
 import {useLocalization} from "gatsby-theme-i18n";
-import styled from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 import {IndexPageContent, IndexPageProps} from "@interfaces/IndexPageTypes";
 import {NavBar} from "../components/organisms/NavBar";
 import {Inicio} from "../components/organisms/Inicio";
@@ -12,6 +12,11 @@ import {Habilidades} from "../components/organisms/Habilidades";
 import {Galeria} from "../components/organisms/Galeria";
 import {Contactame} from "../components/molecules/Contactame";
 import {FooterPagina} from "../components/organisms/FooterPagina";
+
+export const EstilosGlobalesDeIndex = createGlobalStyle`
+        scroll-behavior: smooth;
+`;
+
 
 const Galerias = styled.div`
 	display: flex;
@@ -43,6 +48,7 @@ const IndexPage: FC<IndexPageProps> = ({data}) => {
 
 	return (
 		<div>
+			<EstilosGlobalesDeIndex/>
 			<Helmet>
 				<title>Monknow.dev</title>
 				<meta name="description" content={descripcion} />

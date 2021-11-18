@@ -9,7 +9,9 @@ import {CuadroContent, CuadroProps} from "@interfaces/CuadroTypes";
 
 const CuadroEstilizado = styled.div`
 	flex-shrink: 2;
-	flex-basis: clamp(150px, 80vw, 400px);
+	flex-basis: 90vw;
+	flex-grow: 2;
+	max-width: 400px;
 
 	display: grid;
 
@@ -34,6 +36,7 @@ const CuadroEstilizado = styled.div`
 			}
 		}
 		.detalles {
+			user-select: auto;
 			opacity: 1;
 			pointer-events: auto;
 		}
@@ -51,6 +54,7 @@ const Detalles = styled.div`
 
 	position: relative;
 	z-index: 3;
+	user-select: none;
 
 	display: flex;
 	align-items: center;
