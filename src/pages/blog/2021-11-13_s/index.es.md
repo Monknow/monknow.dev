@@ -11,7 +11,7 @@ descripcion: Como usar el elemento de canvas en React. Usando las mejores
 ---
 # Introducción
 
-Normalmente, cuando usamos vanilla Javascript para manipular el elemento de canvas, tendríamos que obtener una referencia del [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)del canvas en el DOM, y después ejecutar [`HTMLCanvasElement.getContext()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) para obtener un contexto de dibujo y así empezar a usar el canvas. Sin embargo, en React, utilizamos JSX para manipular el DOM, y cuando necesitamos acceso a la referencia `HTMLElement` , tú simplemente utilizas el hook `useRef` de React. No obstante, puede ser confuso saber donde llamar a `useRef` y `getContext` de tal manera que solo sean ejecutados cuando sea necesario, y así evitar cálculos innecesarios en cada renderizado. 
+Normalmente, cuando usamos vanilla JavaScript para manipular el elemento de canvas, tenemos que obtener una referencia del [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) del canvas en el DOM, y después ejecutar [`HTMLCanvasElement.getContext()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) para obtener un contexto de dibujo y así empezar a usar el canvas. Sin embargo, en React, utilizamos JSX para manipular el DOM, y cuando necesitamos acceso a la referencia `HTMLElement`,  simplemente se utiliza el hook `useRef` de React. No obstante, puede ser confuso saber en donde llamar a `useRef` y `getContext` de tal manera que solo sean ejecutados cuando sea necesario, y así evitar cálculos innecesarios en cada renderizado. 
 
 # Al Punto
 
@@ -90,7 +90,7 @@ Pasamos `null` como el primero argumento de `useRef` para utilizarlo como el val
 
 ## 3. Crea un contexto
 
-Puedes crear un contexto de dibujo que este globalmente disponible en el componente al llamar `getContext` al inicio de la función.. Después pasamos "2d" como el primer parámetro de  `getContext`  ya que define el tipo de contexto del canvas, el cual puede estar en dos o tres dimensiones.
+Puedes crear un contexto de dibujo que este globalmente disponible en el componente al llamar `getContext` al inicio de la función. Después pasamos "2d" como el primer parámetro de `getContext`  ya que este define el tipo de contexto del canvas, el cual puede estar en dos o tres dimensiones.
 
 ```jsx
 // canvas/src/App.js
@@ -123,7 +123,7 @@ Sin embargo, **esta implementación no es la más apropiada**, ya que cada vez q
 
 > Ejecuciones posteriores del método `getContext` del mismo elemento canvas, con el mismo argumento de tipo de contexto, siempre devolverán el mismo contexto de dibujo como fue devuelto cuando el método fue invocado por primera vez. No es posible obtener otro contexto de dibujo de un mismo elemento canvas.
 
-Por lo que no te tienes que preocupar por app rompiéndose por llamar varias veces al método `getContext`. No obstante, deberías evitar cálculos innecesarios al crear el contexto dentro del hook `useEffect`. Vale la pena decir que no tenemos que añadir `canvasRef`  dentro del arreglo de dependencias de `useEffect`, ya que mutar una referencia no provoca una nueva renderización, así que dejamos el arreglo vacío, y por ende sólo se ejecuta una vez.
+Por lo que no te tienes que preocupar por tu app rompiéndose por llamar varias veces al método `getContext`. No obstante, deberías evitar cálculos innecesarios al crear el contexto dentro del hook `useEffect`. Vale la pena decir que no tenemos que añadir `canvasRef`  dentro del arreglo de dependencias de `useEffect`, ya que mutar una referencia no provoca una nueva renderización, así que dejamos el arreglo vacío, y por ende sólo se ejecuta una vez.
 
 ```jsx
 // canvas/src/App.js
@@ -184,7 +184,7 @@ Si inspeccionas el elemento canvas con las *dev tools*, verás que el canvas es 
 
 ![Canvas element occupying a small part of the window](canvas-size-on-windows.png "Canvas element in the window")
 
-Para redimensionarlo, puedes acceder a la propiedad del objeto `window` para obtener sus propiedades de grosor y largo, y después utilizar `canvasRef.current` para cambiar el tamaño del canvas.  
+Para redimensionarlo, puedes acceder a la propiedad del objeto global `window` para obtener sus propiedades de grosor y largo, y después utilizar `canvasRef.current` para cambiar el tamaño del canvas.  
 
 ```jsx
 // canvas/src/App.js
@@ -238,7 +238,7 @@ Para finalizar, puedes utilizar el contexto para manipular el contenido del canv
 //....
 ```
 
-Ahora si haces click en el elemento de canvas, verás que va cambiar de blanco a rojo. Ahora puedes añadir un arreglo con los nombres de colores, y utilizar [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) para seleccionar aleatoriamente un elemento cada vez que hay un click
+De esta manera, si haces click en el elemento de canvas, verás que va cambiar de blanco a rojo. Ahora puedes añadir un arreglo con los nombres de colores, y utilizar [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) para seleccionar aleatoriamente un elemento cada vez que hay un click.
 
 ```jsx
 // canvas/src/App.js
