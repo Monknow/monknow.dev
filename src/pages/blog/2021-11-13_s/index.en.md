@@ -239,7 +239,7 @@ To finish, you can use the context variable to manipulate the canvas content ins
 //....
 ```
 
-Ff you click the canvas element, it will change from white to red. Now you can add an array with color names and use [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get a random color every time there is a click.
+With this, if you click the canvas element, it will change from white to red. Now you can add an array with color names and use [Math.random](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) to get a random color every time there is a click.
 
 ```jsx
 // canvas/src/App.js
