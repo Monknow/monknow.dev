@@ -8,15 +8,21 @@ const MarkdownEstilizado = styled.div`
 	width: clamp(100px, 80vw, 700px);
 	margin: 0px auto;
 
-	line-height: clamp(25px, 5vw, 35px);
+	line-height: clamp(30px, 5vw, 35px);
 	text-align: justify;
 
 	color: #141c3a;
 
 	p {
-		margin: clamp(12px, 3vw, 20px) 0px;
+		margin: 15px 0px;
 		font-size: clamp(12px, 4vw, 18px);
 		font-family: "Open Sans Regular", sans-serif;
+	}
+
+	blockquote {
+		margin-left: clamp(10px, 4vw, 20px);
+		padding-left: clamp(10px, 3vw, 15px);
+		border-left: 3px solid grey;
 	}
 
 	h1,
