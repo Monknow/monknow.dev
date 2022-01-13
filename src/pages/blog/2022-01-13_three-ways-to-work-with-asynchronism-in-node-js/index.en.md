@@ -200,3 +200,5 @@ getLogs(myPromise);
 ```
 
 ## Conclusion
+
+Even though promises are lifesavers, asynchronous callbacks are still very useful if we don't want to do several asynchronous operations in order. On the other hand, consuming promises with `.then` and `.catch` make your code more readable and are better for error handling than callbacks, besides they don't suspend execution. Lastly, the `async/await` pattern has the same advantages of `.then` and `.catch`, but they block the thread, which can be useful depending on the situation. I hope you find this post helpful and until the next time!
