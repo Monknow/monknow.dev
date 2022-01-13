@@ -56,7 +56,6 @@ setTimeout(() => {
 		}, 2000);
 	}, 2000);
 }, 2000);
-
 ```
 
 \
@@ -74,6 +73,8 @@ npm install node-fetch@2
 
 Note: it is necessary to install node-fetch v2 since v3 is an ESM-only module, so you can't import it with `require()`. Although, in recent versions of Node.js, you can use ESM modules by changing the .js extension to .mjs.
 
+Then we can import node-fetch and get the data from random user data API using promises:
+
 ```javascript
 const fetch = require("node-fetch");
 const responsePromise = fetch("https://randomuser.me/api");
@@ -89,12 +90,9 @@ const dataPromise = jsonPromise.then((data) => {
 dataPromise.catch((err) => {
 	console.log(err);
 });
-
 ```
 
-
-
-Let's break down what's happening here: we import node-fetch and make an API call to the random user data endpoint. The fetch function returns the `responsePromise` promise, which can be fulfilled and return a response. To handle the response, we attach `.then` to call `response.json()` to parse the response to JSON format. `response.json()` returns a promise as well, to which we can attach another `.then` to handle its fullfilment by logging the received data. All the promises can return an error, and to handle them we can use an only `.catch` since if there is an error,  Node.js will look down the chain for `.catch()` handlers. Chaining several `then` and `catch` methods can be illustrated better if we write them like this: 
+Let's break down what's happening here: the fetch function returns the `responsePromise` promise, which can be fulfilled and return a response. To handle the response, we attach `.then`, with a callback that calls `response.json()` to parse the response to JSON format. `response.json()` returns a promise as well, to which we can attach another `.then` to handle its fullfilment by logging the received data. All the promises can return an error, and to handle them we can use an only `.catch` since if there is an error,  Node.js will look down the chain for `.catch()` handlers. Chaining several `then` and `catch` methods can be illustrated better if we write them like this: 
 
 ```javascript
 const fetch = require("node-fetch");
@@ -110,13 +108,14 @@ responsePromise
 	.catch((err) => {
 		console.log(err);
 	});
-
 ```
 
 ## async/await
 
+The last way to work with asynchronism in Node.js is with async functions. An async function is a function declared with the `async` keyword at the beginning, allowing the use of the `await` keyword inside. The `await` keyword can be used with functions that return a promise to stop execution until the returned promise is fulfilled or rejected, avoiding the use of `.then` and `.catch` chains. In the following example, we achieve the transform the previous example using the async/await pattern: 
+
 ```javascript
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 
 const getUser = async () => {
 	try {
@@ -131,9 +130,34 @@ const getUser = async () => {
 getUser();
 ```
 
+Here, the value returned from the promise fulfillment is treated as the return value of the await expression, so we can use `try/catch` to handle errors.
+
 ## Making non-promise based functions asynchronous
 
+Even though promises are considered the best way to work with asynchronism with Node.js, a major part of the integrated methods uses callbacks since they were released before ES6. However, we can implement promise-based behavior in non-promise functions using the `Promise` constructor. 
+
+> When called via `new`, the constructor takes a function, called the "executor function", as its parameter. This function should take two functions as parameters. The first of these functions (resolve) is called when the asynchronous task completes successfully and returns the results of the task as a value. The second (reject) is called when the task fails and returns the reason for failure, which is typically an error object.
+>
+> [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
+
+New promises have the following structure:
+
+```javascript
+const myNewPromise = new Promise((resolve, reject) => {
+	asyncProcess.on("data", (data) => {
+		resolve(data);
+	});
+	asyncProcess.on("error", (error) => {
+		reject(error);
+	});
+});
+```
+
+Knowing this, we can create a `new Promise` around a function that doesn't support promises, and call the resolve function inside the callback. We will see how to do it by making a `setTimeout` function support promises chains and async/await.
+
 ### To Promise
+
+In this case, we create a `new Promise`, which will be resolved after 2000ms elapses and won't block JavaScript single-thread, so the other console logs will be executed. 
 
 ```javascript
 console.log("First log");
@@ -152,6 +176,8 @@ console.log("Second log");
 ```
 
 ### To async/await
+
+Here, we also create a `new Promise`, and we use the `await` keyword to wait for the promise to be resolved after 2000ms, but in this case, we block JavaScript single-thread, so the other console logs won't be executed until the promise is resolved. 
 
 ```javascript
 const myPromise = new Promise((resolve, reject) => {
