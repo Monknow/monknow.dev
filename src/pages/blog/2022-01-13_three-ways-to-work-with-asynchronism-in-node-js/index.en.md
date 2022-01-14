@@ -194,7 +194,7 @@ const myPromise = new Promise((resolve, reject)=>{
 })
 ```
 
-Knowing this, we can create a `new Promise` around a function that doesn't support promises, and call the `resolve` function inside the callback. We will see how to do it by making a `setTimeout` function support promises chains and async/await.
+Knowing this, we can create a `new Promise` around a function that doesn't support promises, and call the `resolve` function inside its callback. We will see how to do it by making a `setTimeout` method support promises chains and async/await.
 
 ## To Promise
 
@@ -216,11 +216,11 @@ myPromise.then((log) => {
 console.log("Second log");
 ```
 
-In this case, we create a new promise around the `setTimeout` method, we declare the `resolve` function inside the callback, and after 2000ms it will be executed, returning "Third asynchronous log" as the fulfilled value. To wait for the `resolve` execution, we attach a `.then` to the promise with a callback that will log the fulfilled value to the console.
+Here, we create a new promise around the `setTimeout` method, declare the `resolve` function inside the callback, and after 2000ms it will be executed, returning "Third asynchronous log" as the fulfilled value. To wait for the `resolve` execution, we attach a `.then` to the promise with a callback that will log the fulfilled value to the console.
 
 ## To async/await
 
-Here, we also create a `new Promise` but we use the `await` keyword to wait for the promise to be resolved after 2000ms. Although, in this case, we block JavaScript single-thread, so the other console logs won't be executed until the promise is resolved. 
+On this occasion, we also create a `new Promise` but we use the `await` keyword to wait for the promise to be resolved after 2000ms. Although, in this case, we do block JavaScript single-thread, so the other console logs won't be executed until the promise is resolved. 
 
 ```javascript
 const myPromise = new Promise((resolve, reject) => {
@@ -236,7 +236,7 @@ const getLogs = async (promise) => {
 		console.log(log);
 	});
 
-	console.log("Thid log");
+	console.log("Third log");
 };
 
 getLogs(myPromise);
@@ -244,4 +244,6 @@ getLogs(myPromise);
 
 # Conclusion
 
-Even though promises are lifesavers, asynchronous callbacks are still very useful if we don't want to do several asynchronous operations in order. On the other hand, consuming promises with `.then` and `.catch` make your code more readable and are better for error handling than callbacks, besides they don't suspend execution. Lastly, the `async/await` pattern has the same advantages of `.then` and `.catch`, but they block the thread, which can be useful depending on the situation. I hope you found this post helpful and until the next time!
+Even though promises are lifesavers, asynchronous callbacks are still very useful if we don't want to do several asynchronous operations in order. On the other hand, consuming promises with `.then` and `.catch` make your code more readable and are better for error handling than callbacks, besides they don't suspend execution. Lastly, the async/await pattern has the same advantages of `.then` and `.catch`, but they block the thread, which can be useful depending on the situation. 
+
+I hope you found this post helpful and until the next time!
