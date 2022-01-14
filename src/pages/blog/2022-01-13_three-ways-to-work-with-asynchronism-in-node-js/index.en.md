@@ -4,8 +4,8 @@ slug: Three ways to work with asynchronism in Node.js
 fecha: 2022-01-13T00:00:36.661Z
 titulo: Three ways to work with asynchronism in Node.js
 subtitulo: Callbacks, Promises, async/await
-portada: 2fac496.jpg
-descripcionImagen: uwu
+portada: three-ways-to-work-with-asynchronism-in-node.js.jpg
+descripcionImagen: Node.js logo behind clock background
 descripcion: "Async JS: Three ways to work with asynchronism in Node.js and
   JavaScript. Using callbacks, ES6 Promises and E6+ async/await with examples"
 ---
@@ -229,7 +229,7 @@ const myPromise = new Promise((resolve, reject) => {
 	}, 2000);
 });
 
-const getLogs = async (promise) => {
+const printLogs = async (promise) => {
 	console.log("First log");
 
 	await promise.then((log) => {
@@ -239,7 +239,7 @@ const getLogs = async (promise) => {
 	console.log("Third log");
 };
 
-getLogs(myPromise);
+printLogs(myPromise);
 ```
 
 # Conclusion

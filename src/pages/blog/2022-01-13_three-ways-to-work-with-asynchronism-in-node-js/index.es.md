@@ -4,6 +4,8 @@ slug: Three ways to work with asynchronism in Node.js
 fecha: 2022-01-13T00:00:36.661Z
 titulo: Tres maneras de trabajar con asincronismo en Node.js
 subtitulo: Callbacks, Promesas y async/await
+portada: three-ways-to-work-with-asynchronism-in-node.js.jpg
+descripcionImagen: Logo de Node.js detrás de fondo de relojes
 descripcion: "JS asincrono: tres maneras de trabajar con asincronismo en Node.js
   y JavaScript. Utilizando callbacks, ES6 promesas, ES6+ async/await con
   ejemplos"
