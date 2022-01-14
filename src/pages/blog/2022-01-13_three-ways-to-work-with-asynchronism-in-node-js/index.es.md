@@ -2,6 +2,11 @@
 tipo: blog
 slug: Three ways to work with asynchronism in Node.js
 fecha: 2022-01-13T00:00:36.661Z
+titulo: Tres maneras de trabajar con asincronismo en Node.js
+subtitulo: Callbacks, Promesas y async/await
+descripcion: "JS asincrono: tres maneras de trabajar con asincronismo en Node.js
+  y JavaScript. Utilizando callbacks, ES6 promesas, ES6+ async/await con
+  ejemplos"
 ---
 # Introducción
 
@@ -142,15 +147,54 @@ promesaDeRespuesta
 	.catch((err) => {
 		console.log(err);
 	});
-
 ```
 
 # async/await
 
+La úliima forma de trabajar con asincronismo en Node.js es utilizando funciones asincronas. Una función asincrona es declarada con la palabra clave `async` al comienzo, lo que permite el uso de la palabara `await` en su interior. `await` puede ser utilizado antes de una funció que retorna una promesa para detener la ejecución del código hasta que la promesa sea completada o rechazada, evitando así el uso de las cadenas de `.then` y `.catch`. En el siguiente ejemplo, veremos como utilizar el ejemplo anteriores utilizando el patrón async/await.
+
+```javascript
+const fetch = require("node-fetch");
+
+const obtenerUsuario = async () => {
+	try {
+		const respuesta = await fetch("https://randomuser.me/api/");
+		const data = await response.json();
+		console.log(data);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+obtenerUsuario();
+```
+
+Aquí, el valor retornado de la completación de la promesa es tratado como el valor de retorno de `await`, por lo que `respuesta` siempre va a ser el valor esperado cuando la promesa es exitosa, pero en caso de un rechazo debido a un error, `try/catch` lo va a manejar.
+
 # Añadiendo promesas a funciones basadas en callbacks
 
-## Promesas
+A pesar de que las promesas son consideradas la mejor forma de trabajar con asincronismo en Node.js, una gran parte de los métodos integrados por defecto aún utilizan callbacks ya que fueron creados antes de ES6. No obstante, aún podemos implementar un comportamiento basado en promesas a funciones con callbacks clásicos utilizando el constructor `Promise`.
 
-## async/await
+> Cuando es invocado a través de `new`, el constructor de promesas utiliza una función, llamada la "función ejecutora, como su único parametro. Esta funcion toma dos funciones como parámetros. La primera de estas funciones (resolver) es llamada cuando una tarea asincrona es completada con exito y retorna el resultado de la tarea como valor. El segundo object (rechazar) es llamado cuando la tarea falla y retorna la razón del fallo, que es tipicamente un objeto de error"
+>
+> [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
+
+Una nueva promesa suele tener la siguiente estructura:
+
+```javascript
+const myPromesa = new Promise((resolver, rechazar)=>{
+	procesoAsincrono.on("data", (data)=>{
+		resolver(data);
+	})
+
+	procesoAsincrono.on("error", (error)=>{
+		rechazar(error);
+	})
+})
+```
+
+## A Promesa
+
+## A async/await
 
 # Conclusión

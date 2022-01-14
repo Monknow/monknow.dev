@@ -3,7 +3,7 @@ tipo: blog
 slug: Three ways to work with asynchronism in Node.js
 fecha: 2022-01-13T00:00:36.661Z
 titulo: Three ways to work with asynchronism in Node.js
-subtitulo: Callbacks, Promises, async/await with examples
+subtitulo: Callbacks, Promises, async/await
 portada: 2fac496.jpg
 descripcionImagen: uwu
 descripcion: "Async JS: Three ways to work with asynchronism in Node.js and
@@ -130,7 +130,6 @@ const dataPromise = jsonPromise.then((data) => {
 dataPromise.catch((err) => {
 	console.log(err);
 });
-
 ```
 
 Chaining several `.then` and `.catch` methods can be illustrated better if we write them like this: 
@@ -149,7 +148,6 @@ responsePromise
 	.catch((err) => {
 		console.log(err);
 	});
-
 ```
 
 # async/await
@@ -170,10 +168,9 @@ const getUser = async () => {
 };
 
 getUser();
-
 ```
 
-Here, the value returned from the promise fulfillment is treated as the return value of the await expression, so `response` will always be the fulfilled value of the promise, but in case of rejection due to an error, we can use `try/catch` to handle it.
+Here, the value returned from the promise fulfillment is treated as the return value of the `await` expression, so `response` will always be the fulfilled value of the promise but in case of rejection due to an error, `try/catch` will handle it.
 
 # Adding promises to callback-based functions
 
@@ -183,7 +180,7 @@ Even though promises are considered the best way to work with asynchronism with 
 >
 > [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 
-New promises have the following structure:
+New promises tend to have the following structure:
 
 ```javascript
 const myPromise = new Promise((resolve, reject)=>{
@@ -195,7 +192,6 @@ const myPromise = new Promise((resolve, reject)=>{
 		reject(error);
 	})
 })
-
 ```
 
 Knowing this, we can create a `new Promise` around a function that doesn't support promises, and call the `resolve` function inside the callback. We will see how to do it by making a `setTimeout` function support promises chains and async/await.
@@ -218,7 +214,6 @@ myPromise.then((log) => {
 });
 
 console.log("Second log");
-
 ```
 
 In this case, we create a new promise around the `setTimeout` method, we declare the `resolve` function inside the callback, and after 2000ms it will be executed, returning "Third asynchronous log" as the fulfilled value. To wait for the `resolve` execution, we attach a `.then` to the promise with a callback that will log the fulfilled value to the console.
@@ -245,7 +240,6 @@ const getLogs = async (promise) => {
 };
 
 getLogs(myPromise);
-
 ```
 
 # Conclusion
