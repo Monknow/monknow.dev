@@ -74,7 +74,7 @@ exports.createPages = ({graphql, actions}) => {
 			const locale = node.fields.locale;
 
 			createPage({
-				path: `${locale}/blog/${slug}`,
+				path: `/${locale}/blog/${slug}`,
 				component: blogPostTemplate,
 				context: {
 					slug: node.frontmatter.slug,
