@@ -63,11 +63,11 @@ setTimeout(() => {
 
 ¿Verdad que es confuso? Es por eso que ES6 trajo consigo una nueva manera de trabajar con operaciones asíncronas: promesas. Una promesa es un objeto que representa la completación o rechazo (comúnmente debido a un error) de una operación asíncrona. Además de poder ser completada o rechazada, una promesa puede tener un tercer estado: pendiente; cuando aún no ha adquirido ninguno de los dos estados anteriores.
 
-El encanto de las promesas es que podemos adjuntar un callback al objeto de la promesa en vez de pasar un callback dentro de una función. La manera en la que hacemos esto es utilizando los métodos `.then` y `.catch`. `.then` te permite adjuntar un callback para manejar la completación de una operación, mientras que `.catch` hace lo mismo pero para el rechazo.
+El encanto de las promesas es que podemos adjuntar un callback al objeto de la promesa en vez de pasar un callback dentro de una función. La manera en la que hacemos esto es utilizando los métodos [.then](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) y [.catch](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch). `.then` te permite adjuntar un callback para manejar la completación de una operación, mientras que `.catch` hace lo mismo pero para el rechazo.
 
-Si quisiéramos ejecutar varias operaciones asíncronas con callbacks en orden, las tendríamos que anidar (creando callback hell). Pero con promesas, podemos hacer que un `.then` devuelva otra promesa, a la cual podemos adjuntar otro `.then`, creando una cadena. Veamos esto al obtener data de la random user random user API.
+Si quisiéramos ejecutar varias operaciones asíncronas con callbacks en orden, las tendríamos que anidar (creando callback hell). Pero con promesas, podemos hacer que un `.then` devuelva otra promesa, a la cual podemos adjuntar otro `.then`, creando una cadena. Veamos esto al obtener data de la [random user random user API](https://randomuser.me/api).
 
-En Node.js, tendríamos que utilizar el módulo HTTP para llamar a una API. No obstante, es un módulo de bajo nivel y no es muy amigable para el desarrollador. Por lo tanto, utilizaremos `node-fetch`, el cual emula el método global del navegador `fetch()`, y—lo que es más importante—retorna una promesa como resultado.
+En Node.js, tendríamos que utilizar el [módulo HTTP](https://nodejs.dev/learn/the-nodejs-http-module) para llamar a una API. No obstante, es un módulo de bajo nivel y no es muy amigable para el desarrollador. Por lo tanto, utilizaremos [`node-fetch`](node-fetch), el cual emula el método global del navegador [`fetch()`](https://developer.mozilla.org/es/docs/Web/API/fetch), y—lo que es más importante—retorna una promesa como resultado.
 
 ```shell
 npm install node-fetch@2
@@ -179,8 +179,7 @@ A pesar de que las promesas son consideradas la mejor forma de trabajar con asin
 
 > Cuando es invocado a través de `new`, el constructor de promesas utiliza una función, llamada"función ejecutora", como su único parámetro. Esta función toma dos funciones como parámetros. La primera de estas funciones (resolver) es llamada cuando una tarea asíncrona es completada con éxito y retorna el resultado de la tarea como valor. El segundo objeto (rechazar) es llamado cuando la tarea falla y retorna la razón del fallo, que es típicamente un objeto de error
 >
->
-> MDN
+> [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 
 Una nueva promesa suele tener la siguiente estructura:
 
@@ -242,7 +241,6 @@ const imprimirLogs = async (promesa) => {
 };
 
 imprimirLogs(myPromise);
-
 ```
 
 # Conclusión
