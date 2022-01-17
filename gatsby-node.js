@@ -75,7 +75,7 @@ exports.createPages = ({graphql, actions}) => {
 
 			createPage({
 				path: `/${locale}/blog/${slug}`,
-				matchPath: `/${locale}/blog/:slug`,
+				matchPath: `/${locale}/blog/${slug}`,
 				component: blogPostTemplate,
 				context: {
 					slug: node.frontmatter.slug,
