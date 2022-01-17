@@ -55,6 +55,9 @@ exports.createPages = ({graphql, actions}) => {
 						frontmatter {
 							slug
 						}
+						fields {
+							locale
+						}
 					}
 				}
 			}
@@ -68,8 +71,12 @@ exports.createPages = ({graphql, actions}) => {
 		// Create blog post pages.
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
+			const locale = node.fields.locale;
+
+			console.dir(locale);
+
 			createPage({
-				path: `blog/${slug}`,
+				path: `${locale}/blog/${slug}`,
 				component: blogPostTemplate,
 				context: {
 					slug: node.frontmatter.slug,
