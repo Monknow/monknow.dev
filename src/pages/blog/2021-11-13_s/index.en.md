@@ -1,6 +1,6 @@
 ---
 tipo: blog
-slug: How to use the canvas element in React
+slug: how-to-use-the-canvas-element-in-react
 fecha: 2021-11-13T18:54:36.427Z
 titulo: React for beginners. How to use the canvas element
 subtitulo: The best practices; with hooks and performance
