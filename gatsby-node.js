@@ -5,7 +5,7 @@ const slugify = (slugSucio) => {
 	const slugSinMayusculas = slugSinEspacios.toLowerCase();
 
 	// remove accents, swap ñ for n, etc
-	let caracteresRaros = "ãàáäâáº½èéëêìíïîõòóöôùúüûñç·/_,:;";
+	let caracteresRaros = "ãàáäâáº½èéëêìíïîõòóöôùúüûñç·/_,:;.";
 	let caracteresSlugy = "aaaaaeeeeeiiiiooooouuuunc------";
 
 	let slugSinCaracteresRaros = slugSinMayusculas;
@@ -72,8 +72,6 @@ exports.createPages = ({graphql, actions}) => {
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
 			const locale = node.fields.locale;
-
-			console.dir(locale);
 
 			createPage({
 				path: `${locale}/blog/${slug}`,
