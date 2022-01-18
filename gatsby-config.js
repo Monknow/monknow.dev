@@ -5,6 +5,9 @@ module.exports = {
 		siteUrl: "https://monknow.dev",
 		title: "Monknow",
 	},
+	flags: {
+		FAST_DEV: true,
+	},
 	plugins: [
 		`gatsby-transformer-sharp`,
 		"gatsby-plugin-styled-components",

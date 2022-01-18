@@ -5,7 +5,7 @@ const slugify = (slugSucio) => {
 	const slugSinMayusculas = slugSinEspacios.toLowerCase();
 
 	// remove accents, swap ñ for n, etc
-	let caracteresRaros = "ãàáäâáº½èéëêìíïîõòóöôùúüûñç·/_,:;.";
+	let caracteresRaros = "ãàáäâáº½èéëêìíïîõòóöôùúüûñç·/_,:;";
 	let caracteresSlugy = "aaaaaeeeeeiiiiooooouuuunc------";
 
 	let slugSinCaracteresRaros = slugSinMayusculas;
@@ -55,9 +55,6 @@ exports.createPages = ({graphql, actions}) => {
 						frontmatter {
 							slug
 						}
-						fields {
-							locale
-						}
 					}
 				}
 			}
@@ -71,11 +68,11 @@ exports.createPages = ({graphql, actions}) => {
 		// Create blog post pages.
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
-			const locale = node.fields.locale;
+			console.log({slug, node});
 
 			createPage({
-				path: `/${locale}/blog/${slug}`,
-				matchPath: `/${locale}/blog/${slug}`,
+				path: `/blog/${slug}`,
+				matchPath: `/blog/${slug}`,
 				component: blogPostTemplate,
 				context: {
 					slug: node.frontmatter.slug,
