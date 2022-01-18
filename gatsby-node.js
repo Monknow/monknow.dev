@@ -68,7 +68,6 @@ exports.createPages = ({graphql, actions}) => {
 		// Create blog post pages.
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
-			console.log({slug, node});
 
 			createPage({
 				path: `/blog/${slug}`,

@@ -75,8 +75,6 @@ const PostPage: FC<PostPageProps> = ({data}) => {
 
 	const {pathname} = useContext(ContextoURL);
 
-	const [tiempoDeLectura, setTiempoDeLectura] = useState(0);
-
 	const {frontmatter, wordCount, html} = data.markdownRemark;
 	const posts = data.allMarkdownRemark.nodes;
 	const siteURL = data.site.siteMetadata.siteUrl;
@@ -100,10 +98,6 @@ const PostPage: FC<PostPageProps> = ({data}) => {
 	};
 
 	const {textoDeLeerEnOtroIdioma, textoDetiempoDeLectura, atribucionPrefijo} = recordContenido[localeFijado];
-
-	useEffect(() => {
-		setTiempoDeLectura(calcularTiempoDeLectura(numeroDePalabras));
-	}, [numeroDePalabras]);
 
 	return (
 		<BlogPostEstilizado itemType="https://schema.org/Article">
@@ -134,7 +128,7 @@ const PostPage: FC<PostPageProps> = ({data}) => {
 					<MetaDatosBlogPost>
 						<span itemProp="datePublished">{frontmatter.fecha}</span>
 						<span>
-							{tiempoDeLectura} {textoDetiempoDeLectura}
+							{calcularTiempoDeLectura(numeroDePalabras)} {textoDetiempoDeLectura}
 						</span>
 					</MetaDatosBlogPost>
 					{portada && <GatsbyImage image={portada} alt={frontmatter.descripcionImagen}></GatsbyImage>}

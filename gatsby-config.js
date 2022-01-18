@@ -7,6 +7,7 @@ module.exports = {
 	},
 	flags: {
 		FAST_DEV: true,
+		PARALLEL_SOURCING: true,
 	},
 	plugins: [
 		`gatsby-transformer-sharp`,
@@ -105,7 +106,7 @@ module.exports = {
 				},
 			},
 		},
-		`gatsby-plugin-netlify`,
 		`gatsby-plugin-netlify-cms`,
+		`gatsby-plugin-netlify`,
 	],
 };
