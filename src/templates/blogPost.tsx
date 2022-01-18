@@ -1,5 +1,5 @@
 import * as React from "react";
-import {FC, useEffect, useState, useContext} from "react";
+import {FC, useContext} from "react";
 import {ContextoURL} from "../context/ContextoURL";
 import {Markdown} from "../components/atoms/Markdown";
 import {graphql} from "gatsby";

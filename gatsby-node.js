@@ -50,7 +50,7 @@ exports.createPages = ({graphql, actions}) => {
 	return graphql(
 		`
 			query loadPagesQuery {
-				allMarkdownRemark(filter: {frontmatter: {tipo: {eq: "blog"}}}) {
+				allMarkdownRemark(filter: {frontmatter: {tipo: {eq: "blog"}}, fields: {locale: {eq: "en"}}}) {
 					nodes {
 						frontmatter {
 							slug
@@ -68,6 +68,8 @@ exports.createPages = ({graphql, actions}) => {
 		// Create blog post pages.
 		result.data.allMarkdownRemark.nodes.forEach((node) => {
 			const slug = slugify(node.frontmatter.slug);
+
+			console.log({node, slug});
 
 			createPage({
 				path: `/blog/${slug}`,
