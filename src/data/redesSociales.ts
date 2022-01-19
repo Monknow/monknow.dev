@@ -4,7 +4,7 @@ import LinkedInSVG from "../assets/svg/iconmonstr-linkedin-1.inline.svg";
 
 export const redesSociales = [
 	{
-		url: "https://twitter.com/CodeMonknow",
+		url: "https://twitter.com/monknow_dev",
 		Svg: TwitterSVG,
 	},
 	{url: "https://www.linkedin.com/in/monknow", Svg: LinkedInSVG},
