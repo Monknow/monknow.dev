@@ -166,7 +166,7 @@ export const Contactame = () => {
 					<label htmlFor="formulario__mensaje--label">{contenidoPorLenguaje.labelMensaje}</label>
 					<textarea name="mensaje" id="formulario__mensaje--textarea" cols={10} rows={5}></textarea>
 				</ContactameMensaje>
-				<BotHoneyPot type="text" name="_honey" /> {/* Bot Honey Pot */}
+				<BotHoneyPot type="text" name="_formsubmit_id" /> {/* Bot Honey Pot */}
 				<Boton type="submit" aria-label="Enviar mensaje">
 					{contenidoPorLenguaje.botonContenido}
 				</Boton>
